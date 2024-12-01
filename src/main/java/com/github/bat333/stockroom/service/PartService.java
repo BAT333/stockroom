@@ -23,7 +23,7 @@ public class PartService {
     private SectorRepository sectorRepository;
 
     public DataAllPart registration(@Valid DataPart dataPart, Long id) {
-        Sector sector = sectorRepository.getReferenceById(id);
+        Sector sector = sectorRepository.findById(id).get();
         Part part =partRepository.save(new Part(dataPart,sector));
         return new DataAllPart(part);
     }

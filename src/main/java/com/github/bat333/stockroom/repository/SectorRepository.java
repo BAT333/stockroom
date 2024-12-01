@@ -11,5 +11,6 @@ import java.util.Optional;
 public interface SectorRepository extends JpaRepository<Sector , Long> {
    List<Sector> findByActiveTrue();
 
-    Optional<Sector> findByIdActiveTrue(Long id);
+    Optional<Sector> findByIdAndActiveTrue(Long id);
+
 }

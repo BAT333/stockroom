@@ -8,9 +8,9 @@ public record DataAllPart(
         String name,
         byte[] imageData,
         double amount,
-        Sector sector
+        DataSector sector
 ) {
     public DataAllPart(Part part) {
-        this(part.getId(),part.getName(),part.getImage(),part.getAmount(),part.getSector());
+        this(part.getId(),part.getName(),part.getImage(),part.getAmount(),new DataSector(part.getSector()));
     }
 }

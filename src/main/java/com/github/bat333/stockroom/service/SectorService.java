@@ -24,11 +24,11 @@ public class SectorService {
     }
 
     public DataAllSector getSector(Long id) {
-        return repository.findByIdActiveTrue(id).map(DataAllSector::new).orElseThrow(() -> new RuntimeException("Setor não encontrado"));
+        return repository.findByIdAndActiveTrue(id).map(DataAllSector::new).orElseThrow(() -> new RuntimeException("Setor não encontrado"));
     }
 
     public DataAllSector update(Long id, DataSector dataSector) {
-        Optional<Sector> sector = repository.findByIdActiveTrue(id);
+        Optional<Sector> sector = repository.findByIdAndActiveTrue(id);
         return sector.map(sector1 -> {
             sector1.update(dataSector);
             return new DataAllSector(sector1);
@@ -37,7 +37,7 @@ public class SectorService {
     }
 
     public void delete(Long id) {
-        Optional<Sector> sector = repository.findByIdActiveTrue(id);
+        Optional<Sector> sector = repository.findByIdAndActiveTrue(id);
         sector.ifPresentOrElse(Sector::delete,() -> { throw new RuntimeException("Error"); }
         );
     }
