@@ -23,7 +23,7 @@ public class ControllerSector {
 
 
     @PostMapping
-    public ResponseEntity<DataAllSector> registerSector(@RequestBody @Valid DataSector dataSector){
+    public ResponseEntity<DataAllSector> registerSector(@ModelAttribute  @Valid DataSector dataSector){
         DataAllSector sector = sectorService.register(dataSector);
         return ResponseEntity.created(URI.create("/"+sector.id())).body(sector);
     }

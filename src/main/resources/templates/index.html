@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Setor</title>
+
+    <!-- Referência ao arquivo CSS -->
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+
+<header>
+    Sistema de Cadastro de Setor
+</header>
+
+<div class="container">
+    <h1>Cadastro de Setor</h1>
+
+    <form th:action="@{/api/sector}" th:object="${sector}" method="post">
+        <div class="form-group">
+            <label for="shelf">Prateleira:</label>
+            <input type="text" id="shelf" th:field="*{shelf}" required="required" />
+        </div>
+
+        <div class="form-group">
+            <label for="column">Coluna:</label>
+            <input type="text" id="column" th:field="*{column}" required="required" />
+        </div>
+
+        <div class="form-group">
+            <label for="row">Fila:</label>
+            <input type="text" id="row" th:field="*{row}" required="required" />
+        </div>
+
+        <button type="submit">Cadastrar Setor</button>
+    </form>
+</div>
+
+</body>
+</html>
