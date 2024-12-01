@@ -43,4 +43,8 @@ public class SectorService {
         sector.ifPresentOrElse(Sector::delete,() -> { throw new RuntimeException("Error"); }
         );
     }
+
+    public List<DataAllSector> all() {
+        return repository.findByActiveTrue().stream().map(DataAllSector::new).toList();
+    }
 }

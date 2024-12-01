@@ -32,6 +32,10 @@ public class ControllerSector {
     public ResponseEntity<Page<DataAllSector>> getAllSector(@PageableDefault(sort = {"id"}) Pageable pageable){
         return ResponseEntity.ok(sectorService.getAll(pageable));
     }
+    @GetMapping("/sectors")
+    public ResponseEntity<List<DataAllSector>> AllSector(){
+        return ResponseEntity.ok(sectorService.all());
+    }
     @GetMapping("/{id}")
     public ResponseEntity<DataAllSector> getSector(@PathVariable Long id){
         return ResponseEntity.ok(sectorService.getSector(id));

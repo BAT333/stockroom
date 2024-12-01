@@ -11,7 +11,8 @@ import java.util.Optional;
 
 @Repository
 public interface SectorRepository extends JpaRepository<Sector , Long> {
-   Page<Sector> findByActiveTrue(Pageable pageable);
+    Page<Sector> findByActiveTrue(Pageable pageable);
+    List<Sector> findByActiveTrue();
 
     Optional<Sector> findByIdAndActiveTrue(Long id);
 

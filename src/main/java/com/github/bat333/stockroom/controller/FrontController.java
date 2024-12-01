@@ -10,15 +10,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/ui")
-public class HomeController {
+public class FrontController {
     @Autowired
     private SectorService service;
-    @GetMapping("/sector")
+    @GetMapping("/form")
     public String index(Model model) {
         Page<DataAllSector> sectors = service.getAll(PageRequest.of(0, Integer.MAX_VALUE));
 
@@ -28,6 +27,7 @@ public class HomeController {
         // Adicionar um objeto vazio de peça para o formulário
         model.addAttribute("partnew", new DataPart("", null, 0.0));
         model.addAttribute("sector", new DataSector("", "", ""));
-        return "index";  // Nome do arquivo HTML, sem a extensão
+        return "form";  // Nome do arquivo HTML, sem a extensão
     }
+
 }

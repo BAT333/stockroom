@@ -9,13 +9,12 @@ public record DataAllSector(
         Long id,
         String shelf,
         String column,
-        String row,
-        List<DataAllPart> part
+        String row
 
 
 ) {
 
     public DataAllSector(Sector sector) {
-        this(sector.getId(), sector.getShelf(), sector.getColumn(), sector.getRow(),sector.listPart());
+        this(sector.getId(), sector.getShelf(), sector.getColumn(), sector.getRow());
     }
 }
