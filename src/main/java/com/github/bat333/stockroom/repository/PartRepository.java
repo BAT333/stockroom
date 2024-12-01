@@ -15,4 +15,8 @@ public interface PartRepository extends JpaRepository<Part,Long> {
     List<Part> findByActiveTrue();
 
     Optional<Part> findByIdAndActiveTrue(Long id);
+
+    List<Part> findByIdOrNameContainingIgnoreCaseAndActiveTrue(Long cod, String name);
+
+    List<Part> findByNameContainingIgnoreCaseAndActiveTrue(String name);
 }

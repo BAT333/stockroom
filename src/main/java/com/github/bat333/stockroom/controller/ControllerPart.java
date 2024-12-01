@@ -26,10 +26,7 @@ public class ControllerPart {
         DataAllPart part = this.service.registration(dataPart, id);
         return ResponseEntity.created(URI.create("/"+part.id())).body(part) ;
     }
-    @GetMapping
-    public ResponseEntity<List<DataAllPart>> getAllPart(){
-        return ResponseEntity.ok(this.service.getAll());
-    }
+
     @GetMapping("/{id}")
     public ResponseEntity<DataAllPart> getPart(@PathVariable(name = "id") Long id){
         return ResponseEntity.ok(this.service.get(id));
@@ -45,6 +42,11 @@ public class ControllerPart {
     public ResponseEntity<Void> deletePart(@PathVariable(name = "id")Long id){
         this.service.delete(id);
         return  ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<DataAllPart>> searchPart(@RequestParam(name = "cod",required = false) Long cod,@RequestParam(name = "name",required = false) String name ){
+        return ResponseEntity.ok(this.service.search(cod,name));
     }
 
 

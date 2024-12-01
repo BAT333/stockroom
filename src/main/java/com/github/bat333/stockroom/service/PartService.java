@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 //fazer autenticação e jogar os erros
@@ -54,5 +55,32 @@ public class PartService {
                 Part::delete,
                 () -> { throw new RuntimeException("Error"); }
         );
+    }
+
+    public List<DataAllPart> search(Long cod, String name) {
+        System.out.println("cod: "+ cod +"  name:"+ name);
+         if(name == null && cod == null){
+             return this.getAll();
+         }
+         return (name != null && cod != null) ?this.getByCodAndName(cod, name):
+                 (cod != null)? this.getByCod(cod) : this.getByName(name);
+    }
+
+    private List<DataAllPart> getByName(String name) {
+
+        return partRepository.findByNameContainingIgnoreCaseAndActiveTrue(name).stream().map(DataAllPart::new).toList();
+    }
+
+    private List<DataAllPart> getByCod(Long cod) {
+        return this.partRepository.findByIdAndActiveTrue(cod).map(existingPart -> {
+            List<DataAllPart> parts = new ArrayList<>();
+            parts.add(new DataAllPart(existingPart));
+            return parts;
+        }).orElse(null);
+    }
+
+
+    private List<DataAllPart> getByCodAndName(Long cod, String name) {
+        return this.partRepository.findByIdOrNameContainingIgnoreCaseAndActiveTrue(cod,name).stream().map(DataAllPart::new).toList();
     }
 }
