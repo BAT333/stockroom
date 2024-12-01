@@ -1,5 +1,6 @@
 package com.github.bat333.stockroom.domain;
 
+import com.github.bat333.stockroom.model.DataAllPart;
 import com.github.bat333.stockroom.model.DataPart;
 import com.github.bat333.stockroom.model.DataSector;
 import jakarta.persistence.*;
@@ -57,8 +58,8 @@ public class Sector {
         this.active = false;
     }
 
-    public List<DataPart> listPart() {
-        return this.parts.stream().map(DataPart::new).collect(Collectors.toList());
+    public List<DataAllPart> listPart() {
+        return this.parts.stream().map(DataAllPart::new).collect(Collectors.toList());
     }
 /*
     public void addOrder(Order order){

@@ -13,6 +13,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class ControllerPart {
 
 
     @PostMapping("{id}")
-    public ResponseEntity<DataAllPart> partRegistration(@Valid @RequestBody DataPart dataPart, @PathVariable(name = "id") Long id){
+    public ResponseEntity<DataAllPart> partRegistration(@Valid @ModelAttribute DataPart dataPart, @PathVariable(name = "id") Long id) throws IOException {
         DataAllPart part = this.service.registration(dataPart, id);
         return ResponseEntity.created(URI.create("/"+part.id())).body(part) ;
     }

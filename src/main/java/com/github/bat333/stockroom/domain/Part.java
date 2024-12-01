@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.*;
 
+import java.io.IOException;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -30,16 +32,16 @@ public class Part {
     @JoinColumn(name = "sector")
     private Sector sector;
 
-    public Part( DataPart dataPart) {
+    public Part( DataPart dataPart) throws IOException {
         this.name = dataPart.name();
         this.amount = dataPart.amount();
-        this.image = dataPart.imageData();
+        this.image = dataPart.imageData().getBytes();
     }
 
-    public Part(@Valid DataPart dataPart, Sector sector) {
+    public Part(@Valid DataPart dataPart, Sector sector) throws IOException {
         this.name = dataPart.name();
         this.amount = dataPart.amount();
-        this.image = dataPart.imageData();
+        this.image = dataPart.imageData().getBytes();
         this.sector = sector;
     }
 

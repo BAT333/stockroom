@@ -10,7 +10,7 @@ public record DataAllSector(
         String shelf,
         String column,
         String row,
-        List<DataPart> part
+        List<DataAllPart> part
 
 
 ) {

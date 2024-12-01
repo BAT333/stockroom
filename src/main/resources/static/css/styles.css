@@ -1,68 +1,123 @@
-/* src/main/resources/static/css/styles.css */
-
+/* Estilos Gerais */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f7fa;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f9fafb;
+    color: #333;
+    line-height: 1.6;
 }
 
 header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 20px;
+    background-color: #0078d7;
+    color: #ffffff;
     text-align: center;
-    font-size: 24px;
+    padding: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: bold;
 }
 
+/* Container Principal */
 .container {
-    width: 50%;
-    margin: 30px auto;
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 2rem auto;
+    background-color: #ffffff;
+    padding: 2rem;
     border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    text-align: center;
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
+/* Acessibilidade */
 label {
-    font-size: 18px;
-    margin-bottom: 8px;
+    font-size: 1rem;
+    font-weight: 600;
     display: block;
+    margin-bottom: 0.5rem;
     color: #333;
 }
 
-input[type="text"] {
+input, select, button, textarea {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Campos do Formulário */
+input[type="text"],
+input[type="number"],
+input[type="file"],
+select,
+textarea {
     width: 100%;
-    padding: 12px;
-    margin: 8px 0 20px 0;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid #0078d7;
+    border-color: #005bb5;
+    box-shadow: 0 0 5px rgba(0, 120, 215, 0.5);
+}
+
+/* Botão */
 button {
     width: 100%;
-    padding: 12px;
-    background-color: #4CAF50;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: bold;
     color: white;
-    font-size: 18px;
+    background-color: #0078d7;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #45a049;
+button:hover,
+button:focus {
+    background-color: #005bb5;
+    outline: none;
 }
 
-.form-group {
-    margin-bottom: 15px;
+button:active {
+    background-color: #003e80;
+}
+
+/* Mensagens de Erro e Sucesso */
+.error-message {
+    color: #d8000c;
+    background-color: #ffbaba;
+    padding: 0.5rem;
+    border: 1px solid #d8000c;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+.success-message {
+    color: #4caf50;
+    background-color: #dff0d8;
+    padding: 0.5rem;
+    border: 1px solid #4caf50;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    header {
+        font-size: 1.4rem;
+    }
+
+    button {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
 }

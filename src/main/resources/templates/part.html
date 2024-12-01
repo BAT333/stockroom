@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Peças</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script>
+        // Atualiza a URL do formulário com base no setor selecionado
+        function updateFormAction() {
+            const selectElement = document.getElementById('sector');
+            const form = document.getElementById('partForm');
+            const selectedSectorId = selectElement.value;
+
+            if (selectedSectorId) {
+                form.action = `/api/part/${selectedSectorId}`;
+            } else {
+                form.action = '#'; // URL inválida se nenhum setor for selecionado
+            }
+        }
+    </script>
+</head>
+<body>
+<header>
+    Cadastro de Peças
+</header>
+
+<div class="container">
+    <form id="partForm" method="POST" enctype="multipart/form-data">
+        <!-- Dropdown para escolher o Setor -->
+        <div class="form-group">
+            <label for="sector">Escolha o Setor:</label>
+            <select name="sector" id="sector" onchange="updateFormAction()" required>
+                <option value="">Selecione o Setor</option>
+                <!-- A lista de setores será preenchida dinamicamente -->
+                <th:block th:each="sector : ${sectors}">
+                    <option th:value="${sector.id}" th:text="${sector.shelf} + ' - ' + ${sector.column} + ' - ' + ${sector.row}"></option>
+                </th:block>
+            </select>
+        </div>
+
+        <!-- Campos para dados da Peça -->
+        <div class="form-group">
+            <label for="name">Nome da Peça:</label>
+            <input type="text" id="name" name="name" required />
+        </div>
+
+        <div class="form-group">
+            <label for="imageData">Imagem da Peça:</label>
+            <input type="file" id="imageData" name="imageData" accept="image/*" required />
+        </div>
+
+        <div class="form-group">
+            <label for="amount">Quantidade:</label>
+            <input type="number" id="amount" name="amount" min="1" step="0.01" required />
+        </div>
+
+        <!-- Botão para enviar o formulário -->
+        <div class="form-group">
+            <button type="submit">Cadastrar Peça</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

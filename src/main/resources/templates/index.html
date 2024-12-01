@@ -1,41 +1,105 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Setor</title>
-
-    <!-- Referência ao arquivo CSS -->
+    <title>Cadastro de Peças e Setores</title>
     <link rel="stylesheet" href="/css/styles.css" />
+    <script>
+        // Função para alternar entre os formulários
+        function toggleForms() {
+            const selectedOption = document.getElementById('formSelector').value;
+            const partForm = document.getElementById('partForm');
+            const sectorForm = document.getElementById('sectorForm');
+
+            // Alterna entre os formulários com base na opção selecionada
+            if (selectedOption === 'part') {
+                partForm.style.display = 'block';
+                sectorForm.style.display = 'none';
+            } else if (selectedOption === 'sector') {
+                partForm.style.display = 'none';
+                sectorForm.style.display = 'block';
+            } else {
+                partForm.style.display = 'none';
+                sectorForm.style.display = 'none';
+            }
+        }
+
+        // Atualiza a URL do formulário de peças com base no setor selecionado
+        function updateFormAction() {
+            const selectElement = document.getElementById('sector');
+            const form = document.getElementById('partForm');
+            const selectedSectorId = selectElement.value;
+
+            if (selectedSectorId) {
+                form.action = `/api/part/${selectedSectorId}`;
+            } else {
+                form.action = '#'; // Define uma URL inválida se nenhum setor for selecionado
+            }
+        }
+    </script>
 </head>
 <body>
-
 <header>
-    Sistema de Cadastro de Setor
+    Cadastro de Peças e Setores
 </header>
 
 <div class="container">
-    <h1>Cadastro de Setor</h1>
+    <!-- Selector para alternar entre os formulários -->
+    <div class="form-group">
+        <label for="formSelector">Escolha o que deseja cadastrar:</label>
+        <select id="formSelector" onchange="toggleForms()" required>
+            <option value="">Selecione uma opção</option>
+            <option value="part">Cadastro de Peças</option>
+            <option value="sector">Cadastro de Setores</option>
+        </select>
+    </div>
 
-    <form th:action="@{/api/sector}" th:object="${sector}" method="post">
+    <!-- Formulário de Cadastro de Peças -->
+    <form id="partForm" method="POST" enctype="multipart/form-data" style="display: none;">
+        <h1>Cadastro de Peças</h1>
+        <div class="form-group">
+            <label for="sector">Escolha o Setor:</label>
+            <select name="sector" id="sector" onchange="updateFormAction()" required>
+                <option value="">Selecione o Setor</option>
+                <!-- Lista dinâmica de setores -->
+                <th:block th:each="sector : ${sectors}">
+                    <option th:value="${sector.id}" th:text="${sector.shelf} + ' - ' + ${sector.column} + ' - ' + ${sector.row}"></option>
+                </th:block>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="name">Nome da Peça:</label>
+            <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+            <label for="imageData">Imagem da Peça:</label>
+            <input type="file" id="imageData" name="imageData" accept="image/*" required />
+        </div>
+        <div class="form-group">
+            <label for="amount">Quantidade:</label>
+            <input type="number" id="amount" name="amount" min="1" step="0.01" required />
+        </div>
+        <button type="submit">Cadastrar Peça</button>
+    </form>
+
+    <!-- Formulário de Cadastro de Setores -->
+    <form id="sectorForm" th:action="@{/api/sector}" th:object="${sector}" method="POST" style="display: none;">
+        <h1>Cadastro de Setores</h1>
         <div class="form-group">
             <label for="shelf">Prateleira:</label>
-            <input type="text" id="shelf" th:field="*{shelf}" required="required" />
+            <input type="text" id="shelf" th:field="*{shelf}" required />
         </div>
-
         <div class="form-group">
             <label for="column">Coluna:</label>
-            <input type="text" id="column" th:field="*{column}" required="required" />
+            <input type="text" id="column" th:field="*{column}" required />
         </div>
-
         <div class="form-group">
             <label for="row">Fila:</label>
-            <input type="text" id="row" th:field="*{row}" required="required" />
+            <input type="text" id="row" th:field="*{row}" required />
         </div>
-
         <button type="submit">Cadastrar Setor</button>
     </form>
 </div>
-
 </body>
 </html>

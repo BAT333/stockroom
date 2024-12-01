@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +27,7 @@ public class PartService {
     @Autowired
     private SectorRepository sectorRepository;
 
-    public DataAllPart registration(@Valid DataPart dataPart, Long id) {
+    public DataAllPart registration(@Valid DataPart dataPart, Long id) throws IOException {
         Sector sector = sectorRepository.findById(id).get();
         Part part =partRepository.save(new Part(dataPart,sector));
         return new DataAllPart(part);
