@@ -7,6 +7,9 @@ import com.github.bat333.stockroom.model.DataUpdatePart;
 import com.github.bat333.stockroom.service.PartService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,10 +46,14 @@ public class ControllerPart {
         this.service.delete(id);
         return  ResponseEntity.noContent().build();
     }
+    @GetMapping()
+    public ResponseEntity<Page<DataAllPart>> getAllPart( @PageableDefault(sort = {"id"}) Pageable pageable){
+        return ResponseEntity.ok(this.service.getAll(pageable));
+    }
 
     @GetMapping("/search")
-    public ResponseEntity<List<DataAllPart>> searchPart(@RequestParam(name = "cod",required = false) Long cod,@RequestParam(name = "name",required = false) String name ){
-        return ResponseEntity.ok(this.service.search(cod,name));
+    public ResponseEntity<Page<DataAllPart>> searchPart(@RequestParam(name = "cod",required = false) Long cod,@RequestParam(name = "name",required = false) String name ,@PageableDefault(sort = {"id"}) Pageable pageable){
+        return ResponseEntity.ok(this.service.search(cod,name,pageable));
     }
 
 

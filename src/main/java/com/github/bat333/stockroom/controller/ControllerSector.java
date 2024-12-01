@@ -5,7 +5,10 @@ import com.github.bat333.stockroom.model.DataAllSector;
 import com.github.bat333.stockroom.model.DataSector;
 import com.github.bat333.stockroom.service.SectorService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +29,8 @@ public class ControllerSector {
     }
 
     @GetMapping
-    public ResponseEntity<List<DataAllSector>> getAllSector(){
-        return ResponseEntity.ok(sectorService.getAll());
+    public ResponseEntity<Page<DataAllSector>> getAllSector(@PageableDefault(sort = {"id"}) Pageable pageable){
+        return ResponseEntity.ok(sectorService.getAll(pageable));
     }
     @GetMapping("/{id}")
     public ResponseEntity<DataAllSector> getSector(@PathVariable Long id){

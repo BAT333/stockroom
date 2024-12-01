@@ -9,6 +9,9 @@ import com.github.bat333.stockroom.repository.PartRepository;
 import com.github.bat333.stockroom.repository.SectorRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -29,8 +32,8 @@ public class PartService {
         return new DataAllPart(part);
     }
 
-    public List<DataAllPart> getAll() {
-        return partRepository.findByActiveTrue().stream().map(DataAllPart::new).toList();
+    public Page<DataAllPart> getAll(Pageable pageable) {
+        return partRepository.findByActiveTrue(pageable).map(DataAllPart::new);
     }
 
     public DataAllPart get(Long id) {
@@ -57,30 +60,30 @@ public class PartService {
         );
     }
 
-    public List<DataAllPart> search(Long cod, String name) {
+    public Page<DataAllPart> search(Long cod, String name, Pageable pageable) {
         System.out.println("cod: "+ cod +"  name:"+ name);
          if(name == null && cod == null){
-             return this.getAll();
+             return this.getAll(pageable);
          }
-         return (name != null && cod != null) ?this.getByCodAndName(cod, name):
-                 (cod != null)? this.getByCod(cod) : this.getByName(name);
+         return (name != null && cod != null) ?this.getByCodAndName(cod, name,pageable):
+                 (cod != null)? this.getByCod(cod,pageable) : this.getByName(name,pageable);
     }
 
-    private List<DataAllPart> getByName(String name) {
+    private Page<DataAllPart> getByName(String name, Pageable pageable) {
 
-        return partRepository.findByNameContainingIgnoreCaseAndActiveTrue(name).stream().map(DataAllPart::new).toList();
+        return partRepository.findByNameContainingIgnoreCaseAndActiveTrue(name,pageable).map(DataAllPart::new);
     }
 
-    private List<DataAllPart> getByCod(Long cod) {
+    private Page<DataAllPart> getByCod(Long cod, Pageable pageable) {
         return this.partRepository.findByIdAndActiveTrue(cod).map(existingPart -> {
             List<DataAllPart> parts = new ArrayList<>();
             parts.add(new DataAllPart(existingPart));
-            return parts;
-        }).orElse(null);
+            return new PageImpl<>(parts,pageable,1);
+        }).orElse(new PageImpl<>(List.of(), pageable, 0L));
     }
 
 
-    private List<DataAllPart> getByCodAndName(Long cod, String name) {
-        return this.partRepository.findByIdOrNameContainingIgnoreCaseAndActiveTrue(cod,name).stream().map(DataAllPart::new).toList();
+    private Page<DataAllPart> getByCodAndName(Long cod, String name, Pageable pageable) {
+        return this.partRepository.findByIdOrNameContainingIgnoreCaseAndActiveTrue(cod,name,pageable).map(DataAllPart::new);
     }
 }

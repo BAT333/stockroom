@@ -5,6 +5,8 @@ import com.github.bat333.stockroom.model.DataAllSector;
 import com.github.bat333.stockroom.model.DataSector;
 import com.github.bat333.stockroom.repository.SectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +21,8 @@ public class SectorService {
         return new DataAllSector(sector);
     }
 
-    public List<DataAllSector> getAll() {
-        return repository.findByActiveTrue().stream().map(DataAllSector::new).toList();
+    public Page<DataAllSector> getAll(Pageable pageable) {
+        return repository.findByActiveTrue(pageable).map(DataAllSector::new);
     }
 
     public DataAllSector getSector(Long id) {

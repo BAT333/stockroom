@@ -1,7 +1,8 @@
 package com.github.bat333.stockroom.repository;
 
 import com.github.bat333.stockroom.domain.Part;
-import com.github.bat333.stockroom.model.DataAllPart;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,11 +13,11 @@ import java.util.Optional;
 public interface PartRepository extends JpaRepository<Part,Long> {
     boolean existsByName(String mail);
 
-    List<Part> findByActiveTrue();
+    Page<Part> findByActiveTrue(Pageable pageable);
 
     Optional<Part> findByIdAndActiveTrue(Long id);
 
-    List<Part> findByIdOrNameContainingIgnoreCaseAndActiveTrue(Long cod, String name);
+    Page<Part> findByIdOrNameContainingIgnoreCaseAndActiveTrue(Long cod, String name, Pageable pageable);
 
-    List<Part> findByNameContainingIgnoreCaseAndActiveTrue(String name);
+    Page<Part> findByNameContainingIgnoreCaseAndActiveTrue(String name, Pageable pageable);
 }
