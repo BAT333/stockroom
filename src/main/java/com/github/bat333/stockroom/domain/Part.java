@@ -1,6 +1,7 @@
 package com.github.bat333.stockroom.domain;
 
 import com.github.bat333.stockroom.model.DataPart;
+import com.github.bat333.stockroom.model.DataUpdatePart;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.*;
@@ -25,6 +26,9 @@ public class Part {
     private double amount;
     @Column(name = "actives",nullable = false )
     private Boolean active = true;
+    @ManyToOne
+    @JoinColumn(name = "sector")
+    private Sector sector;
 
     public Part( DataPart dataPart) {
         this.name = dataPart.name();
@@ -32,7 +36,14 @@ public class Part {
         this.image = dataPart.imageData();
     }
 
-    public Part update(DataPart part) {
+    public Part(@Valid DataPart dataPart, Sector sector) {
+        this.name = dataPart.name();
+        this.amount = dataPart.amount();
+        this.image = dataPart.imageData();
+        this.sector = sector;
+    }
+
+    public Part update(DataUpdatePart part, Sector sector) {
         if(part.name() != null){
             this.name = part.name();
         }
@@ -41,6 +52,12 @@ public class Part {
         }
         if(part.amount() > 0){
             this.amount = part.amount();
+        }
+        if(part.idSector() != null){
+
+        }
+        if(sector != null&& part.idSector() != null){
+            this.sector = sector;
         }
 
         return this;
