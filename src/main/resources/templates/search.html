@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setores e Peças</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Setores e Peças</h1>
+</header>
+
+<div class="container">
+    <h2>Buscar Peças</h2>
+
+    <!-- Formulário de busca -->
+    <form th:action="@{/ui/search}" method="get" class="search-form">
+        <input type="text" name="name" placeholder="Pesquise por nome..." class="search-bar">
+        <input type="number" name="cod" placeholder="Pesquise por código..." class="search-bar">
+        <button type="submit" class="search-button">Pesquisar</button>
+    </form>
+
+    <!-- Resultados da pesquisa -->
+    <div th:if="${parts.size() > 0}">
+        <table class="results-table">
+            <thead>
+            <tr>
+                <th>CODIGO</th>
+                <th>Nome</th>
+                <th>Imagem</th>
+                <th>Quantidade</th>
+                <th>Setor</th>
+                <th>Selecionar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="part : ${parts}">
+                <td th:text="${part.id}"></td>
+                <td th:text="${part.name}"></td>
+                <td>
+                    <img th:src="${part.getImageDataUri}" alt="Imagem da Peça" class="part-image">
+                </td>
+                <td th:text="${part.amount}"></td>
+                <td>
+                    <span th:text="'Prateleira: ' + ${part.sector.shelf}"></span><br />
+                    <span th:text="'Coluna: ' + ${part.sector.column}"></span><br />
+                    <span th:text="'Fila: ' + ${part.sector.row}"></span>
+                </td>
+                <td>
+                    <a th:href="@{/ui/part/{id}(id=${part.id})}" class="select-button">Selecionar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:if="${parts.size() == 0}">
+        <p>Nenhuma peça encontrada.</p>
+    </div>
+</div>
+
+
+<div class="link-container">
+    <a href="/ui/form" class="select-button">🔍 Tela de Cadastros</a>
+</div>
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>

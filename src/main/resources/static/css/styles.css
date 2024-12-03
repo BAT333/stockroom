@@ -19,26 +19,14 @@ header {
 
 /* Container Principal */
 .container {
-    max-width: 900px;
+    max-width: 100%;
     margin: 2rem auto;
     background-color: #ffffff;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Acessibilidade */
-label {
-    font-size: 1rem;
-    font-weight: 600;
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #333;
-}
-
-input, select, button, textarea {
-    font-size: 1rem;
-    line-height: 1.5;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Campos do Formulário */
@@ -55,14 +43,6 @@ textarea {
     font-size: 1rem;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-    outline: 2px solid #0078d7;
-    border-color: #005bb5;
-    box-shadow: 0 0 5px rgba(0, 120, 215, 0.5);
-}
-
 /* Botão */
 button {
     width: 100%;
@@ -77,33 +57,74 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover,
-button:focus {
+button:hover {
     background-color: #005bb5;
-    outline: none;
 }
 
-button:active {
-    background-color: #003e80;
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    table-layout: fixed;
+    overflow-x: auto; /* Permite rolagem horizontal em dispositivos menores */
 }
 
-/* Mensagens de Erro e Sucesso */
-.error-message {
-    color: #d8000c;
-    background-color: #ffbaba;
-    padding: 0.5rem;
-    border: 1px solid #d8000c;
-    margin-bottom: 1rem;
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+}
+
+th {
+    background-color: #0078d7;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e1f5fe;
+}
+
+/* Estilos para Imagens */
+img {
+    max-width: 100%;
     border-radius: 4px;
 }
 
-.success-message {
-    color: #4caf50;
-    background-color: #dff0d8;
-    padding: 0.5rem;
-    border: 1px solid #4caf50;
-    margin-bottom: 1rem;
+/* Efeito de Zoom nas Imagens */
+.zoom-img {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.zoom-img:hover {
+    transform: scale(1.5); /* Aumenta mais ao passar o mouse */
+}
+
+/* Botão Selecionar */
+.select-button {
+    display: inline-block;
+    background-color: #0078d7;
+    color: white;
+    padding: 0.5rem 1rem;
     border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.select-button:hover {
+    background-color: #005bb5;
 }
 
 /* Responsividade */
@@ -112,12 +133,34 @@ button:active {
         padding: 1rem;
     }
 
-    header {
-        font-size: 1.4rem;
+    table {
+        width: 100%;
+        font-size: 0.9rem;
     }
 
-    button {
+    td, th {
         padding: 0.5rem;
+    }
+
+    header {
+        font-size: 1.6rem;
+    }
+
+    .search-bar {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .select-button {
         font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+/* Ajuste para imagens */
+@media (min-width: 1024px) {
+    .zoom-img {
+        max-width: 150px;
+        max-height: 150px;
     }
 }

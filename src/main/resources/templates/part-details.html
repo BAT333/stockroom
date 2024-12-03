@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Peça</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Detalhes da Peça</h1>
+</header>
+
+<div class="container">
+    <!-- Exibindo as informações da peça -->
+    <div th:if="${part != null}">
+        <h2 th:text="${part.name}"></h2>
+        <img th:src="${part.getImageDataUri}" alt="Imagem da Peça" class="part-image-large">
+        <p><strong>Código:</strong> <span th:text="${part.id}"></span></p>
+        <p><strong>Quantidade:</strong> <span th:text="${part.amount}"></span></p>
+        <p><strong>Setor:</strong></p>
+        <p><span th:text="'Prateleira: ' + ${part.sector.shelf}"></span></p>
+        <p><span th:text="'Coluna: ' + ${part.sector.column}"></span></p>
+        <p><span th:text="'Fila: ' + ${part.sector.row}"></span></p>
+    </div>
+
+    <div th:if="${part == null}">
+        <p>Peça não encontrada.</p>
+    </div>
+
+
+    <div class="link-container">
+        <form th:action="@{/ui/delete/{id}(id=${part.id})}" method="get" class="search-form">
+            <button type="submit" class="select-button"
+                    onclick="return confirm('Você tem certeza que deseja excluir esta peça?')">EXCLUIR</button>
+        </form>
+        <a th:href="@{/ui/update/{id}(id=${part.id})}" class="select-button">Atualizar</a>
+    </div>
+
+    <!-- Links extras -->
+    <div class="link-container">
+        <a href="/ui/form" class="select-button">🔍 Tela de Cadastros</a>
+        <a href="/ui/search" class="select-button">🔍 Tela de Pesquisa</a>
+    </div>
+
+</div>
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>

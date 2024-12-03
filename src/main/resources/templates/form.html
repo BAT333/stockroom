@@ -32,7 +32,7 @@
                 <option value="">Selecione o Setor</option>
                 <!-- Lista dinâmica de setores -->
                 <th:block th:each="sector : ${sectors}">
-                    <option th:value="${sector.id}" th:text="${sector.shelf} + ' - ' + ${sector.column} + ' - ' + ${sector.row}"></option>
+                    <option th:value="${sector.id}" th:text="'Prateleira:  ' +${sector.shelf} + ' - Coluna:  ' + ${sector.column} + ' - Fila:  ' + ${sector.row}+ ' - COD:  ' + ${sector.id}"></option>
                 </th:block>
             </select>
         </div>
@@ -49,6 +49,9 @@
             <input type="number" id="amount" name="amount" min="1" step="0.01" required />
         </div>
         <button type="submit">Cadastrar Peça</button>
+        <div class="link-container">
+            <a href="/ui/search" class="select-button">🔍 Tela de Pesquisa</a>
+        </div>
     </form>
 
     <!-- Formulário de Cadastro de Setores -->
@@ -67,6 +70,10 @@
             <input type="text" id="row" name="row" required />
         </div>
         <button type="submit">Cadastrar Setor</button>
+        <div class="link-container">
+            <a href="/ui/search" class="select-button">🔍 Tela de Pesquisa</a>
+        </div>
+
     </form>
 </div>
 <script src="/js/main.js"></script>

@@ -5,11 +5,11 @@
             const partForm = document.getElementById('partForm');
             const sectorForm = document.getElementById('sectorForm');
 
-          a
+            // Alterna entre os formulários com base na opção selecionada
             if (selectedOption === 'part') {
                 partForm.style.display = 'block';
                 sectorForm.style.display = 'none';
-                fetchSectors();
+                fetchSectors(); // Atualiza a lista de setores ao abrir o formulário de peças
             } else if (selectedOption === 'sector') {
                 partForm.style.display = 'none';
                 sectorForm.style.display = 'block';
@@ -28,15 +28,18 @@
             if (selectedSectorId) {
                 form.action = `/api/part/${selectedSectorId}`;
             } else {
-                form.action = '#';
+                form.action = '#'; // Define uma URL inválida se nenhum setor for selecionado
+            }
         }
 
      async function handleSubmit(event) {
-         event.preventDefault();
+         event.preventDefault();  // Impede o envio normal do formulário e a recarga da página
+
+         // Coleta os dados do formulário
          const form = document.getElementById('partForm');
          const formData = new FormData(form);
 
-
+         // Obtém o ID do setor selecionado no dropdown
          const sectorId = document.getElementById('sector').value;
 
          if (!sectorId) {
@@ -45,20 +48,20 @@
          }
 
          try {
-
+             // Envia os dados via AJAX (fetch) com o ID do setor na URL
              const response = await fetch(`/api/part/${sectorId}`, {
                  method: 'POST',
                  body: formData,
              });
 
              if (response.ok) {
-
+                 // Se o cadastro for bem-sucedido, limpa o formulário
                  form.reset();
 
-
+                 // Exibe uma mensagem de sucesso
                  alert('Peça cadastrada com sucesso!');
              } else {
-
+                 // Caso ocorra algum erro no cadastro
                  alert('Erro ao cadastrar a peça!');
              }
          } catch (error) {
@@ -72,7 +75,7 @@
         // Faz uma requisição para atualizar a lista de setores
         async function fetchSectors() {
             try {
-                const response = await fetch('/api/sector/sectors');
+                const response = await fetch('/api/sector/sectors'); // Endpoint que retorna os setores
                 if (!response.ok) {
                     throw new Error('Erro ao buscar setores.');
                 }
@@ -86,7 +89,7 @@
         // Atualiza o dropdown de setores dinamicamente
         function populateSectorsDropdown(sectors) {
             const sectorDropdown = document.getElementById('sector');
-            sectorDropdown.innerHTML = '<option value="">Selecione o Setor</option>';
+            sectorDropdown.innerHTML = '<option value="">Selecione o Setor</option>'; // Limpa as opções existentes
 
             sectors.forEach(sector => {
                 const option = document.createElement('option');
@@ -98,7 +101,7 @@
 
         // Envia o formulário de setor via AJAX e atualiza a lista automaticamente
         async function submitSectorForm(event) {
-            event.preventDefault();
+            event.preventDefault(); // Impede o envio padrão do formulário
 
             const form = event.target;
             const formData = new FormData(form);
@@ -111,8 +114,8 @@
 
                 if (response.ok) {
                     alert('Setor cadastrado com sucesso!');
-                    fetchSectors();
-                    form.reset();
+                    fetchSectors(); // Atualiza a lista de setores após o cadastro
+                    form.reset(); // Limpa os campos do formulário
                 } else {
                     alert('Erro ao cadastrar o setor.');
                 }

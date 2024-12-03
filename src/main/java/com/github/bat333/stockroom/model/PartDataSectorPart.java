@@ -1,20 +1,18 @@
 package com.github.bat333.stockroom.model;
 
 import com.github.bat333.stockroom.domain.Part;
-import com.github.bat333.stockroom.domain.Sector;
 
 import java.util.Base64;
 
-public record DataAllPart(
+public record PartDataSectorPart(
         Long id,
         String name,
         byte[] imageData,
         double amount,
-        String typyImg,
-        DataSector sector
+        String typyImg
 ) {
-    public DataAllPart(Part part) {
-        this(part.getId(),part.getName(),part.getImage(),part.getAmount(),part.getImageType(),new DataSector(part.getSector()));
+    public PartDataSectorPart(Part part){
+        this(part.getId(), part.getName(), part.getImage(), part.getAmount(), part.getImageType());
     }
     public String getImageDataUri() {
         if (imageData != null && typyImg != null) {

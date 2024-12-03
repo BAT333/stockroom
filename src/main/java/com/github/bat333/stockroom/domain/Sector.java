@@ -21,7 +21,7 @@ public class Sector {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "shelves", nullable = false ,unique = true)
+    @Column(name = "shelves", nullable = false )
     private String shelf;
     @Column(name = "columns", nullable = false )
     private String column;

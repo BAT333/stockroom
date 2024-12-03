@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualização de Peça</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<header>
+    Atualização de Peça
+</header>
+
+<form id="partForm"  enctype="multipart/form-data" style="display: block;" onsubmit="handleUpdate(event)">
+    <h1>Atualizar Peça</h1>
+    <input type="hidden" id="partId" name="id" th:value="${part.id}" />
+
+    <!-- Escolha do Setor -->
+    <div class="form-group">
+        <label for="sector">Escolha o Setor:</label>
+        <select name="sector" id="sector" required>
+            <option value="">Selecione o Setor</option>
+            <th:block th:each="sector : ${sectors}">
+                <option
+                        th:value="${sector.id}"
+                        th:selected="${currentSector != null && sector.id == currentSector.id}"
+                        th:text="'Prateleira: ' + ${sector.shelf} + ' - Coluna: ' + ${sector.column} + ' - Fila: ' + ${sector.row}"></option>
+            </th:block>
+        </select>
+    </div>
+
+    <!-- Nome da Peça -->
+    <div class="form-group">
+        <label for="name">Nome da Peça:</label>
+        <input type="text" id="name" name="name" th:value="${part.name}" />
+    </div>
+
+    <!-- Imagem da Peça -->
+    <div class="form-group">
+        <label for="imageData">Imagem da Peça:</label>
+        <div>
+            <img th:src="${part.getImageDataUri}" alt="Imagem da peça" style="max-width: 200px; max-height: 200px;" />
+        </div>
+        <input type="file" id="imageData" name="imageData" accept="image/*" />
+    </div>
+
+    <!-- Quantidade -->
+    <div class="form-group">
+        <label for="amount">Quantidade:</label>
+        <input type="number" id="amount" name="amount" min="1" step="0.01" th:value="${part.amount}" />
+    </div>
+
+    <button type="submit">Atualizar Peça</button>
+    <div class="link-container">
+        <a href="/ui/search" class="select-button">🔍 Tela de Pesquisa</a>
+    </div>
+</form>
+
+<script src="/js/update.js"></script>
+</body>
+</html>

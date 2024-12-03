@@ -28,6 +28,8 @@ public class Part {
     private double amount;
     @Column(name = "actives",nullable = false )
     private Boolean active = true;
+    @Column(name = "imagetypes",nullable = false )
+    private String imageType;
     @ManyToOne
     @JoinColumn(name = "sector")
     private Sector sector;
@@ -36,6 +38,7 @@ public class Part {
         this.name = dataPart.name();
         this.amount = dataPart.amount();
         this.image = dataPart.imageData().getBytes();
+        this.imageType = dataPart.imageData().getContentType();
     }
 
     public Part(@Valid DataPart dataPart, Sector sector) throws IOException {
@@ -43,6 +46,8 @@ public class Part {
         this.amount = dataPart.amount();
         this.image = dataPart.imageData().getBytes();
         this.sector = sector;
+        this.imageType = dataPart.imageData().getContentType();
+
     }
 
     public Part update(DataUpdatePart part, Sector sector) {
