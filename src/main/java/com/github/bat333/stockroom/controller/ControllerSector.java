@@ -5,6 +5,7 @@ import com.github.bat333.stockroom.model.DataAllSector;
 import com.github.bat333.stockroom.model.DataSector;
 import com.github.bat333.stockroom.service.SectorService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -18,8 +19,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/sector")
 public class ControllerSector {
+
+    private final SectorService sectorService;
     @Autowired
-    private SectorService sectorService;
+    public ControllerSector(@Qualifier("partB") SectorService sectorService) {
+        this.sectorService = sectorService;
+    }
 
 
     @PostMapping

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 //fazer autenticação e jogar os erros
-@Service
+@Service("part")
 public class PartService {
     @Autowired
     private PartRepository partRepository;

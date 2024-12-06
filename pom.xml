@@ -1,46 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.4.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-
 	<groupId>com.github.bat333</groupId>
 	<artifactId>stockroom</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Stockroom</name>
-	<description>Projeto para gerenciamento de estoque</description>
-
+	<name>stockroom</name>
+	<description>https://www.linkedin.com/in/rafael-alves-oliveira1/</description>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
 	<properties>
 		<java.version>21</java.version>
-		<maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
-		<proguard.version>7.3.1</proguard.version>
-		<proguard.maven.plugin.version>2.3.1</proguard.maven.plugin.version>
+		<proguard.maven.plugin.version>2.6.1</proguard.maven.plugin.version>
+		<proguard.version>7.4.1</proguard.version>
+		<proguard.version.core>9.1.1</proguard.version.core>
 	</properties>
-
 	<dependencies>
-		<!-- Dependências principais -->
+		<!-- Thymeleaf como motor de templates -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		<!-- Dialeto para layouts com Thymeleaf (opcional) -->
 		<dependency>
 			<groupId>nz.net.ultraq.thymeleaf</groupId>
 			<artifactId>thymeleaf-layout-dialect</artifactId>
+			<version>3.2.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -56,21 +82,7 @@
 
 	<build>
 		<plugins>
-			<!-- Plugin Maven Compiler -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven.compiler.plugin.version}</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-					<compilerArgs>
-						<arg>--enable-preview</arg>
-					</compilerArgs>
-				</configuration>
-			</plugin>
-
-			<!-- ProGuard Plugin -->
+			<!-- Obfuscation plugin -->
 			<plugin>
 				<groupId>com.github.wvengen</groupId>
 				<artifactId>proguard-maven-plugin</artifactId>
@@ -78,19 +90,23 @@
 				<executions>
 					<execution>
 						<phase>package</phase>
-						<goals><goal>proguard</goal></goals>
+						<goals>
+							<goal>proguard</goal>
+						</goals>
 					</execution>
 				</executions>
+
 				<configuration>
 					<proguardVersion>${proguard.version}</proguardVersion>
 					<injar>${project.build.finalName}.jar</injar>
-					<outjar>${project.build.finalName}-obfuscated.jar</outjar>
-					<options>
-						<option>-dontshrink</option>
-						<option>-dontoptimize</option>
-						<option>-ignorewarnings</option>
-						<option>-keep class com.github.bat333.stockroom.** { *; }</option>
-					</options>
+					<outjar>${project.build.finalName}.jar</outjar>
+					<obfuscate>true</obfuscate>
+					<proguardInclude>${project.basedir}/proguard.cfg</proguardInclude>
+					<injarNotExistsSkip>true</injarNotExistsSkip>
+					<libs>
+						<lib>${java.home}/lib/jrt-fs.jar</lib>
+
+					</libs>
 				</configuration>
 				<dependencies>
 					<dependency>
@@ -100,12 +116,22 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-
-			<!-- Spring Boot Plugin -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>3.4.0</version>
+				<configuration>
+					<mainClass>com.github.bat333.stockroom.StockroomApplication</mainClass>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
+
 </project>

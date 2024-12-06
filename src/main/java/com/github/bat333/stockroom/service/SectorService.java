@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service("partB")
 public class SectorService {
     @Autowired
     private SectorRepository repository;
