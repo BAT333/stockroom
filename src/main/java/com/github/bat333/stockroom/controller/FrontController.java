@@ -7,15 +7,21 @@ import com.github.bat333.stockroom.model.DataSector;
 import com.github.bat333.stockroom.service.PartService;
 import com.github.bat333.stockroom.service.SectorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.error.ErrorAttributeOptions;
+import org.springframework.boot.web.servlet.error.ErrorAttributes;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.WebRequest;
+
+import java.util.Map;
 @Controller
 @RequestMapping("/ui")
 public class FrontController {
@@ -23,9 +29,17 @@ public class FrontController {
     private SectorService service;
     @Autowired
     private PartService partService;
+
+    private final ErrorAttributes errorAttributes;
+
+    public FrontController(ErrorAttributes errorAttributes) {
+        this.errorAttributes = errorAttributes;
+    }
+
     @GetMapping("/form")
     public String index(Model model) {
         Page<DataAllSector> sectors = service.getAll(PageRequest.of(0, Integer.MAX_VALUE));
+
 
         // Adicionar setores ao modelo
         model.addAttribute("sectors", sectors.getContent());
@@ -76,6 +90,27 @@ public class FrontController {
         model.addAttribute("part", part);
         model.addAttribute("currentSector", currentSector);
         return "part-update.html";
+    }
+
+
+
+    @RequestMapping("/error")
+    public String handleError(WebRequest webRequest, Model model) {
+        Map<String, Object> errors = errorAttributes.getErrorAttributes(webRequest, ErrorAttributeOptions.defaults());
+        int status = (int) errors.getOrDefault("status", 500);
+
+        // Adicionar detalhes ao modelo
+        model.addAttribute("status", status);
+        model.addAttribute("error", errors.getOrDefault("error", "Erro"));
+        model.addAttribute("message", errors.getOrDefault("message", "Página não encontrada."));
+
+        // Redirecionar para a página 404
+        if (status == 404) {
+            return "404";
+        }
+
+        // Retornar outra página de erro genérica, se necessário
+        return "error";
     }
 
 

@@ -4,28 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Setores e Peças</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 </head>
-<body>
+<body class="bg-light">
 
-<header>
-    <h1>Setores e Peças</h1>
+<header class="bg-dark text-white py-3">
+    <div class="container">
+        <h1 class="text-center">Setores e Peças</h1>
+    </div>
 </header>
 
-<div class="container">
-    <h2>Buscar Peças</h2>
+<div class="container my-5">
+    <h2 class="text-center mb-4">Buscar Peças</h2>
 
     <!-- Formulário de busca -->
-    <form th:action="@{/ui/search}" method="get" class="search-form">
-        <input type="text" name="name" placeholder="Pesquise por nome..." class="search-bar">
-        <input type="number" name="cod" placeholder="Pesquise por código..." class="search-bar">
-        <button type="submit" class="search-button">Pesquisar</button>
+    <form th:action="@{/ui/search}" method="get" class="row g-3 mb-4">
+        <div class="col-md-5">
+            <input type="text" name="name" class="form-control" placeholder="Pesquise por nome..." aria-label="Nome da Peça">
+        </div>
+        <div class="col-md-5">
+            <input type="number" name="cod" class="form-control" placeholder="Pesquise por código..." aria-label="Código da Peça">
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary w-100">Pesquisar</button>
+        </div>
     </form>
 
     <!-- Resultados da pesquisa -->
-    <div th:if="${parts.size() > 0}">
-        <table class="results-table">
-            <thead>
+    <div th:if="${parts.size() > 0}" class="table-responsive">
+        <table class="table table-striped table-hover text-center align-middle">
+            <thead class="table-dark">
             <tr>
                 <th>CODIGO</th>
                 <th>Nome</th>
@@ -40,32 +49,33 @@
                 <td th:text="${part.id}"></td>
                 <td th:text="${part.name}"></td>
                 <td>
-                    <img th:src="${part.getImageDataUri}" alt="Imagem da Peça" class="part-image">
+                    <img th:src="${part.getImageDataUri}" alt="Imagem da Peça" class="img-thumbnail" style="max-width: 100px;">
                 </td>
                 <td th:text="${part.amount}"></td>
                 <td>
-                    <span th:text="'Prateleira: ' + ${part.sector.shelf}"></span><br />
-                    <span th:text="'Coluna: ' + ${part.sector.column}"></span><br />
+                    <span th:text="'Prateleira: ' + ${part.sector.shelf}"></span><br>
+                    <span th:text="'Coluna: ' + ${part.sector.column}"></span><br>
                     <span th:text="'Fila: ' + ${part.sector.row}"></span>
                 </td>
                 <td>
-                    <a th:href="@{/ui/part/{id}(id=${part.id})}" class="select-button">Selecionar</a>
+                    <a th:href="@{/ui/part/{id}(id=${part.id})}" class="btn btn-success btn-sm">Selecionar</a>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
 
-    <div th:if="${parts.size() == 0}">
+    <div th:if="${parts.size() == 0}" class="alert alert-warning text-center">
         <p>Nenhuma peça encontrada.</p>
     </div>
 </div>
 
-
-<div class="link-container">
-    <a href="/ui/form" class="select-button">🔍 Tela de Cadastros</a>
+<div class="text-center my-4">
+    <a href="/ui/form" class="btn btn-secondary btn-lg">🔍 Tela de Cadastros</a>
 </div>
 
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/js/main.js"></script>
 
 </body>
