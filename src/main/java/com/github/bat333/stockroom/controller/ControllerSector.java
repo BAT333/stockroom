@@ -22,7 +22,7 @@ public class ControllerSector {
 
     private final SectorService sectorService;
     @Autowired
-    public ControllerSector(@Qualifier("partB") SectorService sectorService) {
+    public ControllerSector( SectorService sectorService) {
         this.sectorService = sectorService;
     }
 

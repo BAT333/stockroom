@@ -24,16 +24,13 @@
     </div>
 
     <!-- Formulário de Cadastro de Peças -->
-    <form id="partForm" method="POST" enctype="multipart/form-data" style="display: block;" onsubmit="handleSubmit(event)" class="bg-white p-4 rounded shadow-sm">
+    <form id="partForm" method="POST" enctype="multipart/form-data" style="display: none;" onsubmit="handleSubmit(event)" class="bg-white p-4 rounded shadow-sm">
         <h2 class="text-primary">Cadastro de Peças</h2>
         <div class="mb-3">
             <label for="sector" class="form-label">Escolha o Setor:</label>
             <select name="sector" id="sector" class="form-select" onchange="updateFormAction()" required>
                 <option value="">Selecione o Setor</option>
                 <!-- Lista dinâmica de setores -->
-                <th:block th:each="sector : ${sectors}">
-                    <option th:value="${sector.id}" th:text="'Prateleira: ' +${sector.shelf} + ' - Coluna: ' + ${sector.column} + ' - Fila: ' + ${sector.row}+ ' - COD: ' + ${sector.id}"></option>
-                </th:block>
             </select>
         </div>
         <div class="mb-3">

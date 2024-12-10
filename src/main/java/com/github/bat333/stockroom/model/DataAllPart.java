@@ -11,10 +11,10 @@ public record DataAllPart(
         byte[] imageData,
         double amount,
         String typyImg,
-        DataSector sector
+        DataUpdateSector sector
 ) {
     public DataAllPart(Part part) {
-        this(part.getId(),part.getName(),part.getImage(),part.getAmount(),part.getImageType(),new DataSector(part.getSector()));
+        this(part.getId(),part.getName(),part.getImage(),part.getAmount(),part.getImageType(),new DataUpdateSector(part.getSector()));
     }
     public String getImageDataUri() {
         if (imageData != null && typyImg != null) {
