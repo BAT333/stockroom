@@ -1,7 +1,5 @@
 package com.github.bat333.stockroom.infra;
 
-import com.github.bat333.stockroom.domain.TypeRoles;
-import com.github.bat333.stockroom.domain.User;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,8 +22,7 @@ public class SecurityFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         String apiKey = request.getHeader(API_KEY_HEADER);
         if (API_KEY_VALUE.equals(apiKey)) {
-            User user = new User(1L,"rafae@","4644564", TypeRoles.ADMIN);
-            var userAuth = new UsernamePasswordAuthenticationToken(user, null,user.getAuthorities());
+            var userAuth = new UsernamePasswordAuthenticationToken(null,null,null);
             SecurityContextHolder.getContext().setAuthentication(userAuth);
             filterChain.doFilter(request, response);
         } else {
