@@ -1,6 +1,5 @@
 package com.github.bat333.stockroom.controller;
 
-import com.github.bat333.stockroom.domain.Part;
 import com.github.bat333.stockroom.model.DataAllPart;
 import com.github.bat333.stockroom.model.DataPart;
 import com.github.bat333.stockroom.model.DataUpdatePart;
@@ -14,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.List;
 
 
 @RestController
