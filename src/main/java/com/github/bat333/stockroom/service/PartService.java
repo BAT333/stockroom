@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,9 +27,18 @@ public class PartService {
     @Autowired
     private SectorRepository sectorRepository;
 
-    public DataAllPart registration(@Valid DataPart dataPart, Long id) {
+    @Autowired
+    private  ImageService imageService;
+
+    public DataAllPart registration(@Valid DataPart dataPart, Long id){
         Sector sector = sectorRepository.findById(id).get();
-        Part part =partRepository.save(new Part(dataPart,sector));
+        byte[] img;
+        try {
+            img = imageService.resizeAndCompressImage(dataPart.image(), 800, 800, 0.7f);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Part part =partRepository.save(new Part(dataPart,sector,img));
         return new DataAllPart(part);
     }
 

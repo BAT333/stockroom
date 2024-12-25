@@ -43,6 +43,13 @@ public class Part {
         this.sector = sector;
     }
 
+    public Part(@Valid DataPart dataPart, Sector sector, byte[] img) {
+        this.name = dataPart.name();
+        this.amount = dataPart.amount();
+        this.image = img;
+        this.sector = sector;
+    }
+
     public Part update(DataUpdatePart part, Sector sector) {
         if(part.name() != null){
             this.name = part.name();
