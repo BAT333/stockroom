@@ -42,31 +42,39 @@ public class PartService {
     }
 
     public DataAllPart update(Long id, DataUpdatePart part) {
-        Sector sector = sectorRepository.getReferenceById(id);
 
         return this.partRepository.findById(id)
                 .map(existingPart -> {
-                    existingPart.update(part,sector);
-                    Part savedPart = this.partRepository.save(existingPart);
-                    return new DataAllPart(savedPart);
+                    sectorRepository.findByIdAndActiveTrue(part.sector()).ifPresentOrElse(
+                            isPresent-> {
+                                existingPart.update(part, isPresent);
+                                this.partRepository.save(existingPart);
+                            },
+                            () -> {
+                                existingPart.update(part, null);
+                                this.partRepository.save(existingPart);}
+                    );
+                    return new DataAllPart(existingPart);
                 }).orElse(null);
 
     }
 
     public void delete(Long id) {
-        this.partRepository.findById(id).ifPresentOrElse(
-                Part::delete,
+        this.partRepository.findById(id).ifPresentOrElse( part -> {
+                    part.delete();
+                    this.partRepository.save(part);
+                },
                 () -> { throw new RuntimeException("Error"); }
         );
+
     }
 
     public Page<DataAllPart> search(Long cod, String name, Pageable pageable) {
-        System.out.println("cod: "+ cod +"  name:"+ name);
-         if(name == null && cod == null){
-             return this.getAll(pageable);
-         }
-         return (name != null && cod != null) ?this.getByCodAndName(cod, name,pageable):
-                 (cod != null)? this.getByCod(cod,pageable) : this.getByName(name,pageable);
+        if(name == null && cod == null){
+            return this.getAll(pageable);
+        }
+        return (name != null && cod != null) ?this.getByCodAndName(cod, name,pageable):
+                (cod != null)? this.getByCod(cod,pageable) : this.getByName(name,pageable);
     }
 
     private Page<DataAllPart> getByName(String name, Pageable pageable) {

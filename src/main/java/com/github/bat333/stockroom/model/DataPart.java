@@ -8,7 +8,7 @@ public record DataPart(
         @NotNull
         String name,
         @NotNull
-        byte[] imageData,
+        byte[] image,
         @NotNull
         @Positive
         double amount

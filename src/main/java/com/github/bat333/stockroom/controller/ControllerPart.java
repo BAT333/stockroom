@@ -17,6 +17,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("api/part")
+@CrossOrigin("*")
 public class ControllerPart {
     @Autowired
     private PartService service;

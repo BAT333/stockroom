@@ -12,9 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/sector")
+@CrossOrigin("*")
 public class ControllerSector {
     @Autowired
     private SectorService sectorService;

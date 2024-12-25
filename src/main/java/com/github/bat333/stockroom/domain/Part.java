@@ -33,13 +33,13 @@ public class Part {
     public Part( DataPart dataPart) {
         this.name = dataPart.name();
         this.amount = dataPart.amount();
-        this.image = dataPart.imageData();
+        this.image = dataPart.image();
     }
 
     public Part(@Valid DataPart dataPart, Sector sector) {
         this.name = dataPart.name();
         this.amount = dataPart.amount();
-        this.image = dataPart.imageData();
+        this.image = dataPart.image();
         this.sector = sector;
     }
 
@@ -47,16 +47,14 @@ public class Part {
         if(part.name() != null){
             this.name = part.name();
         }
-        if(part.imageData() != null){
-            this.image = part.imageData();
+        if(part.image() != null){
+            this.image = part.image();
         }
         if(part.amount() > 0){
             this.amount = part.amount();
         }
-        if(part.idSector() != null){
-
-        }
-        if(sector != null&& part.idSector() != null){
+        if(part.sector() != null){
+            System.out.println(sector);
             this.sector = sector;
         }
 

@@ -26,8 +26,11 @@ public class SecurityFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(userAuth);
             filterChain.doFilter(request, response);
         } else {
-            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            response.sendRedirect("http://localhost:4200/404");
+          //  response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+          //  response.sendRedirect("http://localhost:4200/404");
+            var userAuth = new UsernamePasswordAuthenticationToken(null,null,null);
+            SecurityContextHolder.getContext().setAuthentication(userAuth);
+            filterChain.doFilter(request, response);
         }
     }
 }
