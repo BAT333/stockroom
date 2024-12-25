@@ -6,6 +6,7 @@ import java.util.List;
 
 public record DataAllSector(
         Long id,
+        String sector,
         String shelf,
         String column,
         String row,
@@ -15,6 +16,6 @@ public record DataAllSector(
 ) {
 
     public DataAllSector(Sector sector) {
-        this(sector.getId(), sector.getShelf(), sector.getColumn(), sector.getRow(),sector.listPart());
+        this(sector.getId(), sector.getSectors(),sector.getShelf(), sector.getColumn(), sector.getRow(),sector.listPart());
     }
 }

@@ -17,6 +17,8 @@ public class Part {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "cods",nullable = false,unique = true)
+    private Long cod;
     @Column(name = "names",nullable = false,unique = true)
     private String name;
     @Lob
@@ -31,12 +33,14 @@ public class Part {
     private Sector sector;
 
     public Part( DataPart dataPart) {
+        this.cod = dataPart.cod();
         this.name = dataPart.name();
         this.amount = dataPart.amount();
         this.image = dataPart.image();
     }
 
     public Part(@Valid DataPart dataPart, Sector sector) {
+        this.cod = dataPart.cod();
         this.name = dataPart.name();
         this.amount = dataPart.amount();
         this.image = dataPart.image();
@@ -44,6 +48,7 @@ public class Part {
     }
 
     public Part(@Valid DataPart dataPart, Sector sector, byte[] img) {
+        this.cod = dataPart.cod();
         this.name = dataPart.name();
         this.amount = dataPart.amount();
         this.image = img;
@@ -51,6 +56,9 @@ public class Part {
     }
 
     public Part update(DataUpdatePart part, Sector sector) {
+        if(part.cod() != null){
+            this.cod = part.cod();
+        }
         if(part.name() != null){
             this.name = part.name();
         }

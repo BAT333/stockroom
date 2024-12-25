@@ -6,12 +6,13 @@ import java.util.Base64;
 
 public record DataAllPart(
         Long id,
+        Long cod,
         String name,
         String image,
         double amount,
         DataSector sector
 ) {
     public DataAllPart(Part part) {
-        this(part.getId(),part.getName(), Base64.getEncoder().encodeToString(part.getImage()),part.getAmount(),new DataSector(part.getSector()));
+        this(part.getId(), part.getCod(), part.getName(), Base64.getEncoder().encodeToString(part.getImage()),part.getAmount(),new DataSector(part.getSector()));
     }
 }

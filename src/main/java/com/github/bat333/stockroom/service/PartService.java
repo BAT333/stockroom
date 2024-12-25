@@ -52,7 +52,7 @@ public class PartService {
     }
 
     public DataAllPart update(Long id, DataUpdatePart part) {
-
+        System.out.println(part.cod());
         return this.partRepository.findById(id)
                 .map(existingPart -> {
                     sectorRepository.findByIdAndActiveTrue(part.sector()).ifPresentOrElse(
@@ -93,7 +93,7 @@ public class PartService {
     }
 
     private Page<DataAllPart> getByCod(Long cod, Pageable pageable) {
-        return this.partRepository.findByIdAndActiveTrue(cod).map(existingPart -> {
+        return this.partRepository.findByCodAndActiveTrue(cod).map(existingPart -> {
             List<DataAllPart> parts = new ArrayList<>();
             parts.add(new DataAllPart(existingPart));
             return new PageImpl<>(parts,pageable,1);
@@ -102,6 +102,6 @@ public class PartService {
 
 
     private Page<DataAllPart> getByCodAndName(Long cod, String name, Pageable pageable) {
-        return this.partRepository.findByIdOrNameContainingIgnoreCaseAndActiveTrue(cod,name,pageable).map(DataAllPart::new);
+        return this.partRepository.findByCodOrNameContainingIgnoreCaseAndActiveTrue(cod,name,pageable).map(DataAllPart::new);
     }
 }

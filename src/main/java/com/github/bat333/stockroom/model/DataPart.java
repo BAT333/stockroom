@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Positive;
 
 public record DataPart(
         @NotNull
+        Long cod,
+        @NotNull
         String name,
         @NotNull
         byte[] image,
@@ -14,6 +16,6 @@ public record DataPart(
         double amount
 ) {
     public DataPart(Part part) {
-        this(part.getName(), part.getImage(), part.getAmount());
+        this(part.getCod(),part.getName(), part.getImage(), part.getAmount());
     }
 }

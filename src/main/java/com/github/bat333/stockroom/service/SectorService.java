@@ -16,6 +16,7 @@ public class SectorService {
     @Autowired
     private SectorRepository repository;
     public DataAllSector register(DataSector dataSector) {
+
         Sector sector =  repository.save(new Sector(dataSector));
         return new DataAllSector(sector);
     }

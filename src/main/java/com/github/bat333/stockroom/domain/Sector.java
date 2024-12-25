@@ -20,18 +20,21 @@ public class Sector {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "shelves", nullable = false ,unique = true)
+    @Column(name = "sector", nullable = false)
+    private String sectors;
+    @Column(name = "shelves", nullable = false)
     private String shelf;
-    @Column(name = "columns", nullable = false )
+    @Column(name = "columns", nullable = false)
     private String column;
-    @Column(name = "rows", nullable = false )
+    @Column(name = "rows", nullable = false)
     private String row;
-    @Column(name = "actives",nullable = false )
+    @Column(name = "actives",nullable = false)
     private Boolean active = true;
     @OneToMany(mappedBy = "sector",cascade = CascadeType.ALL)
     private List<Part> parts = new ArrayList<>();
 
     public Sector(DataSector dataSector) {
+        this.sectors = dataSector.sector();
         this.shelf = dataSector.shelf();
         this.column = dataSector.column();
         this.row = dataSector.row();

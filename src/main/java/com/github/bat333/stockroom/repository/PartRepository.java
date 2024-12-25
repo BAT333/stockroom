@@ -13,10 +13,10 @@ public interface PartRepository extends JpaRepository<Part,Long> {
     boolean existsByName(String mail);
 
     Page<Part> findByActiveTrue(Pageable pageable);
-
+    Optional<Part> findByCodAndActiveTrue(Long cod);
     Optional<Part> findByIdAndActiveTrue(Long id);
 
-    Page<Part> findByIdOrNameContainingIgnoreCaseAndActiveTrue(Long cod, String name, Pageable pageable);
+    Page<Part> findByCodOrNameContainingIgnoreCaseAndActiveTrue(Long cod, String name, Pageable pageable);
 
     Page<Part> findByNameContainingIgnoreCaseAndActiveTrue(String name, Pageable pageable);
 }
