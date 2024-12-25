@@ -1,0 +1,3 @@
+[submodule "stockroomFront"]
+	path = stockroomFront
+	url = https://github.com/BAT333/stockroomFront.git
