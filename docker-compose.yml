@@ -1,0 +1,20 @@
+services:
+  db:
+    image: mysql
+    container_name: DataBase
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: stockroom_database
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQLD_OPTS: --innodb-force-recovery=1
+    ports:
+      - "3306:3306"
+    expose:
+      - '3306'
+    volumes:
+      - ./dev_data:/var/lib/mysql
+
+volumes:
+  dev_data:

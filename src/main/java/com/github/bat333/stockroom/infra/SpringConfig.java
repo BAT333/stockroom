@@ -22,6 +22,7 @@ public class SpringConfig {
                 .sessionManagement(https-> https.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authoriza->
                         authoriza.anyRequest().authenticated())
+                .addFilterAfter(apiKeyFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(apiKeyFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

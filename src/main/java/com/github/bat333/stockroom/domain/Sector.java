@@ -26,7 +26,7 @@ public class Sector {
     private String shelf;
     @Column(name = "columns", nullable = false)
     private String column;
-    @Column(name = "rows", nullable = false)
+    @Column(name = "row_data", nullable = false)
     private String row;
     @Column(name = "actives",nullable = false)
     private Boolean active = true;

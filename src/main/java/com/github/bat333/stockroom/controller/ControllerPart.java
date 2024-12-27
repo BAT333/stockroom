@@ -28,7 +28,6 @@ public class ControllerPart {
         DataAllPart part = this.service.registration(dataPart, id);
         return ResponseEntity.created(URI.create("/"+part.id())).body(part) ;
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<DataAllPart> getPart(@PathVariable(name = "id") Long id){
         return ResponseEntity.ok(this.service.get(id));

@@ -20,17 +20,26 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        String apiKey = request.getHeader(API_KEY_HEADER);
-        if (API_KEY_VALUE.equals(apiKey)) {
+
+        if (API_KEY_VALUE.equals(this.key(request))) {
             var userAuth = new UsernamePasswordAuthenticationToken(null,null,null);
             SecurityContextHolder.getContext().setAuthentication(userAuth);
             filterChain.doFilter(request, response);
-        } else {
-            //  response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            //  response.sendRedirect("http://localhost:4200/404");
+        }else{
             var userAuth = new UsernamePasswordAuthenticationToken(null,null,null);
             SecurityContextHolder.getContext().setAuthentication(userAuth);
             filterChain.doFilter(request, response);
         }
+    }
+
+    private String key(HttpServletRequest request) {
+        String apiKey = request.getHeader(API_KEY_HEADER);
+
+        System.out.println(apiKey);
+        if (apiKey == null || apiKey.isEmpty()) {
+            return "API Key is missing or invalid";
+        }
+
+        return apiKey;
     }
 }

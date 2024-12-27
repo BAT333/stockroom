@@ -1,5 +1,6 @@
 package com.github.bat333.stockroom.service;
 
+import com.github.bat333.stockroom.controller.exceptions.StockExceptions;
 import com.github.bat333.stockroom.domain.Part;
 import com.github.bat333.stockroom.domain.Sector;
 import com.github.bat333.stockroom.model.DataAllPart;
@@ -31,12 +32,12 @@ public class PartService {
     private  ImageService imageService;
 
     public DataAllPart registration(@Valid DataPart dataPart, Long id){
-        Sector sector = sectorRepository.findById(id).get();
+        Sector sector = sectorRepository.findById(id).orElseThrow( () -> new StockExceptions("Reported Selector Not Found "));
         byte[] img;
         try {
             img = imageService.resizeAndCompressImage(dataPart.image(), 800, 800, 0.7f);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new StockExceptions("Unrederized image",e);
         }
         Part part =partRepository.save(new Part(dataPart,sector,img));
         return new DataAllPart(part);
@@ -48,7 +49,7 @@ public class PartService {
 
     public DataAllPart get(Long id) {
         Optional<Part> part = partRepository.findByIdAndActiveTrue(id);
-        return part.map(DataAllPart::new).orElse(null);
+        return part.map(DataAllPart::new).orElseThrow( () -> new StockExceptions("Reported Part Not Found "));
     }
 
     public DataAllPart update(Long id, DataUpdatePart part) {
@@ -65,7 +66,7 @@ public class PartService {
                                 this.partRepository.save(existingPart);}
                     );
                     return new DataAllPart(existingPart);
-                }).orElse(null);
+                }).orElseThrow( () -> new StockExceptions("Reported Part Not Found "));
 
     }
 
@@ -74,7 +75,7 @@ public class PartService {
                     part.delete();
                     this.partRepository.save(part);
                 },
-                () -> { throw new RuntimeException("Error"); }
+                () -> { throw new StockExceptions("Reported Part Not Found"); }
         );
 
     }

@@ -22,7 +22,7 @@ public class Part {
     @Column(name = "names",nullable = false,unique = true)
     private String name;
     @Lob
-    @Column(name = "images",nullable = false)
+    @Column(name = "images",nullable = false,length = 999999999)
     private byte[] image;
     @Column(name = "quantities",nullable = false)
     private double amount;
