@@ -17,9 +17,9 @@ public class Part {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "cods",nullable = false,unique = true)
+    @Column(name = "cods",nullable = false)
     private Long cod;
-    @Column(name = "names",nullable = false,unique = true)
+    @Column(name = "names",nullable = false)
     private String name;
     @Lob
     @Column(name = "images",nullable = false,length = 999999999)

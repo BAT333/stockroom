@@ -1,5 +1,6 @@
 package com.github.bat333.stockroom.service;
 
+import com.github.bat333.stockroom.controller.exceptions.SectorNotFoundException;
 import com.github.bat333.stockroom.controller.exceptions.StockExceptions;
 import com.github.bat333.stockroom.domain.Part;
 import com.github.bat333.stockroom.domain.Sector;
@@ -32,8 +33,11 @@ public class PartService {
     private  ImageService imageService;
 
     public DataAllPart registration(@Valid DataPart dataPart, Long id){
-        Sector sector = sectorRepository.findById(id).orElseThrow( () -> new StockExceptions("Reported Selector Not Found "));
+        Sector sector = sectorRepository.findById(id).orElseThrow( () -> new SectorNotFoundException("Reported Sector Not Found "));
         byte[] img;
+        if(partRepository.existsByCodAndNameAndSector(dataPart.cod(),dataPart.name(),sector)){
+            throw new StockExceptions("Part with code " + dataPart.cod() + " and name " + dataPart.name() + " already registered in this sector.");
+        }
         try {
             img = imageService.resizeAndCompressImage(dataPart.image(), 800, 800, 0.7f);
         } catch (IOException e) {
@@ -49,7 +53,7 @@ public class PartService {
 
     public DataAllPart get(Long id) {
         Optional<Part> part = partRepository.findByIdAndActiveTrue(id);
-        return part.map(DataAllPart::new).orElseThrow( () -> new StockExceptions("Reported Part Not Found "));
+        return part.map(DataAllPart::new).orElseThrow( () -> new SectorNotFoundException("Reported Part Not Found "));
     }
 
     public DataAllPart update(Long id, DataUpdatePart part) {
@@ -66,7 +70,7 @@ public class PartService {
                                 this.partRepository.save(existingPart);}
                     );
                     return new DataAllPart(existingPart);
-                }).orElseThrow( () -> new StockExceptions("Reported Part Not Found "));
+                }).orElseThrow( () -> new SectorNotFoundException("Reported Part Not Found "));
 
     }
 
@@ -75,7 +79,7 @@ public class PartService {
                     part.delete();
                     this.partRepository.save(part);
                 },
-                () -> { throw new StockExceptions("Reported Part Not Found"); }
+                () -> { throw new SectorNotFoundException("Reported Part Not Found"); }
         );
 
     }

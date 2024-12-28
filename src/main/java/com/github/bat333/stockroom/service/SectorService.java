@@ -1,5 +1,6 @@
 package com.github.bat333.stockroom.service;
 
+import com.github.bat333.stockroom.controller.exceptions.SectorNotFoundException;
 import com.github.bat333.stockroom.controller.exceptions.StockExceptions;
 import com.github.bat333.stockroom.domain.Sector;
 import com.github.bat333.stockroom.model.DataAllSector;
@@ -17,6 +18,9 @@ public class SectorService {
     @Autowired
     private SectorRepository repository;
     public DataAllSector register(DataSector dataSector) {
+        if(repository.existsBySectorsAndShelfAndColumnAndRow(dataSector.sector(),dataSector.shelf(),dataSector.column(),dataSector.row())){
+            throw new StockExceptions("Sector already registered");
+        }
         Sector sector =  repository.save(new Sector(dataSector));
         return new DataAllSector(sector);
     }
@@ -26,7 +30,7 @@ public class SectorService {
     }
 
     public DataAllSector getSector(Long id) {
-        return repository.findByIdAndActiveTrue(id).map(DataAllSector::new).orElseThrow( () -> new StockExceptions("Reported Selector Not Found "));
+        return repository.findByIdAndActiveTrue(id).map(DataAllSector::new).orElseThrow( () -> new SectorNotFoundException("Reported Sector Not Found "));
     }
 
     public DataAllSector update(Long id, DataSector dataSector) {
@@ -34,13 +38,13 @@ public class SectorService {
         return sector.map(sector1 -> {
             sector1.update(dataSector);
             return new DataAllSector(sector1);
-        }).orElseThrow( () -> new StockExceptions("Reported Selector Not Found "));
+        }).orElseThrow( () -> new SectorNotFoundException("Reported Sector Not Found "));
 
     }
 
     public void delete(Long id) {
         Optional<Sector> sector = repository.findByIdAndActiveTrue(id);
-        sector.ifPresentOrElse(Sector::delete,() -> { throw new StockExceptions("Reported Selector Not Found "); }
+        sector.ifPresentOrElse(Sector::delete,() -> { throw new SectorNotFoundException("Reported Sector Not Found "); }
         );
     }
 }

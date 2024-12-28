@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class Exceptions {
-    @ExceptionHandler({StockExceptions.class})
+    @ExceptionHandler({StockExceptions.class,SectorNotFoundException.class})
     public ResponseEntity<Object> handleStockException(StockExceptions ex) {
         Map<String, Object> response = new HashMap<>();
         response.put("error", "Stock Error");
