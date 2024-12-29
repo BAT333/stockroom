@@ -1,85 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <!-- Inclui os padrões de configuração do Spring Boot para Logback -->
     <include resource="org/springframework/boot/logging/logback/defaults.xml" />
 
-    <!-- Define uma propriedade de caminho base para os logs -->
     <property name="LOGS" value="./log" />
-    <!-- Esta propriedade define a pasta base onde todos os logs serão salvos.
-         Você pode ajustar o caminho para um diretório específico ou manter a configuração de diretório relativo. -->
 
-    <!-- Appender para logs normais (INFO, WARN, etc.) -->
+    <!-- Appender para logs normais -->
     <appender name="NORMAL_LOG" class="ch.qos.logback.core.FileAppender">
-        <!-- Definir o caminho do arquivo de log normal -->
         <file>${LOGS}/normal/app.log</file>
-        <!-- Esse arquivo de log irá armazenar logs de nível INFO e superiores, incluindo WARN e ERROR -->
-
-        <!-- Política de rotação do arquivo de log -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- Definir o padrão de nome do arquivo de log rotacionado. Isso criará novos arquivos de log a cada dia -->
             <fileNamePattern>${LOGS}/normal/app.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
-            <!-- Mantém os logs dos últimos 30 dias -->
             <maxHistory>30</maxHistory>
         </rollingPolicy>
-
-        <!-- Definir o formato do log -->
         <encoder>
-            <!-- Exibe data, hora, thread, nível de log, nome do logger e a mensagem -->
             <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{40} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <!-- Appender para logs de erro (somente logs de nível ERROR ou superior) -->
+    <!-- Appender para logs de erro -->
     <appender name="ERROR_LOG" class="ch.qos.logback.core.FileAppender">
-        <!-- Caminho onde os logs de erro serão gravados -->
         <file>${LOGS}/error/error.log</file>
-
-        <!-- Política de rotação de logs para os arquivos de erro -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOGS}/error/error.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
-            <maxHistory>30</maxHistory> <!-- Mantém 30 dias de logs de erro -->
+            <maxHistory>30</maxHistory>
         </rollingPolicy>
-
-        <!-- Definir o formato do log de erro -->
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{40} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <!-- Appender para logs de SQL (usado para depuração de consultas SQL, geralmente de JPA ou Hibernate) -->
+    <!-- Appender para logs de SQL -->
     <appender name="SQL_LOG" class="ch.qos.logback.core.FileAppender">
-        <!-- Caminho onde os logs de SQL serão gravados -->
         <file>${LOGS}/sql/sql.log</file>
-
-        <!-- Política de rotação de logs para os arquivos de SQL -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOGS}/sql/sql.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
-            <maxHistory>30</maxHistory> <!-- Mantém 30 dias de logs SQL -->
+            <maxHistory>30</maxHistory>
         </rollingPolicy>
-
-        <!-- Definir o formato do log de SQL -->
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{40} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <!-- Configuração do Root Logger: Registra logs normais a partir do nível INFO -->
+
+
+    <!-- Root logger para logs normais -->
     <root level="INFO">
-        <!-- O root logger é configurado para registrar logs de nível INFO e superiores. -->
-        <appender-ref ref="NORMAL_LOG" /> <!-- Logs normais são gravados no appender NORMAL_LOG -->
+        <appender-ref ref="NORMAL_LOG" />
     </root>
 
-    <!-- Logger específico para logs de erro (somente capturando logs de nível ERROR ou superior) -->
+    <!-- Logger para logs de erro (somente erros) -->
     <logger name="ERROR_LOG" level="ERROR">
-        <!-- Apenas logs de nível ERROR ou superior serão registrados -->
-        <appender-ref ref="ERROR_LOG" /> <!-- Logs de erro são gravados no appender ERROR_LOG -->
+        <appender-ref ref="ERROR_LOG" />
     </logger>
 
-    <!-- Logger específico para logs SQL (captura logs de nível DEBUG e TRACE para SQL) -->
+    <!-- Logger para logs SQL -->
     <logger name="SQL_LOG" level="DEBUG">
-        <!-- Registra logs de SQL detalhados, normalmente com nível DEBUG ou TRACE -->
-        <appender-ref ref="SQL_LOG" /> <!-- Logs SQL são gravados no appender SQL_LOG -->
+        <appender-ref ref="SQL_LOG" />
     </logger>
 
 </configuration>
