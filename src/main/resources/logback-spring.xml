@@ -41,20 +41,21 @@
         </encoder>
     </appender>
 
-
-
     <!-- Root logger para logs normais -->
     <root level="INFO">
         <appender-ref ref="NORMAL_LOG" />
     </root>
 
     <!-- Logger para logs de erro (somente erros) -->
-    <logger name="ERROR_LOG" level="ERROR">
+    <logger name="com.github.bat333.stockroom" level="ERROR">
         <appender-ref ref="ERROR_LOG" />
     </logger>
 
+    <root level="ERROR">
+        <appender-ref ref="ERROR_LOG" />
+    </root>
     <!-- Logger para logs SQL -->
-    <logger name="SQL_LOG" level="DEBUG">
+    <logger name="org.hibernate.SQL" level="DEBUG">
         <appender-ref ref="SQL_LOG" />
     </logger>
 

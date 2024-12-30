@@ -12,6 +12,8 @@ import com.github.bat333.stockroom.repository.SectorRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +35,7 @@ public class PartService {
     @Autowired
     private  ImageService imageService;
 
+    @CacheEvict(value = "part", allEntries = true)
     public DataAllPart registration(@Valid DataPart dataPart, Long id){
         Sector sector = sectorRepository.findById(id).orElseThrow( () -> {
             log.error("Sector with ID {} not found in the system.", id);
@@ -54,11 +57,12 @@ public class PartService {
         return new DataAllPart(part);
     }
 
+    @Cacheable(value = "part")
     public Page<DataAllPart> getAll(Pageable pageable) {
         log.info("Made parts search" );
         return partRepository.findByActiveTrue(pageable).map(DataAllPart::new);
     }
-
+    @Cacheable(value = "part", key = "#id")
     public DataAllPart get(Long id) {
         Optional<Part> part = partRepository.findByIdAndActiveTrue(id);
         return part.map(DataAllPart::new).orElseThrow( () -> {
@@ -67,8 +71,8 @@ public class PartService {
         });
     }
 
+    @CacheEvict(value = "part", allEntries = true)
     public DataAllPart update(Long id, DataUpdatePart part) {
-        System.out.println(part.cod());
         return this.partRepository.findById(id)
                 .map(existingPart -> {
                     sectorRepository.findByIdAndActiveTrue(part.sector()).ifPresentOrElse(
@@ -77,6 +81,7 @@ public class PartService {
                                 this.partRepository.save(existingPart);
                             },
                             () -> {
+
                                 existingPart.update(part, null);
                                 this.partRepository.save(existingPart);}
                     );
@@ -88,6 +93,7 @@ public class PartService {
 
     }
 
+    @CacheEvict(value = "part", allEntries = true)
     public void delete(Long id) {
         this.partRepository.findById(id).ifPresentOrElse( part -> {
                     part.delete();
@@ -100,6 +106,7 @@ public class PartService {
 
     }
 
+    @Cacheable(value = "part", key = "'search:' + #cod + ':' + #name")
     public Page<DataAllPart> search(Long cod, String name, Pageable pageable) {
         if(name == null && cod == null){
             return this.getAll(pageable);
