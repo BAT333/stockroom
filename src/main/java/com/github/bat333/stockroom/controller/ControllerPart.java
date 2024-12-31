@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -24,6 +25,7 @@ public class ControllerPart {
 
 
     @PostMapping("{id}")
+    @Transactional
     public ResponseEntity<DataAllPart> partRegistration(@Valid @RequestBody DataPart dataPart, @PathVariable(name = "id") Long id){
         DataAllPart part = this.service.registration(dataPart, id);
         return ResponseEntity.created(URI.create("/"+part.id())).body(part) ;
@@ -34,12 +36,14 @@ public class ControllerPart {
     }
 
     @PatchMapping ("/{id}")
+    @Transactional
     public ResponseEntity<DataAllPart> updatePart(@PathVariable(name = "id") Long id, @RequestBody DataUpdatePart part){
         return ResponseEntity.ok(this.service.update(id,part));
 
     }
 
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity<Void> deletePart(@PathVariable(name = "id")Long id){
         this.service.delete(id);
         return  ResponseEntity.noContent().build();

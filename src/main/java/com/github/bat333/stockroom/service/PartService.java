@@ -1,7 +1,7 @@
 package com.github.bat333.stockroom.service;
 
-import com.github.bat333.stockroom.controller.exceptions.SectorNotFoundException;
-import com.github.bat333.stockroom.controller.exceptions.StockExceptions;
+import com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException;
+import com.github.bat333.stockroom.infra.exceptions.StockExceptions;
 import com.github.bat333.stockroom.domain.Part;
 import com.github.bat333.stockroom.domain.Sector;
 import com.github.bat333.stockroom.model.DataAllPart;

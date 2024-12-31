@@ -1,4 +1,4 @@
-package com.github.bat333.stockroom.controller.exceptions;
+package com.github.bat333.stockroom.infra.exceptions;
 
 public class SectorNotFoundException extends RuntimeException{
     public SectorNotFoundException() {

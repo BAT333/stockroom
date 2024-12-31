@@ -31,6 +31,8 @@ public class Part {
     @ManyToOne
     @JoinColumn(name = "sector")
     private Sector sector;
+    @Version
+    private Integer version;
 
     public Part( DataPart dataPart) {
         this.cod = dataPart.cod();

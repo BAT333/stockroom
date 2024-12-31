@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -22,6 +23,7 @@ public class ControllerSector {
 
 
     @PostMapping
+    @Transactional
     public ResponseEntity<DataAllSector> registerSector(@RequestBody @Valid DataSector dataSector){
         DataAllSector sector = sectorService.register(dataSector);
         return ResponseEntity.created(URI.create("/"+sector.id())).body(sector);
@@ -36,10 +38,12 @@ public class ControllerSector {
         return ResponseEntity.ok(sectorService.getSector(id));
     }
     @PatchMapping("/{id}")
+    @Transactional
     public ResponseEntity<DataAllSector> updateSector(@RequestBody DataSector dataSector ,@PathVariable(name = "id") Long id){
         return ResponseEntity.ok(sectorService.update(id,dataSector));
     }
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity<Void> deleteSector(@PathVariable(name = "id") Long id){
         sectorService.delete(id);
         return ResponseEntity.noContent().build();

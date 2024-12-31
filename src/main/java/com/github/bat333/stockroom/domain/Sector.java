@@ -32,6 +32,8 @@ public class Sector {
     private Boolean active = true;
     @OneToMany(mappedBy = "sector",cascade = CascadeType.ALL)
     private List<Part> parts = new ArrayList<>();
+    @Version
+    private Integer version;
 
     public Sector(DataSector dataSector) {
         this.sectors = dataSector.sector();
