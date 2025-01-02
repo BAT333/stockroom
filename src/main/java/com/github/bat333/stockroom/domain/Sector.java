@@ -44,6 +44,9 @@ public class Sector {
     }
 
     public void update(DataSector dataSector) {
+        if(dataSector.sector() !=null){
+            this.sectors = dataSector.sector();
+        }
         if(dataSector.shelf() !=null){
             this.shelf =dataSector.shelf();
         }
