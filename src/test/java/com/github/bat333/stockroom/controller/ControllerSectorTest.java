@@ -62,6 +62,7 @@ class ControllerSectorTest {
         //ASSERT
 
         Assertions.assertEquals(400, response.getStatus());
+
     }
 
     @Test
@@ -91,6 +92,7 @@ class ControllerSectorTest {
         var jsonContent = this.ContentEquals(null,new DataAllSector(id, dataSector.sector(), dataSector.shelf(), dataSector.column(), dataSector.row(), List.of()));
         Assertions.assertEquals(201, response.getStatus());
         Assertions.assertEquals(jsonContent, response.getContentAsString());
+
     }
 
     @Test
@@ -111,6 +113,7 @@ class ControllerSectorTest {
         String expectedJsonContent = objectMapper.writeValueAsString(emptyPage);
         Assertions.assertEquals(200, response.getStatus());
         Assertions.assertEquals(expectedJsonContent, response.getContentAsString());
+
     }
 
     @Test
@@ -132,6 +135,7 @@ class ControllerSectorTest {
 
 
         Assertions.assertEquals(jsonContent, response.getContentAsString());
+        this.sectorDelete(sector.getId());
     }
 
     @Test
@@ -153,6 +157,7 @@ class ControllerSectorTest {
 
         Assertions.assertEquals(200, response.getStatus());
         Assertions.assertEquals(jsonContent, response.getContentAsString());
+        this.sectorDelete(sector.getId());
     }
 
 
@@ -168,6 +173,7 @@ class ControllerSectorTest {
 
         // ASSERT
         Assertions.assertEquals(204, response.getStatus());
+        this.sectorDelete(sector.getId());
     }
 
     private Sector register() {
@@ -181,6 +187,9 @@ class ControllerSectorTest {
         }else{
             return objectMapper.writeValueAsString(new DataAllSector(dataSector.id(), dataSector.sector(), dataSector.shelf(), dataSector.column(), dataSector.row(), List.of()));
         }
+    }
+    private void sectorDelete(Long id){
+        this.repository.deleteById(id);
     }
 
 }
