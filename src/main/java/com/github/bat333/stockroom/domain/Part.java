@@ -71,7 +71,7 @@ public class Part {
             this.amount = part.amount();
         }
         if(part.sector() != null){
-            System.out.println(sector);
+
             this.sector = sector;
         }
 
