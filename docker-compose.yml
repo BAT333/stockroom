@@ -16,5 +16,31 @@ services:
     volumes:
       - ./dev_data:/var/lib/mysql
 
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: stockroom_app
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/stockroom_database?createDatabaseIfNotExist=true&serverTimezone=America/Sao_Paulo&useSSL=true
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./stockroomFront/stockroom
+      dockerfile: Dockerfile
+    container_name: stockroom_frontend
+    restart: always
+    ports:
+      - "4200:4200"
+    depends_on:
+      - app
+
 volumes:
   dev_data:

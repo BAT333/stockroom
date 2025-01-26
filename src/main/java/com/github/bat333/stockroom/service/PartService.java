@@ -106,7 +106,7 @@ public class PartService {
 
     }
 
-    @Cacheable(value = "part", key = "'search:' + #cod + ':' + #name")
+    @Cacheable(value = "part", key = "'search:' + #cod + ':' + #name + ':' + #pageable.pageNumber + ':' + #pageable.pageSize")
     public Page<DataAllPart> search(Long cod, String name, Pageable pageable) {
         if(name == null && cod == null){
             return this.getAll(pageable);

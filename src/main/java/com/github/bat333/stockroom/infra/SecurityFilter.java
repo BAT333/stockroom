@@ -35,7 +35,6 @@ public class SecurityFilter extends OncePerRequestFilter {
     private String key(HttpServletRequest request) {
         String apiKey = request.getHeader(API_KEY_HEADER);
 
-        System.out.println(apiKey);
         if (apiKey == null || apiKey.isEmpty()) {
             return "API Key is missing or invalid";
         }
