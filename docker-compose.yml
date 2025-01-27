@@ -22,8 +22,8 @@ services:
       dockerfile: Dockerfile
     container_name: stockroom_app
     restart: always
-    expose:
-      - "8080"
+    ports:
+      - "8080:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/stockroom_database?createDatabaseIfNotExist=true&serverTimezone=America/Sao_Paulo&useSSL=true
       SPRING_DATASOURCE_USERNAME: user
