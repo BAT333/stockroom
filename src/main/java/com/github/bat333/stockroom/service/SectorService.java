@@ -1,8 +1,8 @@
 package com.github.bat333.stockroom.service;
 
-import com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException;
-import com.github.bat333.stockroom.infra.exceptions.StockExceptions;
 import com.github.bat333.stockroom.domain.Sector;
+import com.github.bat333.stockroom.infra.validator.sector.SectorDuplicationValidator;
+import com.github.bat333.stockroom.infra.validator.sector.SectorValidator;
 import com.github.bat333.stockroom.model.DataAllSector;
 import com.github.bat333.stockroom.model.DataSector;
 import com.github.bat333.stockroom.repository.SectorRepository;
@@ -15,61 +15,57 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @Slf4j
 public class SectorService {
     @Autowired
     private SectorRepository repository;
 
+    @Autowired
+    private SectorValidator validationService;
+    @Autowired
+    private SectorDuplicationValidator duplicationValidator;
+
 
     @CacheEvict(value = "sector", allEntries = true)
     public DataAllSector register(DataSector dataSector) {
-        if(repository.existsBySectorsAndShelfAndColumnAndRow(dataSector.sector(),dataSector.shelf(),dataSector.column(),dataSector.row())){
-            log.error("Sector already registered with sector: {}, shelf: {}, column: {}, row: {}",
-                    dataSector.sector(), dataSector.shelf(), dataSector.column(), dataSector.row());
-            throw new StockExceptions("Sector already registered");
-        }
-        Sector sector =  repository.save(new Sector(dataSector));
+        log.info("Registering new sector: {}", dataSector);
+        duplicationValidator.validate(dataSector);
+        Sector sector = repository.save(new Sector(dataSector));
+        log.info("Sector registered successfully with ID: {}", sector.getId());
         return new DataAllSector(sector);
     }
 
 
     @Cacheable(value = "sector")
     public Page<DataAllSector> getAll(Pageable pageable) {
-        log.info("Made sectors search" );
+        log.info("Made sectors search");
         return repository.findByActiveTrue(pageable).map(DataAllSector::new);
     }
 
     public DataAllSector getSector(Long id) {
-        return repository.findByIdAndActiveTrue(id)
-                .map(DataAllSector::new)
-                .orElseThrow(() -> {
-                    log.error("Sector with ID {} not found or is inactive in the system.", id);
-                    return new SectorNotFoundException("Reported Sector with ID " + id + " not found or is inactive.");
-                });
+        validationService.validator(id);
+        return repository.findByIdAndActiveTrue(id).map(DataAllSector::new).orElseThrow();
+
     }
 
     @CachePut(value = "sector", key = "#id")
     public DataAllSector update(Long id, DataSector dataSector) {
-        Optional<Sector> sector = repository.findByIdAndActiveTrue(id);
-        return sector.map(sector1 -> {
-            sector1.update(dataSector);
-            return new DataAllSector(sector1);
-        }).orElseThrow( () -> {
-            log.error("Sector with ID {} not found or is inactive in the system.", id);
-            return new SectorNotFoundException("Reported Sector with ID " + id + " not found or is inactive.");
-        });
+        validationService.validator(id);
+
+        Sector sector = repository.findByIdAndActiveTrue(id).orElseThrow();
+        sector.update(dataSector);
+        repository.save(sector);
+        return new DataAllSector(sector);
+
 
     }
 
     @CacheEvict(value = "sector", key = "#id")
     public void delete(Long id) {
-        Optional<Sector> sector = repository.findByIdAndActiveTrue(id);
-        sector.ifPresentOrElse(Sector::delete,() -> {
-            log.error("Sector with ID {} not found or is inactive in the system.", id);
-            throw  new SectorNotFoundException("Reported Sector with ID " + id + " not found or is inactive."); }
-        );
+        validationService.validator(id);
+        Sector sector = repository.findByIdAndActiveTrue(id).orElseThrow();
+        sector.delete();
+        repository.save(sector);
     }
 }

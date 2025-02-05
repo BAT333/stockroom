@@ -1,0 +1,23 @@
+package com.github.bat333.stockroom.infra.validator.sector;
+
+import com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException;
+import com.github.bat333.stockroom.repository.SectorRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+@Slf4j
+public class SectorValidationExists implements SectorValidator {
+
+    @Autowired
+    private SectorRepository repository;
+
+    @Override
+    public void validator(Long id) {
+        if(repository.existsByIdAndActiveTrue(id)){
+            log.error("Sector with ID {} not found or is inactive in the system.", id);
+            throw new SectorNotFoundException("Reported Sector with ID " + id + " not found or is inactive.");
+        }
+    }
+}

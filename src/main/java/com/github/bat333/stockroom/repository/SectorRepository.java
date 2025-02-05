@@ -16,4 +16,6 @@ public interface SectorRepository extends JpaRepository<Sector , Long> {
     Optional<Sector> findByIdAndActiveTrue(Long id);
 
     boolean existsBySectorsAndShelfAndColumnAndRow( String sector,  String shelf,  String column,  String row);
+
+    boolean existsByIdAndActiveTrue(Long id);
 }
