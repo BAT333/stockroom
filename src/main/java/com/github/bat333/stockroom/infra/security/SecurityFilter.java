@@ -1,4 +1,4 @@
-package com.github.bat333.stockroom.infra;
+package com.github.bat333.stockroom.infra.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

@@ -1,4 +1,4 @@
-package com.github.bat333.stockroom.infra;
+package com.github.bat333.stockroom.infra.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

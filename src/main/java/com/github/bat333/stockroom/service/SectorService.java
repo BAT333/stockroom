@@ -6,8 +6,8 @@ import com.github.bat333.stockroom.infra.validator.sector.SectorValidator;
 import com.github.bat333.stockroom.model.DataAllSector;
 import com.github.bat333.stockroom.model.DataSector;
 import com.github.bat333.stockroom.repository.SectorRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -17,14 +17,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class SectorService {
-    @Autowired
-    private SectorRepository repository;
 
-    @Autowired
-    private SectorValidator validationService;
-    @Autowired
-    private SectorDuplicationValidator duplicationValidator;
+    private final SectorRepository repository;
+
+
+    private final SectorValidator validationService;
+
+    private final SectorDuplicationValidator duplicationValidator;
 
 
     @CacheEvict(value = "sector", allEntries = true)
@@ -44,27 +45,20 @@ public class SectorService {
     }
 
     public DataAllSector getSector(Long id) {
-        validationService.validator(id);
-        return repository.findByIdAndActiveTrue(id).map(DataAllSector::new).orElseThrow();
-
+        return new DataAllSector(validationService.validator(id));
     }
 
     @CachePut(value = "sector", key = "#id")
     public DataAllSector update(Long id, DataSector dataSector) {
-        validationService.validator(id);
-
-        Sector sector = repository.findByIdAndActiveTrue(id).orElseThrow();
+        Sector sector = validationService.validator(id);
         sector.update(dataSector);
         repository.save(sector);
         return new DataAllSector(sector);
-
-
     }
 
     @CacheEvict(value = "sector", key = "#id")
     public void delete(Long id) {
-        validationService.validator(id);
-        Sector sector = repository.findByIdAndActiveTrue(id).orElseThrow();
+        Sector sector = validationService.validator(id);
         sector.delete();
         repository.save(sector);
     }

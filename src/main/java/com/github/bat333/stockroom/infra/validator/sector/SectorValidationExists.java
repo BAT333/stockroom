@@ -1,5 +1,6 @@
 package com.github.bat333.stockroom.infra.validator.sector;
 
+import com.github.bat333.stockroom.domain.Sector;
 import com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException;
 import com.github.bat333.stockroom.repository.SectorRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -14,10 +15,11 @@ public class SectorValidationExists implements SectorValidator {
     private SectorRepository repository;
 
     @Override
-    public void validator(Long id) {
-        if(repository.existsByIdAndActiveTrue(id)){
-            log.error("Sector with ID {} not found or is inactive in the system.", id);
-            throw new SectorNotFoundException("Reported Sector with ID " + id + " not found or is inactive.");
-        }
+    public Sector validator(Long id) {
+        return repository.findByIdAndActiveTrue(id)
+                .orElseThrow(() -> {
+                    log.error("Sector with ID {} not found or is inactive in the system.", id);
+                    return new SectorNotFoundException("Reported Sector with ID " + id + " not found or is inactive.");
+                });
     }
 }

@@ -23,4 +23,6 @@ public interface PartRepository extends JpaRepository<Part,Long> {
     Page<Part> findByNameContainingIgnoreCaseAndActiveTrue(String name, Pageable pageable);
 
     boolean existsByCodAndNameAndSector( Long cod, String name, Sector sector);
+
+    boolean existsByIdAndActiveTrue(Long id);
 }
