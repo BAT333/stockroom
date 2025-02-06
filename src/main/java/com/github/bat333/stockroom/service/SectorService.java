@@ -1,8 +1,8 @@
 package com.github.bat333.stockroom.service;
 
 import com.github.bat333.stockroom.domain.Sector;
+import com.github.bat333.stockroom.infra.validator.Validator;
 import com.github.bat333.stockroom.infra.validator.sector.SectorDuplicationValidator;
-import com.github.bat333.stockroom.infra.validator.sector.SectorValidator;
 import com.github.bat333.stockroom.model.DataAllSector;
 import com.github.bat333.stockroom.model.DataSector;
 import com.github.bat333.stockroom.repository.SectorRepository;
@@ -22,8 +22,7 @@ public class SectorService {
 
     private final SectorRepository repository;
 
-
-    private final SectorValidator validationService;
+    private final Validator<Sector> validationService;
 
     private final SectorDuplicationValidator duplicationValidator;
 

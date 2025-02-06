@@ -3,9 +3,8 @@ package com.github.bat333.stockroom.service;
 import com.github.bat333.stockroom.domain.Part;
 import com.github.bat333.stockroom.domain.Sector;
 import com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException;
+import com.github.bat333.stockroom.infra.validator.Validator;
 import com.github.bat333.stockroom.infra.validator.part.PartDuplicationValidator;
-import com.github.bat333.stockroom.infra.validator.part.PartValidator;
-import com.github.bat333.stockroom.infra.validator.sector.SectorValidator;
 import com.github.bat333.stockroom.model.DataAllPart;
 import com.github.bat333.stockroom.model.DataPart;
 import com.github.bat333.stockroom.model.DataUpdatePart;
@@ -31,9 +30,9 @@ public class PartService {
 
     private final PartRepository partRepository;
     private final  ImageService imageService;
-    private final SectorValidator sectorValidator;
+    private final Validator<Sector> sectorValidator;
     private final PartDuplicationValidator duplicationValidator;
-    private final PartValidator partValidator;
+    private final Validator<Part> partValidator;
 
     @CacheEvict(value = "part", allEntries = true)
     public DataAllPart registration(@Valid DataPart dataPart, Long id) throws IOException {
