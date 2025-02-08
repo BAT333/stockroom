@@ -78,6 +78,7 @@ class SectorServiceTest {
         Assertions.assertEquals("shelf", captor.getShelf());
 
         verify(duplicationValidator).validate(any());
+        verify(repository).save(any());
     }
 
     // Scenario 02: Register sector when it already exists
