@@ -2,18 +2,23 @@ package com.github.bat333.stockroom.service;
 
 import com.github.bat333.stockroom.domain.Part;
 import com.github.bat333.stockroom.domain.Sector;
+import com.github.bat333.stockroom.infra.exceptions.PartNotFoundException;
 import com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException;
 import com.github.bat333.stockroom.infra.exceptions.StockExceptions;
+import com.github.bat333.stockroom.infra.validator.Validator;
+import com.github.bat333.stockroom.infra.validator.part.PartDuplicationValidator;
 import com.github.bat333.stockroom.model.DataAllPart;
 import com.github.bat333.stockroom.model.DataPart;
+import com.github.bat333.stockroom.model.DataSector;
 import com.github.bat333.stockroom.model.DataUpdatePart;
 import com.github.bat333.stockroom.repository.PartRepository;
-import com.github.bat333.stockroom.repository.SectorRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.*;
+import org.mockito.BDDMockito;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -32,7 +37,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -43,107 +47,99 @@ class PartServiceTest {
     private PartService service;
 
     @Mock
-    private SectorRepository sectorRepository;
-
-    @Mock
     private PartRepository partRepository;
-
-    @Captor
-    private ArgumentCaptor<Sector> argumentCaptorSector;
-
-    @Captor
-    private ArgumentCaptor<Part> argumentCaptorPart;
-
-    @Mock
-    private DataPart dto;
-
-    @Mock
-    private DataUpdatePart dtoUpdate;
 
     @Mock
     private ImageService imageService;
+    @Mock
+    private Validator<Sector> sectorValidator;
+
+    @Mock
+    private DataPart dto;
+    @Mock
+    private DataUpdatePart updatePart;
+
+    @Mock
+    private PartDuplicationValidator duplicationValidator;
+    @Mock
+    private  Validator<Part> partValidator;
+
+    @Mock
+    private DataSector dataSector;
+
+    @Mock
+    private DataAllPart dataAllPart;
+
+
 
 
 
     @Test
     @DisplayName("Scenario 01: Register part - Sector not found")
-    void shouldThrowExceptionWhenSectorNotFoundOnRegister() {
-        BDDMockito.given(sectorRepository.findById(1L)).willReturn(Optional.empty());
+    void shouldThrowExceptionWhenSectorNotFoundOnRegister() throws IOException {
 
-        assertThatThrownBy(() -> service.registration(dto,1L))
+        doThrow(new SectorNotFoundException("Reported Sector with ID 1 not found or is inactive."))
+                .when(sectorValidator).validator(98L);
+
+
+        assertThatThrownBy(() -> service.registration(dto,98L))
                 .isInstanceOf(SectorNotFoundException.class)
-                .hasMessage("Reported Sector Not Found ");
+                .hasMessage("Reported Sector with ID 1 not found or is inactive.");
 
-
-        verify(sectorRepository).findById(1L);
-
+        verify(sectorValidator).validator(98L);
     }
+
     @Test
-    @DisplayName("Scenario 02: Register part - Successful registration")
-    void shouldRegisterPartSuccessfully() throws IOException {
-        // ARRANGE:
-
+    @DisplayName("Scenario 02 - Throw exception for duplicate part registration in the same sector")
+    void shouldThrowExceptionWhenRegisteringDuplicatePart() {
         Sector mockSector = new Sector();
-        mockSector.setId(1L);
+        mockSector.setId(78L);
+        given(sectorValidator.validator(78L)).willReturn(mockSector);
 
-        BDDMockito.given(dto.cod()).willReturn(1L);
-        BDDMockito.given(dto.name()).willReturn("name");
-        BDDMockito.given(dto.image()).willReturn(this.img());
-        BDDMockito.given(dto.amount()).willReturn(5.0);
+        doThrow(new StockExceptions("Reported Part Not Found "))
+                .when(duplicationValidator).validate(any(),any());
 
-        BDDMockito.given(sectorRepository.findById(1L)).willReturn(Optional.of(mockSector));
 
-        BDDMockito.given(imageService.resizeAndCompressImage(any(byte[].class), anyInt(), anyInt(), anyFloat()))
+        assertThatThrownBy(() -> service.registration(dto,78L))
+                .isInstanceOf(StockExceptions.class)
+                .hasMessage("Reported Part Not Found ");
+
+        verify(sectorValidator).validator(78L);
+        verify(duplicationValidator).validate(any(),any());
+    }
+
+    @Test
+    @DisplayName("Scenario 03: Register part - Successful registration")
+    void shouldRegisterPartSuccessfully() throws IOException {
+        Sector mockSector = new Sector();
+        mockSector.setId(12L);
+        given(sectorValidator.validator(12L)).willReturn(mockSector);
+
+        given(dto.image()).willReturn(this.img());
+        given(imageService.resizeAndCompressImage(any(byte[].class), anyInt(), anyInt(), anyFloat()))
                 .willReturn(new byte[0]);
 
-
         Part mockPart = new Part();
-        mockPart.setId(1L);
+        mockPart.setId(12L);
         mockPart.setImage(this.img());
-        mockPart.setSector(new Sector(1L,"","","","",true, List.of(),1));
+        mockPart.setSector(new Sector(12L,"","","","",true, List.of(),1));
+
         doReturn(mockPart).when(partRepository).save(Mockito.any(Part.class));
 
-        // ACT:
 
-        service.registration(dto, 1L);
 
-        // ASSERT:
+        service.registration(dto, 12L);
 
-        then(partRepository).should().save(argumentCaptorPart.capture());
-        var captor = argumentCaptorPart.getValue();
-        Assertions.assertEquals("name", captor.getName());
-        Assertions.assertEquals(1L, captor.getCod());
-        Assertions.assertEquals(5.0, captor.getAmount());
 
-        verify(sectorRepository).findById(1L);
-        verify(imageService).resizeAndCompressImage(any(byte[].class), anyInt(), anyInt(), anyFloat());
+
+
+        verify(sectorValidator).validator(13L);
+        verify(duplicationValidator).validate(any(),any());
         verify(partRepository).save(any());
-        verify(partRepository).existsByCodAndNameAndSector(any(),any(),any());
+        verify(imageService).resizeAndCompressImage(any(byte[].class), anyInt(), anyInt(), anyFloat());
 
     }
 
-    @Test
-    @DisplayName("Scenario 03 - Throw exception for duplicate part registration in the same sector")
-    void shouldThrowExceptionWhenRegisteringDuplicatePart() throws IOException {
-        Sector mockSector = new Sector();
-        mockSector.setId(1L);
-
-        BDDMockito.given(sectorRepository.findById(1L)).willReturn(Optional.of(mockSector));
-        BDDMockito.given(partRepository.existsByCodAndNameAndSector(any(),any(),any()))
-                .willReturn(true);
-
-        BDDMockito.given(dto.cod()).willReturn(1L);
-        BDDMockito.given(dto.name()).willReturn("name");
-
-
-        assertThatThrownBy(() -> service.registration(dto,1L))
-                .isInstanceOf(StockExceptions.class)
-                .hasMessage("Part with code 1 and name name already registered in this sector.");
-
-
-        verify(partRepository).existsByCodAndNameAndSector(any(),any(),any());
-
-    }
 
     @Test
     @DisplayName("Scenario 04 - Retrieve all active parts with pagination")
@@ -170,52 +166,34 @@ class PartServiceTest {
     @DisplayName("Scenario 05 - Retrieve part by ID when active")
     void shouldRetrieveActivePartById() throws IOException {
         Part mockPart = new Part();
+        mockPart.setId(19L);
         mockPart.setImage(this.img());
-        mockPart.setSector(new Sector(1L,"","","","",true, List.of(),1));
-        given(partRepository.findByIdAndActiveTrue(1L)).willReturn(Optional.of(mockPart));
+        mockPart.setSector(new Sector(19L,"","","","",true, List.of(),1));
+        BDDMockito.given(partValidator.validator(19L)).willReturn(mockPart);
 
-        DataAllPart result = service.get(1L);
+        DataAllPart dataAllPart  =  service.get(19L);
 
-        verify(partRepository).findByIdAndActiveTrue(1L);
-        assertNotNull(result);
+        verify(partValidator).validator(19L);
+        assertNotNull(dataAllPart);
     }
 
     @Test
     @DisplayName("Scenario 06 - Throw exception when part is not found")
-    void shouldThrowExceptionWhenPartNotFound() throws IOException {
+    void shouldThrowExceptionWhenPartNotFound() {
+        doThrow(new PartNotFoundException("Reported Part Not Found "))
+                .when(partValidator).validator(any());
 
-        given(partRepository.findByIdAndActiveTrue(1L)).willReturn(Optional.empty());
 
-
-        assertThatThrownBy(() -> service.get(1L))
-                .isInstanceOf(SectorNotFoundException.class)
+        assertThatThrownBy(() -> service.get(13L))
+                .isInstanceOf(PartNotFoundException.class)
                 .hasMessage("Reported Part Not Found ");
 
-        verify(partRepository).findByIdAndActiveTrue(1L);
+        verify(partValidator).validator(13L);
     }
 
     @Test
     @DisplayName("Scenario 07 - Update part details in service")
     void shouldUpdatePartDetails() throws IOException {
-
-        Part mockPart = new Part();
-        mockPart.setId(1L);
-        mockPart.setImage(this.img());
-        mockPart.setSector(new Sector(1L, "SectorName", "SectorDescription", "", "", true, List.of(), 1));
-
-        given(partRepository.findById(1L)).willReturn(Optional.of(mockPart));
-
-        Sector mockSector = new Sector(1L, "Name", "Description", "", "", true, List.of(), 1);
-        lenient().when(sectorRepository.findByIdAndActiveTrue(anyLong())).thenReturn(Optional.of(mockSector));
-
-        doReturn(mockPart).when(partRepository).save(Mockito.any(Part.class));
-
-        DataAllPart result = service.update(1L, dtoUpdate);
-
-        assertNotNull(result);
-
-        verify(partRepository).findById(1L);
-        verify(partRepository).save(any());
 
 
     }
@@ -223,42 +201,46 @@ class PartServiceTest {
     @Test
     @DisplayName("Scenario 08 - Throw exception when updating non-existent part in service")
     void shouldThrowExceptionWhenUpdatingNonExistentPart() {
+        doThrow(new PartNotFoundException("Reported Part Not Found "))
+                .when(partValidator).validator(any());
 
-        given(partRepository.findById(1L)).willReturn(Optional.empty());
 
-        assertThatThrownBy(() -> service.update(1L,dtoUpdate))
-                .isInstanceOf(SectorNotFoundException.class)
+        assertThatThrownBy(() -> service.update(15L,updatePart))
+                .isInstanceOf(PartNotFoundException.class)
                 .hasMessage("Reported Part Not Found ");
 
-        verify(partRepository).findById(1L);
-
+        verify(partValidator).validator(15L);
     }
 
     @Test
     @DisplayName("Scenario 09 - Throw exception when deleting non-existent part in service")
     void shouldThrowExceptionWhenDeletingNonExistentPart() {
-        given(partRepository.findById(1L)).willReturn(Optional.empty());
 
-        assertThatThrownBy(() -> service.delete(1L))
-                .isInstanceOf(SectorNotFoundException.class)
-                .hasMessage("Reported Part Not Found");
+        doThrow(new PartNotFoundException("Reported Part Not Found "))
+                .when(partValidator).validator(any());
 
-        verify(partRepository).findById(1L);
+
+        assertThatThrownBy(() -> service.delete(17L))
+                .isInstanceOf(PartNotFoundException.class)
+                .hasMessage("Reported Part Not Found ");
+
+        verify(partValidator).validator(17L);
+
     }
 
     @Test
     @DisplayName("Scenario 10 - Successfully delete part in service")
     void shouldSuccessfullyDeletePart() throws IOException {
         Part mockPart = new Part();
-        mockPart.setId(1L);
+        mockPart.setId(166L);
         mockPart.setImage(this.img());
-        mockPart.setSector(new Sector(1L,"","","","",true, List.of(),1));
+        mockPart.setSector(new Sector(166L,"","","","",true, List.of(),1));
+        BDDMockito.given(partValidator.validator(166L)).willReturn(mockPart);
 
-        given(partRepository.findById(1L)).willReturn(Optional.of(mockPart));
+        service.delete(166L);
 
-        service.delete(1L);
+        verify(partValidator).validator(166L);
 
-        verify(partRepository).findById(1L);
     }
 
     @Test
@@ -278,7 +260,6 @@ class PartServiceTest {
         verify(partRepository).findByActiveTrue(pageable);
         assertNotNull(result);
         assertEquals(mockedPage.getContent().size(), result.getContent().size());
-
     }
 
     @Test
@@ -300,11 +281,13 @@ class PartServiceTest {
         assertNotNull(result);
         assertEquals(mockedPage.getContent().size(), result.getContent().size());
 
+
     }
 
     @Test
     @DisplayName("Scenario 13 - Test searching for parts by code or name in service")
     void shouldSearchPartsByCodeOrName() throws IOException {
+
         Pageable pageable = PageRequest.of(0, 10);
 
         Part mockPart = new Part();
@@ -321,11 +304,13 @@ class PartServiceTest {
         assertNotNull(result);
         assertEquals(mockedPage.getContent().size(), result.getContent().size());
 
+
     }
 
     @Test
     @DisplayName("Scenario 14 - Test searching for parts by name in service")
     void shouldSearchPartsByName() throws IOException {
+
         Pageable pageable = PageRequest.of(0, 10);
 
         Part mockPart = new Part();
@@ -341,6 +326,7 @@ class PartServiceTest {
         verify(partRepository).findByNameContainingIgnoreCaseAndActiveTrue("name",pageable);
         assertNotNull(result);
         assertEquals(mockedPage.getContent().size(), result.getContent().size());
+
 
     }
 

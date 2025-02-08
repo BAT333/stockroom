@@ -1,7 +1,7 @@
 package com.github.bat333.stockroom.infra.validator.part;
 
 import com.github.bat333.stockroom.domain.Part;
-import com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException;
+import com.github.bat333.stockroom.infra.exceptions.PartNotFoundException;
 import com.github.bat333.stockroom.infra.validator.Validator;
 import com.github.bat333.stockroom.repository.PartRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,7 @@ public class PartValidationExists implements Validator<Part> {
         return repository.findByIdAndActiveTrue(id)
                 .orElseThrow(() -> {
                     log.error("Part with ID {} not found or is inactive in the system.", id);
-                    return new SectorNotFoundException("Reported Part Not Found ");
+                    return new PartNotFoundException("Reported Part Not Found ");
                 });
     }
 }

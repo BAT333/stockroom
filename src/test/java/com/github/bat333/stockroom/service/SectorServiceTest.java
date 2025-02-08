@@ -21,7 +21,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -108,6 +108,7 @@ class SectorServiceTest {
         // ASSERT:
 
         verify(duplicationValidator).validate(any());
+
     }
 
     // Scenario 03: Get all active sectors
