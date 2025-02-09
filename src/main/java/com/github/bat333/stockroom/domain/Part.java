@@ -27,7 +27,7 @@ public class Part {
     @Column(name = "quantities",nullable = false)
     private double amount;
     @Column(name = "actives",nullable = false )
-    private Boolean active = true;
+    private boolean active = true;
     @ManyToOne
     @JoinColumn(name = "sector")
     private Sector sector;
