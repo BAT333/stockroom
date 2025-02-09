@@ -19,7 +19,6 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("api/part")
-@CrossOrigin("*")
 public class ControllerPart {
     @Autowired
     private PartService service;
@@ -33,14 +32,15 @@ public class ControllerPart {
     }
     @GetMapping("/{id}")
     public ResponseEntity<DataAllPart> getPart(@PathVariable(name = "id") Long id){
-        return ResponseEntity.ok(this.service.get(id));
+        DataAllPart part = this.service.get(id);
+        return ResponseEntity.ok(part);
     }
 
     @PatchMapping ("/{id}")
     @Transactional
-    public ResponseEntity<DataAllPart> updatePart(@PathVariable(name = "id") Long id, @RequestBody DataUpdatePart part){
-        return ResponseEntity.ok(this.service.update(id,part));
-
+    public ResponseEntity<DataAllPart> updatePart(@PathVariable(name = "id") Long id, @RequestBody DataUpdatePart updatePart){
+        DataAllPart part = this.service.update(id,updatePart);
+        return ResponseEntity.ok(part);
     }
 
     @DeleteMapping("/{id}")
@@ -51,12 +51,14 @@ public class ControllerPart {
     }
     @GetMapping()
     public ResponseEntity<Page<DataAllPart>> getAllPart( @PageableDefault(sort = {"id"}) Pageable pageable){
-        return ResponseEntity.ok(this.service.getAll(pageable));
+        Page<DataAllPart> allParts = this.service.getAll(pageable);
+        return ResponseEntity.ok(allParts);
     }
 
     @GetMapping("/search")
     public ResponseEntity<Page<DataAllPart>> searchPart(@RequestParam(name = "cod",required = false) Long cod,@RequestParam(name = "name",required = false) String name ,@PageableDefault(sort = {"id"}) Pageable pageable){
-        return ResponseEntity.ok(this.service.search(cod,name,pageable));
+        Page<DataAllPart> allParts = this.service.search(cod,name,pageable);
+        return ResponseEntity.ok(allParts);
     }
 
 

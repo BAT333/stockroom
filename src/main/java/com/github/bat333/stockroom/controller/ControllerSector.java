@@ -16,7 +16,6 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/api/sector")
-@CrossOrigin("*")
 public class ControllerSector {
     @Autowired
     private SectorService sectorService;
@@ -31,16 +30,19 @@ public class ControllerSector {
 
     @GetMapping
     public ResponseEntity<Page<DataAllSector>> getAllSector(@PageableDefault(sort = {"id"}) Pageable pageable){
-        return ResponseEntity.ok(sectorService.getAll(pageable));
+        Page<DataAllSector> allSectors = sectorService.getAll(pageable);
+        return ResponseEntity.ok(allSectors);
     }
     @GetMapping("/{id}")
     public ResponseEntity<DataAllSector> getSector(@PathVariable Long id){
-        return ResponseEntity.ok(sectorService.getSector(id));
+        DataAllSector sector = sectorService.getSector(id);
+        return ResponseEntity.ok(sector);
     }
     @PatchMapping("/{id}")
     @Transactional
     public ResponseEntity<DataAllSector> updateSector(@RequestBody DataSector dataSector ,@PathVariable(name = "id") Long id){
-        return ResponseEntity.ok(sectorService.update(id,dataSector));
+        DataAllSector update = sectorService.update(id,dataSector);
+        return ResponseEntity.ok(update);
     }
     @DeleteMapping("/{id}")
     @Transactional
