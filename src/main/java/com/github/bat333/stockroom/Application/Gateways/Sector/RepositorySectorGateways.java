@@ -4,7 +4,7 @@ import com.github.bat333.stockroom.Domain.Entities.sector.Sector;
 
 import java.util.List;
 
-public interface RepositorySector {
+public interface RepositorySectorGateways {
 
     public Sector saveSector(Sector sector);
     public Sector listActiveSector(Long id);

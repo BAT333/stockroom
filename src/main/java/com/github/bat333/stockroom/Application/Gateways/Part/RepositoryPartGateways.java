@@ -4,7 +4,7 @@ import com.github.bat333.stockroom.Domain.Entities.part.Part;
 
 import java.util.List;
 
-public interface RepositoryPart {
+public interface RepositoryPartGateways {
 
     public Part savePart(Part part);
     public Part listActivePart(Long id);
