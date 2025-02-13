@@ -1,18 +1,18 @@
 package com.github.bat333.stockroom.Application.UseCases.sector;
 
-import com.github.bat333.stockroom.Application.Gateways.Sector.RepositorySector;
+import com.github.bat333.stockroom.Application.Gateways.Sector.RepositorySectorGateways;
 import com.github.bat333.stockroom.Domain.Entities.sector.Sector;
 
 import java.util.List;
 
 public class ListAllSectors {
-    private final RepositorySector repositorySector;
+    private final RepositorySectorGateways repositorySectorGateways;
 
-    public ListAllSectors(RepositorySector repositorySector) {
-        this.repositorySector = repositorySector;
+    public ListAllSectors(RepositorySectorGateways repositorySectorGateways) {
+        this.repositorySectorGateways = repositorySectorGateways;
     }
 
     public List<Sector> listAllSectors (){
-        return this.repositorySector.listAllActiveSectors();
+        return this.repositorySectorGateways.listAllActiveSectors();
     }
 }

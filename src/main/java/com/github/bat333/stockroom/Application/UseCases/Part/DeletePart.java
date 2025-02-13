@@ -1,19 +1,19 @@
 package com.github.bat333.stockroom.Application.UseCases.Part;
 
-import com.github.bat333.stockroom.Application.Gateways.Part.RepositoryPart;
+import com.github.bat333.stockroom.Application.Gateways.Part.RepositoryPartGateways;
 
 public class DeletePart {
-    private final RepositoryPart repositoryPart;
+    private final RepositoryPartGateways repositoryPartGateways;
 
-    public DeletePart (RepositoryPart repositoryPart){
-        this.repositoryPart = repositoryPart;
+    public DeletePart (RepositoryPartGateways repositoryPartGateways){
+        this.repositoryPartGateways = repositoryPartGateways;
     }
 
     public void deletePart (long id){
-        if(repositoryPart.existsPartAndActive(id)){
+        if(repositoryPartGateways.existsPartAndActive(id)){
             throw new RuntimeException();
         }
 
-        this.repositoryPart.deletePart(id);
+        this.repositoryPartGateways.deletePart(id);
     }
 }

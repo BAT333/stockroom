@@ -1,7 +1,7 @@
 package com.github.bat333.stockroom.Domain.Entities.sector;
 
 import com.github.bat333.stockroom.Domain.Entities.part.Part;
-import com.github.bat333.stockroom.model.DataSector;
+import com.github.bat333.stockroom.guardar.model.DataSector;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

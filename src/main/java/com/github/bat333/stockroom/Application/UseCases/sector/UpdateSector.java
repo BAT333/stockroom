@@ -1,20 +1,20 @@
 package com.github.bat333.stockroom.Application.UseCases.sector;
 
-import com.github.bat333.stockroom.Application.Gateways.Sector.RepositorySector;
+import com.github.bat333.stockroom.Application.Gateways.Sector.RepositorySectorGateways;
 import com.github.bat333.stockroom.Domain.Entities.sector.Sector;
 
 public class UpdateSector {
-    private final RepositorySector repositorySector;
+    private final RepositorySectorGateways repositorySectorGateways;
 
-    public UpdateSector(RepositorySector repositorySector) {
-        this.repositorySector = repositorySector;
+    public UpdateSector(RepositorySectorGateways repositorySectorGateways) {
+        this.repositorySectorGateways = repositorySectorGateways;
     }
 
     public Sector updateSector(long id,Sector sector){
-        if(this.repositorySector.existsSectorAndActive(id)){
+        if(this.repositorySectorGateways.existsSectorAndActive(id)){
             throw new RuntimeException();
         }
 
-        return this.repositorySector.updateSector(id,sector);
+        return this.repositorySectorGateways.updateSector(id,sector);
     }
 }

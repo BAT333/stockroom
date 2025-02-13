@@ -1,17 +1,19 @@
 package com.github.bat333.stockroom.service;
 
-import com.github.bat333.stockroom.domain.Part;
-import com.github.bat333.stockroom.domain.Sector;
-import com.github.bat333.stockroom.infra.exceptions.PartNotFoundException;
-import com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException;
-import com.github.bat333.stockroom.infra.exceptions.StockExceptions;
-import com.github.bat333.stockroom.infra.validator.Validator;
-import com.github.bat333.stockroom.infra.validator.part.PartDuplicationValidator;
-import com.github.bat333.stockroom.model.DataAllPart;
-import com.github.bat333.stockroom.model.DataPart;
-import com.github.bat333.stockroom.model.DataSector;
-import com.github.bat333.stockroom.model.DataUpdatePart;
-import com.github.bat333.stockroom.repository.PartRepository;
+import com.github.bat333.stockroom.Domain.Entities.part.Part;
+import com.github.bat333.stockroom.Domain.Entities.sector.Sector;
+import com.github.bat333.stockroom.guardar.infra.exceptions.PartNotFoundException;
+import com.github.bat333.stockroom.guardar.infra.exceptions.SectorNotFoundException;
+import com.github.bat333.stockroom.guardar.infra.exceptions.StockExceptions;
+import com.github.bat333.stockroom.guardar.infra.validator.Validator;
+import com.github.bat333.stockroom.guardar.infra.validator.part.PartDuplicationValidator;
+import com.github.bat333.stockroom.guardar.model.DataAllPart;
+import com.github.bat333.stockroom.guardar.model.DataPart;
+import com.github.bat333.stockroom.guardar.model.DataSector;
+import com.github.bat333.stockroom.guardar.model.DataUpdatePart;
+import com.github.bat333.stockroom.guardar.repository.PartRepository;
+import com.github.bat333.stockroom.guardar.service.ImageService;
+import com.github.bat333.stockroom.guardar.service.PartService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,7 +43,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @ActiveProfiles("test")
-class PartServiceTest {
+class PartEntityServiceTest {
 
     @InjectMocks
     private PartService service;

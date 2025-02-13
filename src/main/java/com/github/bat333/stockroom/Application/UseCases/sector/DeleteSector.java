@@ -1,18 +1,18 @@
 package com.github.bat333.stockroom.Application.UseCases.sector;
 
-import com.github.bat333.stockroom.Application.Gateways.Sector.RepositorySector;
+import com.github.bat333.stockroom.Application.Gateways.Sector.RepositorySectorGateways;
 
 public class DeleteSector {
-    private final RepositorySector repositorySector;
+    private final RepositorySectorGateways repositorySectorGateways;
 
-    public DeleteSector(RepositorySector repositorySector) {
-        this.repositorySector = repositorySector;
+    public DeleteSector(RepositorySectorGateways repositorySectorGateways) {
+        this.repositorySectorGateways = repositorySectorGateways;
     }
 
     public void deleteSector(long id){
-        if(this.repositorySector.existsSectorAndActive(id)){
+        if(this.repositorySectorGateways.existsSectorAndActive(id)){
             throw new RuntimeException();
         }
-        this.repositorySector.deleteSector(id);
+        this.repositorySectorGateways.deleteSector(id);
     }
 }

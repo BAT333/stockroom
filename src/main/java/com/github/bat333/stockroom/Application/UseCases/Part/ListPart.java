@@ -1,21 +1,19 @@
 package com.github.bat333.stockroom.Application.UseCases.Part;
 
-import com.github.bat333.stockroom.Application.Gateways.Part.RepositoryPart;
+import com.github.bat333.stockroom.Application.Gateways.Part.RepositoryPartGateways;
 import com.github.bat333.stockroom.Domain.Entities.part.Part;
 
-import java.util.List;
-
 public class ListPart {
-    private final RepositoryPart repositoryPart;
+    private final RepositoryPartGateways repositoryPartGateways;
 
-    public ListPart(RepositoryPart repositoryPart){
-        this.repositoryPart = repositoryPart;
+    public ListPart(RepositoryPartGateways repositoryPartGateways){
+        this.repositoryPartGateways = repositoryPartGateways;
     }
 
     public Part listPart(long id){
-        if(repositoryPart.existsPartAndActive(id)){
+        if(repositoryPartGateways.existsPartAndActive(id)){
             throw new RuntimeException();
         }
-        return this.repositoryPart.listActivePart(id);
+        return this.repositoryPartGateways.listActivePart(id);
     }
 }
