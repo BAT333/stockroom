@@ -1,7 +1,9 @@
 package com.github.bat333.stockroom.Domain.Entities.sector;
 
 import com.github.bat333.stockroom.Domain.Entities.part.Part;
-import com.github.bat333.stockroom.guardar.model.DataSector;
+
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -28,6 +30,14 @@ public class Sector {
 
     public Sector() {
 
+    }
+
+    public Sector( String sector,  String column,  String shelf,  String row) {
+        SectorValidator.validate(sector,shelf,column,row);
+        this.sectors = sector;
+        this.shelf = shelf;
+        this.column = column;
+        this.row = row;
     }
 
     public Long getId() {
@@ -98,23 +108,25 @@ public class Sector {
         return Objects.hash(id, sectors, shelf, column, row, active, parts);
     }
 
-    public void update(DataSector dataSector) {
-//        if(dataSector.sector() !=null){
-//            this.sectors = dataSector.sector();
-//        }
-//        if(dataSector.shelf() !=null){
-//            this.shelf =dataSector.shelf();
-//        }
-//        if(dataSector.column() !=null){
-//            this.column =dataSector.column();
-//
-//        }
-//        if(dataSector.row() !=null){
-//            this.row =dataSector.row();
-//
-//        }
+    public void update(Sector sector) {
 
+        if (sector.sectors != null) {
+            this.sectors = sector.sectors;
+        }
+        if (sector.shelf != null) {
+            this.shelf = sector.shelf;
+        }
+        if (sector.column != null) {
+            this.column = sector.column;
+
+        }
+        if (sector.row != null) {
+            this.row = sector.row;
+
+        }
     }
+
+
 
     public void delete() {
         this.active = false;

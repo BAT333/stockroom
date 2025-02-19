@@ -1,6 +1,8 @@
 package com.github.bat333.stockroom.Domain.Entities.part;
 
 import com.github.bat333.stockroom.Domain.Entities.sector.Sector;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -31,6 +33,13 @@ public class Part {
 
     }
 
+    public Part( Long cod,  String name,  byte[] image,  double amount) {
+        PartValidator.validate(cod,name,image,amount);
+        this.cod = cod;
+        this.name = name;
+        this.image = image;
+        this.amount = amount;
+    }
 
 
     public Long getId() {
@@ -101,23 +110,23 @@ public class Part {
         return Objects.hash(id, cod, name, Arrays.hashCode(image), amount, active, sector);
     }
 
-    public Part update() {
-//        if(part.cod() != null){
-//            this.cod = part.cod();
-//        }
-//        if(part.name() != null){
-//            this.name = part.name();
-//        }
-//        if(part.image() != null){
-//            this.image = part.image();
-//        }
-//        if(part.amount() > 0){
-//            this.amount = part.amount();
-//        }
-//        if(part.sector() != null){
-//
-//            this.sector = sector;
-//        }
+    public Part update(Part part) {
+        if(part.cod != null){
+            this.cod = part.cod;
+        }
+        if(part.name != null){
+            this.name = part.name;
+        }
+        if(part.image != null){
+            //colocar service img
+            this.image = part.image;
+        }
+        if(part.amount > 0){
+            this.amount = part.amount;
+        }
+        if(part.sector != null){
+            this.sector = part.sector;
+        }
 
         return this;
     }

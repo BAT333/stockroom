@@ -2,10 +2,7 @@ package com.github.bat333.stockroom.Domain.Entities.sector;
 
 public class SectorValidator {
 
-    public static void validate(Long id, String sectors, String shelf, String column, String row) {
-        if (id == null ) {
-            throw new IllegalArgumentException("ID cannot be null");
-        }
+    public static void validate( String sectors, String shelf, String column, String row) {
         if (sectors == null || sectors.trim().isEmpty()) {
             throw new IllegalArgumentException("sectors cannot be empty");
         }
