@@ -12,7 +12,7 @@ public class SearchByPart {
         this.repositoryPartGateways = repositoryPartGateways;
     }
 
-    public List<Part> searchByPart(String name, long cod){
+    public List<Part> searchByPart(String name, Long cod){
 
         return repositoryPartGateways.searchPart(name,cod);
     }

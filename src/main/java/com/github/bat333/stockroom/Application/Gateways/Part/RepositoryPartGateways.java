@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface RepositoryPartGateways {
 
-    public Part savePart(Part part);
+    public Part savePart(Part part, long id);
     public Part listActivePart(Long id);
     public List<Part> listAllActiveParts();
     public Part listPart(Long id);
@@ -14,6 +14,6 @@ public interface RepositoryPartGateways {
     public Part updatePart(long id, Part part);
     public void deletePart(Long id);
     public boolean existsPartAndActive(Long id);
-    public List<Part> searchPart(String name, long cod);
+    public List<Part> searchPart(String name, Long cod);
     public  boolean existsByCodAndName(long cod,String name);
 }

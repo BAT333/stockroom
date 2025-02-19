@@ -1,4 +1,4 @@
-2025-02-05 21:05:21 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?,?
+2025-02-05 21:05:21 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?,?
 2025-02-05 21:05:51 [http-nio-8080-exec-1] ERROR o.h.engine.jdbc.spi.SqlExceptionHelper - HikariPool-1 - Connection is not available, request timed out after 30016ms (total=0, active=0, idle=0, waiting=0)
 2025-02-05 21:05:51 [http-nio-8080-exec-1] ERROR o.h.engine.jdbc.spi.SqlExceptionHelper - Communications link failure
 
@@ -119,23 +119,23 @@ Caused by: java.io.EOFException: Can not read response from server. Expected to 
 	at com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:36)
 	at com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:586)
 	... 62 common frames omitted
-2025-02-05 21:06:47 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
-2025-02-05 21:07:37 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.actives order by s1_0.id limit ?
-2025-02-05 21:08:02 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select s1_0.id from sectors s1_0 where s1_0.sector=? and s1_0.shelves=? and s1_0.columns=? and s1_0.row_data=? limit ?
-2025-02-05 21:08:02 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - insert into sectors (actives,columns,row_data,sector,shelves,version) values (?,?,?,?,?,?)
-2025-02-05 21:08:02 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.actives order by s1_0.id limit ?
-2025-02-05 21:08:02 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select p1_0.sector,p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.version from parts p1_0 where p1_0.sector=?
-2025-02-05 21:08:19 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=? and s1_0.actives
-2025-02-05 21:08:20 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select p1_0.id from parts p1_0 where p1_0.cods=? and p1_0.names=? and p1_0.sector=? limit ?
-2025-02-05 21:08:20 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - insert into parts (actives,quantities,cods,images,names,sector,version) values (?,?,?,?,?,?,?)
-2025-02-05 21:08:22 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
-2025-02-05 21:08:22 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:08:25 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
-2025-02-05 21:08:25 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:08:28 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
-2025-02-05 21:08:28 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:08:28 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - update parts set actives=?,quantities=?,cods=?,images=?,names=?,sector=?,version=? where id=? and version=?
-2025-02-05 21:08:29 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
+2025-02-05 21:06:47 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
+2025-02-05 21:07:37 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.actives order by s1_0.id limit ?
+2025-02-05 21:08:02 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select s1_0.id from sectors s1_0 where s1_0.sectorEntity=? and s1_0.shelves=? and s1_0.columns=? and s1_0.row_data=? limit ?
+2025-02-05 21:08:02 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - insert into sectors (actives,columns,row_data,sectorEntity,shelves,version) values (?,?,?,?,?,?)
+2025-02-05 21:08:02 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.actives order by s1_0.id limit ?
+2025-02-05 21:08:02 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select p1_0.sectorEntity,p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.version from parts p1_0 where p1_0.sectorEntity=?
+2025-02-05 21:08:19 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=? and s1_0.actives
+2025-02-05 21:08:20 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select p1_0.id from parts p1_0 where p1_0.cods=? and p1_0.names=? and p1_0.sectorEntity=? limit ?
+2025-02-05 21:08:20 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - insert into parts (actives,quantities,cods,images,names,sectorEntity,version) values (?,?,?,?,?,?,?)
+2025-02-05 21:08:22 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
+2025-02-05 21:08:22 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:08:25 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
+2025-02-05 21:08:25 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:08:28 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
+2025-02-05 21:08:28 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:08:28 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - update parts set actives=?,quantities=?,cods=?,images=?,names=?,sectorEntity=?,version=? where id=? and version=?
+2025-02-05 21:08:29 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
 2025-02-05 21:08:29 [http-nio-8080-exec-2] ERROR c.g.b.s.i.v.part.PartValidationExists - Part with ID 1 not found or is inactive in the system.
 2025-02-05 21:08:29 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported Part Not Found ] with root cause
 com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported Part Not Found 
@@ -267,78 +267,78 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
-2025-02-05 21:08:31 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
-2025-02-05 21:08:53 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=? and s1_0.actives
-2025-02-05 21:08:53 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select p1_0.id from parts p1_0 where p1_0.cods=? and p1_0.names=? and p1_0.sector=? limit ?
-2025-02-05 21:08:53 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - insert into parts (actives,quantities,cods,images,names,sector,version) values (?,?,?,?,?,?,?)
-2025-02-05 21:08:57 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
-2025-02-05 21:08:57 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:09:08 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
-2025-02-05 21:09:08 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:09:24 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
-2025-02-05 21:09:24 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:09:24 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id is null and s1_0.actives
+2025-02-05 21:08:31 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
+2025-02-05 21:08:53 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=? and s1_0.actives
+2025-02-05 21:08:53 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select p1_0.id from parts p1_0 where p1_0.cods=? and p1_0.names=? and p1_0.sectorEntity=? limit ?
+2025-02-05 21:08:53 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - insert into parts (actives,quantities,cods,images,names,sectorEntity,version) values (?,?,?,?,?,?,?)
+2025-02-05 21:08:57 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
+2025-02-05 21:08:57 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:09:08 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
+2025-02-05 21:09:08 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:09:24 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
+2025-02-05 21:09:24 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:09:24 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id is null and s1_0.actives
 2025-02-05 21:09:24 [http-nio-8080-exec-7] ERROR c.g.b.s.i.v.s.SectorValidationExists - Sector with ID null not found or is inactive in the system.
-2025-02-05 21:09:24 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - update parts set actives=?,quantities=?,cods=?,images=?,names=?,sector=?,version=? where id=? and version=?
-2025-02-05 21:09:24 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
-2025-02-05 21:09:24 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:09:29 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
-2025-02-05 21:09:29 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:09:38 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
-2025-02-05 21:09:38 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:09:38 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id is null and s1_0.actives
+2025-02-05 21:09:24 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - update parts set actives=?,quantities=?,cods=?,images=?,names=?,sectorEntity=?,version=? where id=? and version=?
+2025-02-05 21:09:24 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
+2025-02-05 21:09:24 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:09:29 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
+2025-02-05 21:09:29 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:09:38 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
+2025-02-05 21:09:38 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:09:38 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id is null and s1_0.actives
 2025-02-05 21:09:38 [http-nio-8080-exec-8] ERROR c.g.b.s.i.v.s.SectorValidationExists - Sector with ID null not found or is inactive in the system.
-2025-02-05 21:09:38 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - update parts set actives=?,quantities=?,cods=?,images=?,names=?,sector=?,version=? where id=? and version=?
-2025-02-05 21:09:38 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
-2025-02-05 21:09:39 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:09:40 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
-2025-02-05 21:09:40 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:09:49 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
-2025-02-05 21:09:49 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:09:49 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id is null and s1_0.actives
+2025-02-05 21:09:38 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - update parts set actives=?,quantities=?,cods=?,images=?,names=?,sectorEntity=?,version=? where id=? and version=?
+2025-02-05 21:09:38 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
+2025-02-05 21:09:39 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:09:40 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
+2025-02-05 21:09:40 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:09:49 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
+2025-02-05 21:09:49 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:09:49 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id is null and s1_0.actives
 2025-02-05 21:09:49 [http-nio-8080-exec-6] ERROR c.g.b.s.i.v.s.SectorValidationExists - Sector with ID null not found or is inactive in the system.
-2025-02-05 21:09:49 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - update parts set actives=?,quantities=?,cods=?,images=?,names=?,sector=?,version=? where id=? and version=?
-2025-02-05 21:09:49 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
-2025-02-05 21:09:49 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:09:51 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
-2025-02-05 21:09:51 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:10:02 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
-2025-02-05 21:10:03 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:10:03 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id is null and s1_0.actives
+2025-02-05 21:09:49 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - update parts set actives=?,quantities=?,cods=?,images=?,names=?,sectorEntity=?,version=? where id=? and version=?
+2025-02-05 21:09:49 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
+2025-02-05 21:09:49 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:09:51 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
+2025-02-05 21:09:51 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:10:02 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
+2025-02-05 21:10:03 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:10:03 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id is null and s1_0.actives
 2025-02-05 21:10:03 [http-nio-8080-exec-7] ERROR c.g.b.s.i.v.s.SectorValidationExists - Sector with ID null not found or is inactive in the system.
-2025-02-05 21:10:03 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - update parts set actives=?,quantities=?,cods=?,images=?,names=?,sector=?,version=? where id=? and version=?
-2025-02-05 21:10:03 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
-2025-02-05 21:10:03 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:10:08 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
-2025-02-05 21:10:08 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:10:08 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id is null and s1_0.actives
+2025-02-05 21:10:03 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - update parts set actives=?,quantities=?,cods=?,images=?,names=?,sectorEntity=?,version=? where id=? and version=?
+2025-02-05 21:10:03 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
+2025-02-05 21:10:03 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:10:08 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
+2025-02-05 21:10:08 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:10:08 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id is null and s1_0.actives
 2025-02-05 21:10:08 [http-nio-8080-exec-2] ERROR c.g.b.s.i.v.s.SectorValidationExists - Sector with ID null not found or is inactive in the system.
-2025-02-05 21:10:08 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - update parts set actives=?,quantities=?,cods=?,images=?,names=?,sector=?,version=? where id=? and version=?
-2025-02-05 21:10:08 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
-2025-02-05 21:10:08 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:10:13 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
-2025-02-05 21:10:13 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:10:22 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select s1_0.id from sectors s1_0 where s1_0.sector=? and s1_0.shelves=? and s1_0.columns=? and s1_0.row_data=? limit ?
-2025-02-05 21:10:22 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - insert into sectors (actives,columns,row_data,sector,shelves,version) values (?,?,?,?,?,?)
-2025-02-05 21:10:22 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.actives order by s1_0.id limit ?
-2025-02-05 21:10:22 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select p1_0.sector,p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.version from parts p1_0 where p1_0.sector=?
-2025-02-05 21:10:22 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select p1_0.sector,p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.version from parts p1_0 where p1_0.sector=?
-2025-02-05 21:10:33 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
-2025-02-05 21:10:33 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:10:33 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=? and s1_0.actives
-2025-02-05 21:10:33 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - update parts set actives=?,quantities=?,cods=?,images=?,names=?,sector=?,version=? where id=? and version=?
-2025-02-05 21:10:33 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
-2025-02-05 21:10:33 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:10:37 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
-2025-02-05 21:10:37 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:10:46 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
-2025-02-05 21:10:46 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:10:46 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=? and s1_0.actives
-2025-02-05 21:10:46 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - update parts set actives=?,quantities=?,cods=?,images=?,names=?,sector=?,version=? where id=? and version=?
-2025-02-05 21:10:46 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
-2025-02-05 21:10:46 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
-2025-02-05 21:10:51 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sector,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
-2025-02-05 21:10:51 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sector,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:10:08 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - update parts set actives=?,quantities=?,cods=?,images=?,names=?,sectorEntity=?,version=? where id=? and version=?
+2025-02-05 21:10:08 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
+2025-02-05 21:10:08 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:10:13 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
+2025-02-05 21:10:13 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:10:22 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select s1_0.id from sectors s1_0 where s1_0.sectorEntity=? and s1_0.shelves=? and s1_0.columns=? and s1_0.row_data=? limit ?
+2025-02-05 21:10:22 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - insert into sectors (actives,columns,row_data,sectorEntity,shelves,version) values (?,?,?,?,?,?)
+2025-02-05 21:10:22 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.actives order by s1_0.id limit ?
+2025-02-05 21:10:22 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select p1_0.sectorEntity,p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.version from parts p1_0 where p1_0.sectorEntity=?
+2025-02-05 21:10:22 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select p1_0.sectorEntity,p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.version from parts p1_0 where p1_0.sectorEntity=?
+2025-02-05 21:10:33 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
+2025-02-05 21:10:33 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:10:33 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=? and s1_0.actives
+2025-02-05 21:10:33 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - update parts set actives=?,quantities=?,cods=?,images=?,names=?,sectorEntity=?,version=? where id=? and version=?
+2025-02-05 21:10:33 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
+2025-02-05 21:10:33 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:10:37 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
+2025-02-05 21:10:37 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:10:46 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
+2025-02-05 21:10:46 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:10:46 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=? and s1_0.actives
+2025-02-05 21:10:46 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - update parts set actives=?,quantities=?,cods=?,images=?,names=?,sectorEntity=?,version=? where id=? and version=?
+2025-02-05 21:10:46 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.id=? and p1_0.actives
+2025-02-05 21:10:46 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
+2025-02-05 21:10:51 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select p1_0.id,p1_0.actives,p1_0.quantities,p1_0.cods,p1_0.images,p1_0.names,p1_0.sectorEntity,p1_0.version from parts p1_0 where p1_0.actives order by p1_0.id limit ?
+2025-02-05 21:10:51 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select s1_0.id,s1_0.actives,s1_0.columns,s1_0.row_data,s1_0.sectorEntity,s1_0.shelves,s1_0.version from sectors s1_0 where s1_0.id=?
 2025-02-05 21:12:39 [main] DEBUG org.hibernate.SQL - 
     drop table if exists parts cascade 
 2025-02-05 21:12:39 [main] DEBUG org.hibernate.SQL - 
@@ -350,7 +350,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         version integer,
         cods bigint not null,
         id bigint generated by default as identity,
-        sector bigint,
+        sectorEntity bigint,
         names varchar(255) not null,
         images blob not null,
         primary key (id)
@@ -362,34 +362,34 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         id bigint generated by default as identity,
         columns varchar(255) not null,
         row_data varchar(255) not null,
-        sector varchar(255) not null,
+        sectorEntity varchar(255) not null,
         shelves varchar(255) not null,
         primary key (id)
     )
 2025-02-05 21:12:39 [main] DEBUG org.hibernate.SQL - 
     alter table if exists parts 
        add constraint FK44bpbjjhvt2bd6spralcvfki7 
-       foreign key (sector) 
+       foreign key (sectorEntity)
        references sectors
 2025-02-05 21:12:44 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:45 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         parts
-        (actives, quantities, cods, images, names, sector, version, id) 
+        (actives, quantities, cods, images, names, sectorEntity, version, id)
     values
         (?, ?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:45 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:45 [main] DEBUG org.hibernate.SQL - 
@@ -400,7 +400,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         p1_0.cods,
         p1_0.images,
         p1_0.names,
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.version 
     from
         parts p1_0 
@@ -413,7 +413,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -426,7 +426,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -443,7 +443,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         cods=?,
         images=?,
         names=?,
-        sector=?,
+        sectorEntity=?,
         version=? 
     where
         id=? 
@@ -460,7 +460,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version,
         p1_0.version 
@@ -468,7 +468,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         parts p1_0 
     left join
         sectors s1_0 
-            on s1_0.id=p1_0.sector 
+            on s1_0.id=p1_0.sectorEntity
     where
         p1_0.id=?
 2025-02-05 21:12:45 [main] DEBUG org.hibernate.SQL - 
@@ -484,7 +484,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -493,7 +493,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-05 21:12:45 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -504,7 +504,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-05 21:12:45 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -518,7 +518,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -527,7 +527,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-05 21:12:45 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -538,7 +538,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-05 21:12:45 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -554,7 +554,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         p1_0.cods,
         p1_0.images,
         p1_0.names,
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.version 
     from
         parts p1_0 
@@ -568,14 +568,14 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:46 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         parts
-        (actives, quantities, cods, images, names, sector, version, id) 
+        (actives, quantities, cods, images, names, sectorEntity, version, id)
     values
         (?, ?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:46 [main] DEBUG org.hibernate.SQL - 
@@ -586,7 +586,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         p1_0.cods,
         p1_0.images,
         p1_0.names,
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.version 
     from
         parts p1_0 
@@ -599,7 +599,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -615,7 +615,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         cods=?,
         images=?,
         names=?,
-        sector=?,
+        sectorEntity=?,
         version=? 
     where
         id=? 
@@ -632,7 +632,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version,
         p1_0.version 
@@ -640,7 +640,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         parts p1_0 
     left join
         sectors s1_0 
-            on s1_0.id=p1_0.sector 
+            on s1_0.id=p1_0.sectorEntity
     where
         p1_0.id=?
 2025-02-05 21:12:46 [main] DEBUG org.hibernate.SQL - 
@@ -656,7 +656,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -665,7 +665,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-05 21:12:46 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -676,7 +676,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-05 21:12:46 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -688,14 +688,14 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:46 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         parts
-        (actives, quantities, cods, images, names, sector, version, id) 
+        (actives, quantities, cods, images, names, sectorEntity, version, id)
     values
         (?, ?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:46 [main] DEBUG org.hibernate.SQL - 
@@ -706,7 +706,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         p1_0.cods,
         p1_0.images,
         p1_0.names,
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.version 
     from
         parts p1_0 
@@ -719,7 +719,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -738,7 +738,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version,
         p1_0.version 
@@ -746,7 +746,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         parts p1_0 
     left join
         sectors s1_0 
-            on s1_0.id=p1_0.sector 
+            on s1_0.id=p1_0.sectorEntity
     where
         p1_0.id=?
 2025-02-05 21:12:46 [main] DEBUG org.hibernate.SQL - 
@@ -762,7 +762,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -771,7 +771,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-05 21:12:46 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -782,7 +782,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-05 21:12:46 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -794,7 +794,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:46 [main] DEBUG org.hibernate.SQL - 
@@ -803,7 +803,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -819,14 +819,14 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     where
         p1_0.cods=? 
         and p1_0.names=? 
-        and p1_0.sector=? 
+        and p1_0.sectorEntity=?
     fetch
         first ? rows only
 2025-02-05 21:12:46 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         parts
-        (actives, quantities, cods, images, names, sector, version, id) 
+        (actives, quantities, cods, images, names, sectorEntity, version, id)
     values
         (?, ?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:46 [main] DEBUG org.hibernate.SQL - 
@@ -835,7 +835,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -844,7 +844,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-05 21:12:46 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -855,7 +855,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-05 21:12:46 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -874,28 +874,28 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         parts
-        (actives, quantities, cods, images, names, sector, version, id) 
+        (actives, quantities, cods, images, names, sectorEntity, version, id)
     values
         (?, ?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         parts
-        (actives, quantities, cods, images, names, sector, version, id) 
+        (actives, quantities, cods, images, names, sectorEntity, version, id)
     values
         (?, ?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
@@ -906,7 +906,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         p1_0.cods,
         p1_0.images,
         p1_0.names,
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.version 
     from
         parts p1_0 
@@ -923,7 +923,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -936,7 +936,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -955,7 +955,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version,
         p1_0.version 
@@ -963,7 +963,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         parts p1_0 
     left join
         sectors s1_0 
-            on s1_0.id=p1_0.sector 
+            on s1_0.id=p1_0.sectorEntity
     where
         p1_0.id=?
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
@@ -979,7 +979,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -988,7 +988,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -999,7 +999,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -1019,7 +1019,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version,
         p1_0.version 
@@ -1027,7 +1027,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         parts p1_0 
     left join
         sectors s1_0 
-            on s1_0.id=p1_0.sector 
+            on s1_0.id=p1_0.sectorEntity
     where
         p1_0.id=?
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
@@ -1043,7 +1043,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1052,7 +1052,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -1063,7 +1063,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -1075,14 +1075,14 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         parts
-        (actives, quantities, cods, images, names, sector, version, id) 
+        (actives, quantities, cods, images, names, sectorEntity, version, id)
     values
         (?, ?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
@@ -1093,7 +1093,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         p1_0.cods,
         p1_0.images,
         p1_0.names,
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.version 
     from
         parts p1_0 
@@ -1106,7 +1106,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1125,7 +1125,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version,
         p1_0.version 
@@ -1133,7 +1133,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         parts p1_0 
     left join
         sectors s1_0 
-            on s1_0.id=p1_0.sector 
+            on s1_0.id=p1_0.sectorEntity
     where
         p1_0.id=?
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
@@ -1149,7 +1149,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1158,7 +1158,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -1169,7 +1169,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -1181,14 +1181,14 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         parts
-        (actives, quantities, cods, images, names, sector, version, id) 
+        (actives, quantities, cods, images, names, sectorEntity, version, id)
     values
         (?, ?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
@@ -1199,7 +1199,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         p1_0.cods,
         p1_0.images,
         p1_0.names,
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.version 
     from
         parts p1_0 
@@ -1217,7 +1217,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1236,7 +1236,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version,
         p1_0.version 
@@ -1244,7 +1244,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         parts p1_0 
     left join
         sectors s1_0 
-            on s1_0.id=p1_0.sector 
+            on s1_0.id=p1_0.sectorEntity
     where
         p1_0.id=?
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
@@ -1260,7 +1260,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1269,7 +1269,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -1280,7 +1280,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-05 21:12:47 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -1294,7 +1294,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1309,7 +1309,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:51 [main] DEBUG org.hibernate.SQL - 
@@ -1318,7 +1318,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1333,7 +1333,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         actives=?,
         columns=?,
         row_data=?,
-        sector=?,
+        sectorEntity=?,
         shelves=?,
         version=? 
     where
@@ -1345,7 +1345,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1354,7 +1354,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-05 21:12:51 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -1365,7 +1365,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-05 21:12:51 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -1377,7 +1377,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:51 [main] DEBUG org.hibernate.SQL - 
@@ -1386,7 +1386,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1396,7 +1396,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         and s1_0.actives
 2025-02-05 21:12:51 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -1407,14 +1407,14 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-05 21:12:51 [main] DEBUG org.hibernate.SQL - 
     select
         s1_0.id,
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1423,7 +1423,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-05 21:12:51 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -1434,7 +1434,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-05 21:12:51 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -1448,7 +1448,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         sectors s1_0 
     where
-        s1_0.sector=? 
+        s1_0.sectorEntity=?
         and s1_0.shelves=? 
         and s1_0.columns=? 
         and s1_0.row_data=? 
@@ -1458,14 +1458,14 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:51 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-05 21:12:51 [main] DEBUG org.hibernate.SQL - 
@@ -1474,7 +1474,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1484,7 +1484,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         and s1_0.actives
 2025-02-05 21:12:51 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -1495,14 +1495,14 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-05 21:12:51 [main] DEBUG org.hibernate.SQL - 
     select
         s1_0.id,
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1511,7 +1511,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-05 21:12:51 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -1522,7 +1522,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-05 21:12:51 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -1545,7 +1545,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         version integer,
         cods bigint not null,
         id bigint generated by default as identity,
-        sector bigint,
+        sectorEntity bigint,
         names varchar(255) not null,
         images blob not null,
         primary key (id)
@@ -1557,34 +1557,34 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         id bigint generated by default as identity,
         columns varchar(255) not null,
         row_data varchar(255) not null,
-        sector varchar(255) not null,
+        sectorEntity varchar(255) not null,
         shelves varchar(255) not null,
         primary key (id)
     )
 2025-02-08 13:39:46 [main] DEBUG org.hibernate.SQL - 
     alter table if exists parts 
        add constraint FK44bpbjjhvt2bd6spralcvfki7 
-       foreign key (sector) 
+       foreign key (sectorEntity)
        references sectors
 2025-02-08 13:39:54 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:39:54 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         parts
-        (actives, quantities, cods, images, names, sector, version, id) 
+        (actives, quantities, cods, images, names, sectorEntity, version, id)
     values
         (?, ?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:39:54 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:39:55 [main] DEBUG org.hibernate.SQL - 
@@ -1595,7 +1595,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         p1_0.cods,
         p1_0.images,
         p1_0.names,
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.version 
     from
         parts p1_0 
@@ -1608,7 +1608,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1621,7 +1621,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1638,7 +1638,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         cods=?,
         images=?,
         names=?,
-        sector=?,
+        sectorEntity=?,
         version=? 
     where
         id=? 
@@ -1655,7 +1655,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version,
         p1_0.version 
@@ -1663,7 +1663,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         parts p1_0 
     left join
         sectors s1_0 
-            on s1_0.id=p1_0.sector 
+            on s1_0.id=p1_0.sectorEntity
     where
         p1_0.id=?
 2025-02-08 13:39:55 [main] DEBUG org.hibernate.SQL - 
@@ -1679,7 +1679,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1688,7 +1688,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-08 13:39:55 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -1699,7 +1699,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-08 13:39:55 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -1713,7 +1713,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1722,7 +1722,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-08 13:39:55 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -1733,7 +1733,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-08 13:39:55 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -1749,7 +1749,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         p1_0.cods,
         p1_0.images,
         p1_0.names,
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.version 
     from
         parts p1_0 
@@ -1763,14 +1763,14 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:39:56 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         parts
-        (actives, quantities, cods, images, names, sector, version, id) 
+        (actives, quantities, cods, images, names, sectorEntity, version, id)
     values
         (?, ?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:39:56 [main] DEBUG org.hibernate.SQL - 
@@ -1781,7 +1781,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         p1_0.cods,
         p1_0.images,
         p1_0.names,
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.version 
     from
         parts p1_0 
@@ -1794,7 +1794,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1810,7 +1810,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         cods=?,
         images=?,
         names=?,
-        sector=?,
+        sectorEntity=?,
         version=? 
     where
         id=? 
@@ -1827,7 +1827,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version,
         p1_0.version 
@@ -1835,7 +1835,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         parts p1_0 
     left join
         sectors s1_0 
-            on s1_0.id=p1_0.sector 
+            on s1_0.id=p1_0.sectorEntity
     where
         p1_0.id=?
 2025-02-08 13:39:56 [main] DEBUG org.hibernate.SQL - 
@@ -1851,7 +1851,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1860,7 +1860,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-08 13:39:56 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -1871,7 +1871,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-08 13:39:56 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -1883,14 +1883,14 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:39:56 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         parts
-        (actives, quantities, cods, images, names, sector, version, id) 
+        (actives, quantities, cods, images, names, sectorEntity, version, id)
     values
         (?, ?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:39:56 [main] DEBUG org.hibernate.SQL - 
@@ -1901,7 +1901,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         p1_0.cods,
         p1_0.images,
         p1_0.names,
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.version 
     from
         parts p1_0 
@@ -1914,7 +1914,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1933,7 +1933,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version,
         p1_0.version 
@@ -1941,7 +1941,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         parts p1_0 
     left join
         sectors s1_0 
-            on s1_0.id=p1_0.sector 
+            on s1_0.id=p1_0.sectorEntity
     where
         p1_0.id=?
 2025-02-08 13:39:56 [main] DEBUG org.hibernate.SQL - 
@@ -1957,7 +1957,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -1966,7 +1966,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-08 13:39:56 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -1977,7 +1977,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-08 13:39:56 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -1989,7 +1989,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:39:56 [main] DEBUG org.hibernate.SQL - 
@@ -1998,7 +1998,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -2014,14 +2014,14 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     where
         p1_0.cods=? 
         and p1_0.names=? 
-        and p1_0.sector=? 
+        and p1_0.sectorEntity=?
     fetch
         first ? rows only
 2025-02-08 13:39:57 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         parts
-        (actives, quantities, cods, images, names, sector, version, id) 
+        (actives, quantities, cods, images, names, sectorEntity, version, id)
     values
         (?, ?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:39:57 [main] DEBUG org.hibernate.SQL - 
@@ -2030,7 +2030,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -2039,7 +2039,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-08 13:39:57 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -2050,7 +2050,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-08 13:39:57 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -2069,28 +2069,28 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:39:57 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         parts
-        (actives, quantities, cods, images, names, sector, version, id) 
+        (actives, quantities, cods, images, names, sectorEntity, version, id)
     values
         (?, ?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:39:57 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:39:57 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         parts
-        (actives, quantities, cods, images, names, sector, version, id) 
+        (actives, quantities, cods, images, names, sectorEntity, version, id)
     values
         (?, ?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:39:57 [main] DEBUG org.hibernate.SQL - 
@@ -2101,7 +2101,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         p1_0.cods,
         p1_0.images,
         p1_0.names,
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.version 
     from
         parts p1_0 
@@ -2118,7 +2118,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -2131,7 +2131,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -2150,7 +2150,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version,
         p1_0.version 
@@ -2158,7 +2158,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         parts p1_0 
     left join
         sectors s1_0 
-            on s1_0.id=p1_0.sector 
+            on s1_0.id=p1_0.sectorEntity
     where
         p1_0.id=?
 2025-02-08 13:39:57 [main] DEBUG org.hibernate.SQL - 
@@ -2174,7 +2174,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -2183,7 +2183,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-08 13:39:57 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -2194,7 +2194,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-08 13:39:57 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -2214,7 +2214,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version,
         p1_0.version 
@@ -2222,7 +2222,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         parts p1_0 
     left join
         sectors s1_0 
-            on s1_0.id=p1_0.sector 
+            on s1_0.id=p1_0.sectorEntity
     where
         p1_0.id=?
 2025-02-08 13:39:57 [main] DEBUG org.hibernate.SQL - 
@@ -2238,7 +2238,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -2247,7 +2247,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-08 13:39:57 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -2258,7 +2258,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-08 13:39:57 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -2270,14 +2270,14 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:39:57 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         parts
-        (actives, quantities, cods, images, names, sector, version, id) 
+        (actives, quantities, cods, images, names, sectorEntity, version, id)
     values
         (?, ?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:39:57 [main] DEBUG org.hibernate.SQL - 
@@ -2288,7 +2288,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         p1_0.cods,
         p1_0.images,
         p1_0.names,
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.version 
     from
         parts p1_0 
@@ -2301,7 +2301,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -2320,7 +2320,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version,
         p1_0.version 
@@ -2328,7 +2328,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         parts p1_0 
     left join
         sectors s1_0 
-            on s1_0.id=p1_0.sector 
+            on s1_0.id=p1_0.sectorEntity
     where
         p1_0.id=?
 2025-02-08 13:39:58 [main] DEBUG org.hibernate.SQL - 
@@ -2344,7 +2344,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -2353,7 +2353,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-08 13:39:58 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -2364,7 +2364,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-08 13:39:58 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -2376,14 +2376,14 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:39:58 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         parts
-        (actives, quantities, cods, images, names, sector, version, id) 
+        (actives, quantities, cods, images, names, sectorEntity, version, id)
     values
         (?, ?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:39:58 [main] DEBUG org.hibernate.SQL - 
@@ -2394,7 +2394,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         p1_0.cods,
         p1_0.images,
         p1_0.names,
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.version 
     from
         parts p1_0 
@@ -2412,7 +2412,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -2431,7 +2431,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version,
         p1_0.version 
@@ -2439,7 +2439,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         parts p1_0 
     left join
         sectors s1_0 
-            on s1_0.id=p1_0.sector 
+            on s1_0.id=p1_0.sectorEntity
     where
         p1_0.id=?
 2025-02-08 13:39:58 [main] DEBUG org.hibernate.SQL - 
@@ -2455,7 +2455,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -2464,7 +2464,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-08 13:39:58 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -2475,7 +2475,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-08 13:39:58 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -2489,7 +2489,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -2504,7 +2504,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:40:03 [main] DEBUG org.hibernate.SQL - 
@@ -2513,7 +2513,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -2528,7 +2528,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         actives=?,
         columns=?,
         row_data=?,
-        sector=?,
+        sectorEntity=?,
         shelves=?,
         version=? 
     where
@@ -2540,7 +2540,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -2549,7 +2549,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-08 13:40:03 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -2560,7 +2560,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-08 13:40:03 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -2572,7 +2572,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:40:03 [main] DEBUG org.hibernate.SQL - 
@@ -2581,7 +2581,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -2591,7 +2591,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         and s1_0.actives
 2025-02-08 13:40:03 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -2602,14 +2602,14 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-08 13:40:03 [main] DEBUG org.hibernate.SQL - 
     select
         s1_0.id,
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -2618,7 +2618,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-08 13:40:03 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -2629,7 +2629,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-08 13:40:03 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -2643,7 +2643,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         sectors s1_0 
     where
-        s1_0.sector=? 
+        s1_0.sectorEntity=?
         and s1_0.shelves=? 
         and s1_0.columns=? 
         and s1_0.row_data=? 
@@ -2653,14 +2653,14 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:40:04 [main] DEBUG org.hibernate.SQL - 
     insert 
     into
         sectors
-        (actives, columns, row_data, sector, shelves, version, id) 
+        (actives, columns, row_data, sectorEntity, shelves, version, id)
     values
         (?, ?, ?, ?, ?, ?, default)
 2025-02-08 13:40:04 [main] DEBUG org.hibernate.SQL - 
@@ -2669,7 +2669,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -2679,7 +2679,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         and s1_0.actives
 2025-02-08 13:40:04 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -2690,14 +2690,14 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-08 13:40:04 [main] DEBUG org.hibernate.SQL - 
     select
         s1_0.id,
         s1_0.actives,
         s1_0.columns,
         s1_0.row_data,
-        s1_0.sector,
+        s1_0.sectorEntity,
         s1_0.shelves,
         s1_0.version 
     from
@@ -2706,7 +2706,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
         s1_0.id=?
 2025-02-08 13:40:04 [main] DEBUG org.hibernate.SQL - 
     select
-        p1_0.sector,
+        p1_0.sectorEntity,
         p1_0.id,
         p1_0.actives,
         p1_0.quantities,
@@ -2717,7 +2717,7 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     from
         parts p1_0 
     where
-        p1_0.sector=?
+        p1_0.sectorEntity=?
 2025-02-08 13:40:04 [main] DEBUG org.hibernate.SQL - 
     delete 
     from
@@ -2729,3 +2729,713 @@ com.github.bat333.stockroom.infra.exceptions.SectorNotFoundException: Reported P
     drop table if exists parts cascade 
 2025-02-08 13:40:04 [SpringApplicationShutdownHook] DEBUG org.hibernate.SQL - 
     drop table if exists sectors cascade 
+2025-02-13 19:29:12 [http-nio-8080-exec-8] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "com.github.bat333.stockroom.Domain.Entities.sector.Sector.getId()" because "domain" is null] with root cause
+java.lang.NullPointerException: Cannot invoke "com.github.bat333.stockroom.Domain.Entities.sector.Sector.getId()" because "domain" is null
+	at com.github.bat333.stockroom.Infra.Adapters.sector.SectorEntityMapper.toEntity(SectorEntityMapper.java:12)
+	at com.github.bat333.stockroom.Infra.Service.sector.SectorService.register(SectorService.java:22)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector.registerSector(ControllerSector.java:28)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector$$SpringCGLIB$$0.registerSector(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-02-13 21:50:55 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - insert into sectors (actives,columns,row_data,sector,shelves,version) values (?,?,?,?,?,?)
+2025-02-13 21:50:55 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalArgumentException: Illegal character in path at index 4: /Add your name in the body] with root cause
+java.net.URISyntaxException: Illegal character in path at index 4: /Add your name in the body
+	at java.base/java.net.URI$Parser.fail(URI.java:2995)
+	at java.base/java.net.URI$Parser.checkChars(URI.java:3166)
+	at java.base/java.net.URI$Parser.parseHierarchical(URI.java:3248)
+	at java.base/java.net.URI$Parser.parse(URI.java:3207)
+	at java.base/java.net.URI.<init>(URI.java:645)
+	at java.base/java.net.URI.create(URI.java:930)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector.registerSector(ControllerSector.java:29)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector$$SpringCGLIB$$0.registerSector(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-02-13 21:53:28 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - insert into sectors (actives,columns,row_data,sector,shelves,version) values (?,?,?,?,?,?)
+2025-02-13 21:53:28 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalArgumentException: Illegal character in path at index 4: /Add your name in the body] with root cause
+java.net.URISyntaxException: Illegal character in path at index 4: /Add your name in the body
+	at java.base/java.net.URI$Parser.fail(URI.java:2995)
+	at java.base/java.net.URI$Parser.checkChars(URI.java:3166)
+	at java.base/java.net.URI$Parser.parseHierarchical(URI.java:3248)
+	at java.base/java.net.URI$Parser.parse(URI.java:3207)
+	at java.base/java.net.URI.<init>(URI.java:645)
+	at java.base/java.net.URI.create(URI.java:930)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector.registerSector(ControllerSector.java:29)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector$$SpringCGLIB$$0.registerSector(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-02-13 21:55:37 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - insert into sectors (actives,columns,row_data,sector,shelves,version) values (?,?,?,?,?,?)
+2025-02-13 21:55:37 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalArgumentException: Illegal character in path at index 4: /Add your name in the body] with root cause
+java.net.URISyntaxException: Illegal character in path at index 4: /Add your name in the body
+	at java.base/java.net.URI$Parser.fail(URI.java:2995)
+	at java.base/java.net.URI$Parser.checkChars(URI.java:3166)
+	at java.base/java.net.URI$Parser.parseHierarchical(URI.java:3248)
+	at java.base/java.net.URI$Parser.parse(URI.java:3207)
+	at java.base/java.net.URI.<init>(URI.java:645)
+	at java.base/java.net.URI.create(URI.java:930)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector.registerSector(ControllerSector.java:30)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector$$SpringCGLIB$$0.registerSector(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-02-13 21:55:39 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - insert into sectors (actives,columns,row_data,sector,shelves,version) values (?,?,?,?,?,?)
+2025-02-13 21:55:39 [http-nio-8080-exec-3] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalArgumentException: Illegal character in path at index 4: /Add your name in the body] with root cause
+java.net.URISyntaxException: Illegal character in path at index 4: /Add your name in the body
+	at java.base/java.net.URI$Parser.fail(URI.java:2995)
+	at java.base/java.net.URI$Parser.checkChars(URI.java:3166)
+	at java.base/java.net.URI$Parser.parseHierarchical(URI.java:3248)
+	at java.base/java.net.URI$Parser.parse(URI.java:3207)
+	at java.base/java.net.URI.<init>(URI.java:645)
+	at java.base/java.net.URI.create(URI.java:930)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector.registerSector(ControllerSector.java:30)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector$$SpringCGLIB$$0.registerSector(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-02-13 21:55:40 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - insert into sectors (actives,columns,row_data,sector,shelves,version) values (?,?,?,?,?,?)
+2025-02-13 21:55:40 [http-nio-8080-exec-6] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalArgumentException: Illegal character in path at index 4: /Add your name in the body] with root cause
+java.net.URISyntaxException: Illegal character in path at index 4: /Add your name in the body
+	at java.base/java.net.URI$Parser.fail(URI.java:2995)
+	at java.base/java.net.URI$Parser.checkChars(URI.java:3166)
+	at java.base/java.net.URI$Parser.parseHierarchical(URI.java:3248)
+	at java.base/java.net.URI$Parser.parse(URI.java:3207)
+	at java.base/java.net.URI.<init>(URI.java:645)
+	at java.base/java.net.URI.create(URI.java:930)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector.registerSector(ControllerSector.java:30)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector$$SpringCGLIB$$0.registerSector(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-02-13 21:55:41 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - insert into sectors (actives,columns,row_data,sector,shelves,version) values (?,?,?,?,?,?)
+2025-02-13 21:55:41 [http-nio-8080-exec-7] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalArgumentException: Illegal character in path at index 4: /Add your name in the body] with root cause
+java.net.URISyntaxException: Illegal character in path at index 4: /Add your name in the body
+	at java.base/java.net.URI$Parser.fail(URI.java:2995)
+	at java.base/java.net.URI$Parser.checkChars(URI.java:3166)
+	at java.base/java.net.URI$Parser.parseHierarchical(URI.java:3248)
+	at java.base/java.net.URI$Parser.parse(URI.java:3207)
+	at java.base/java.net.URI.<init>(URI.java:645)
+	at java.base/java.net.URI.create(URI.java:930)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector.registerSector(ControllerSector.java:30)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector$$SpringCGLIB$$0.registerSector(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-02-13 21:55:42 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - insert into sectors (actives,columns,row_data,sector,shelves,version) values (?,?,?,?,?,?)
+2025-02-13 21:55:42 [http-nio-8080-exec-10] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalArgumentException: Illegal character in path at index 4: /Add your name in the body] with root cause
+java.net.URISyntaxException: Illegal character in path at index 4: /Add your name in the body
+	at java.base/java.net.URI$Parser.fail(URI.java:2995)
+	at java.base/java.net.URI$Parser.checkChars(URI.java:3166)
+	at java.base/java.net.URI$Parser.parseHierarchical(URI.java:3248)
+	at java.base/java.net.URI$Parser.parse(URI.java:3207)
+	at java.base/java.net.URI.<init>(URI.java:645)
+	at java.base/java.net.URI.create(URI.java:930)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector.registerSector(ControllerSector.java:30)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector$$SpringCGLIB$$0.registerSector(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-02-13 21:58:47 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - insert into sectors (actives,columns,row_data,sector,shelves,version) values (?,?,?,?,?,?)
+2025-02-13 22:00:43 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.sector=? and se1_0.shelves=? and se1_0.columns=? and se1_0.row_data=? limit ?
+2025-02-13 22:00:43 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException] with root cause
+java.lang.RuntimeException: null
+	at com.github.bat333.stockroom.Application.UseCases.sector.SaveSector.saveSector(SaveSector.java:15)
+	at com.github.bat333.stockroom.Infra.Service.sector.SectorService.register(SectorService.java:22)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector.registerSector(ControllerSector.java:28)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector$$SpringCGLIB$$0.registerSector(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-02-13 22:01:34 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.sector=? and se1_0.shelves=? and se1_0.columns=? and se1_0.row_data=? limit ?
+2025-02-13 22:01:34 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - insert into sectors (actives,columns,row_data,sector,shelves,version) values (?,?,?,?,?,?)
+2025-02-13 22:01:37 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.sector=? and se1_0.shelves=? and se1_0.columns=? and se1_0.row_data=? limit ?
+2025-02-13 22:01:37 [http-nio-8080-exec-5] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException] with root cause
+java.lang.RuntimeException: null
+	at com.github.bat333.stockroom.Application.UseCases.sector.SaveSector.saveSector(SaveSector.java:15)
+	at com.github.bat333.stockroom.Infra.Service.sector.SectorService.register(SectorService.java:22)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector.registerSector(ControllerSector.java:28)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at com.github.bat333.stockroom.Infra.Controller.sector.ControllerSector$$SpringCGLIB$$0.registerSector(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)

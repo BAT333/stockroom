@@ -14,7 +14,11 @@ public class UpdateSector {
         if(this.repositorySectorGateways.existsSectorAndActive(id)){
             throw new RuntimeException();
         }
+        Sector sectorUpdate = this.repositorySectorGateways.updateSector(id,sector);
 
-        return this.repositorySectorGateways.updateSector(id,sector);
+        if(this.repositorySectorGateways.existsBySectorsAndShelfAndColumnAndRow(sectorUpdate.getSectors(),sectorUpdate.getShelf(),sectorUpdate.getColumn(),sectorUpdate.getRow())){
+            throw new RuntimeException();
+        }
+        return sectorUpdate ;
     }
 }

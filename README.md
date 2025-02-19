@@ -9,10 +9,10 @@
  ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
  ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 
-Stockroom is a system designed to help businesses manage their parts inventory efficiently. With it, it is possible to organize items by sector and shelf, making it easier to locate and control movements.
+Stockroom is a system designed to help businesses manage their parts inventory efficiently. With it, it is possible to organize items by sectorEntity and shelf, making it easier to locate and control movements.
 
 ### 📌 Key Features
-- #### ✅ Registration and organization of parts by sector and shelf
+- #### ✅ Registration and organization of parts by sectorEntity and shelf
 - #### ✅ Control of stock inputs and outputs
 - #### ✅ Quick search by code, description, or industry
 - #### ✅ Detailed movement and availability reports
@@ -60,12 +60,12 @@ depends_on:
 
 - #### 📤 Endpoint:
 
-##### ```` POST /api/sector````
+##### ```` POST /api/sectorEntity````
 - #### 📤 Payload (Request):
 
 ```` 
  {
-  "sector": "Manutenção",
+  "sectorEntity": "Manutenção",
   "shelf": "A",
   "column": "3",
   "row": "2"
@@ -76,7 +76,7 @@ depends_on:
 ```` 
 {
   "id": 1,
-  "sector": "Manutenção",
+  "sectorEntity": "Manutenção",
   "shelf": "A",
   "column": "3",
   "row": "2",
@@ -90,7 +90,7 @@ depends_on:
 
 - #### 📤 Endpoint:
 
-##### ```` GET /api/sector ````
+##### ```` GET /api/sectorEntity ````
 
 - #### 📤  Return (Answer):
 
@@ -99,7 +99,7 @@ depends_on:
   "content": [
     {
       "id": 1,
-      "sector": "Manutenção",
+      "sectorEntity": "Manutenção",
       "shelf": "A",
       "column": "3",
       "row": "2",
@@ -114,7 +114,7 @@ depends_on:
 
 - #### 📤 Endpoint:
 
-##### ```` GET /api/sector/{id} ````
+##### ```` GET /api/sectorEntity/{id} ````
 
 - #### 📤  Return (Answer):
 
@@ -122,7 +122,7 @@ depends_on:
 
 {
   "id": 1,
-  "sector": "Manutenção",
+  "sectorEntity": "Manutenção",
   "shelf": "A",
   "column": "3",
   "row": "2",
@@ -136,12 +136,12 @@ depends_on:
 
 - #### 📤 Endpoint:
 
-##### ```` PATCH /api/sector/{id}````
+##### ```` PATCH /api/sectorEntity/{id}````
 - #### 📤 Payload (Request):
 
 ```` 
 {
-  "sector": "Produção",
+  "sectorEntity": "Produção",
   "shelf": "C",
   "column": "1",
   "row": "5"
@@ -153,7 +153,7 @@ depends_on:
 ```` 
 {
   "id": 1,
-  "sector": "Produção",
+  "sectorEntity": "Produção",
   "shelf": "C",
   "column": "1",
   "row": "5",
@@ -166,7 +166,7 @@ depends_on:
 
 - #### 📤 Endpoint:
 
-##### ```` DELETE /api/sector/{id} ````
+##### ```` DELETE /api/sectorEntity/{id} ````
 
 - #### 📤  Return (Answer):
 
@@ -202,9 +202,9 @@ depends_on:
   "name": "Parafuso",
   "image": "<arquivo binário>",
   "amount": 10.5,
-  "sector": {
+  "sectorEntity": {
     "id": 1,
-    "sector": "Manutenção",
+    "sectorEntity": "Manutenção",
     "shelf": "A",
     "column": "3",
     "row": "2"
@@ -228,9 +228,9 @@ depends_on:
   "name": "Parafuso",
   "image": "<arquivo binário>",
   "amount": 10.5,
-  "sector": {
+  "sectorEntity": {
     "id": 1,
-    "sector": "Manutenção",
+    "sectorEntity": "Manutenção",
     "shelf": "A",
     "column": "3",
     "row": "2"
@@ -251,7 +251,7 @@ depends_on:
   "name": "part",
   "image": "<arquivo binário>",
   "amount": 10.5,  
-  "sector": 5
+  "sectorEntity": 5
 }
 
  ````
@@ -264,9 +264,9 @@ depends_on:
   "name": "part",
   "image": "<arquivo binário>",
   "amount": 10.5,
-  "sector": {
+  "sectorEntity": {
     "id": 5,
-    "sector": "Manutenção",
+    "sectorEntity": "Manutenção",
     "shelf": "A",
     "column": "3",
     "row": "2"
@@ -302,9 +302,9 @@ depends_on:
   "name": "Parafuso",
   "image": "<arquivo binário>",
   "amount": 10.5,
-  "sector": {
+  "sectorEntity": {
     "id": 1,
-    "sector": "Manutenção",
+    "sectorEntity": "Manutenção",
     "shelf": "A",
     "column": "3",
     "row": "2"
