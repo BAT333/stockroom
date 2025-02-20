@@ -8,6 +8,9 @@ import com.github.bat333.stockroom.Infra.Dto.sector.DataSector;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.NoArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -31,28 +34,30 @@ public class SectorService {
         this.deleteSector = deleteSector;
     }
 
+    @CacheEvict(value = "sector", allEntries = true)
     public DataAllSector register(@Valid DataSector dataSector) {
         var sector = saveSector.saveSector(new Sector(dataSector.sector(), dataSector.column(), dataSector.shelf(), dataSector.row()));
         return new DataAllSector(sectorEntityMapper.toEntity(sector));
     }
 
+    @Cacheable(value = "sector")
     public Page<DataAllSector> listAllSectors(Pageable pageable) {
         var sectors = allSectors.listAllSectors().stream().map(sector -> new DataAllSector(sectorEntityMapper.toEntity(sector))).toList();
         long totalElements = sectors.size();
         return new PageImpl<>(sectors,pageable,totalElements);
     }
-
+    @Cacheable(value = "sector", key = "#id")
     public DataAllSector getSector(@NotNull Long id) {
         var sector = listSector.listSector(id);
         return new DataAllSector(sectorEntityMapper.toEntity(sector));
     }
 
-
+    @CachePut(value = "sector", key = "#id")
     public DataAllSector update(@NotNull Long id,@NotNull  DataSector dataSector) {
         var sector = updateSector.updateSector(id,new Sector(dataSector.sector(), dataSector.column(), dataSector.shelf(), dataSector.row()));
         return new DataAllSector(sectorEntityMapper.toEntity(sector));
     }
-
+    @CacheEvict(value = "sector", key = "#id")
     public void delete(@NotNull Long id) {
         deleteSector.deleteSector(id);
     }
