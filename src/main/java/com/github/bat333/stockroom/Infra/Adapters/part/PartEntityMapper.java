@@ -17,7 +17,16 @@ public class PartEntityMapper implements EntityMapper<Part, PartEntity> {
 
     @Override
     public PartEntity toEntity(Part domain) {
-        return new PartEntity(domain.getId(), domain.getCod(), domain.getName(), domain.getImage(), domain.getAmount(), domain.isActive(), sectorEntityMapper.toEntity(domain.getSector()),null);
+        return new PartEntity(
+                domain.getId(),
+                domain.getCod(),
+                domain.getName(),
+                domain.getImage(),
+                domain.getAmount(),
+                domain.isActive(),
+                domain.getSector() != null ? sectorEntityMapper.toEntity(domain.getSector()) : null,
+                null
+        );
     }
 
     @Override

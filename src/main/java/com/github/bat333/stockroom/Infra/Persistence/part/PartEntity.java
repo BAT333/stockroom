@@ -1,6 +1,7 @@
 package com.github.bat333.stockroom.Infra.Persistence.part;
 
 
+import com.github.bat333.stockroom.Domain.Entities.part.Part;
 import com.github.bat333.stockroom.Infra.Persistence.sector.SectorEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -36,4 +37,26 @@ public class PartEntity {
     public void delete() {
         this.active = false;
     }
+
+    public void update(PartEntity part) {
+        if(part.cod != null){
+            this.cod = part.cod;
+        }
+        if(part.name != null){
+            this.name = part.name;
+        }
+        if(part.image != null){
+            //colocar service img
+            this.image = part.image;
+        }
+        if(part.amount > 0){
+            this.amount = part.amount;
+        }
+        if(part.sector != null){
+            this.sector = part.sector;
+        }
+
+
+    }
+
 }
