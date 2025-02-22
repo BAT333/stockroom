@@ -24,7 +24,7 @@ public class ControllerPart {
     @Autowired
     private PartService partService;
 
-    @PostMapping
+    @PostMapping("/{id}")
     @Transactional
     public ResponseEntity<DataAllPart> registerPart(@RequestBody DataPart dataPart, @PathVariable(name = "id") Long id){
         DataAllPart part = partService.register(dataPart, id);
@@ -67,23 +67,4 @@ public class ControllerPart {
         Page<DataAllPart> search = this.partService.search(cod,name,pageable);
         return ResponseEntity.ok(search);
     }
-
-
-    /*
-
-
-
-
-
-
-
-    @GetMapping("/search")
-    public ResponseEntity<Page<DataAllPart>> searchPart(@RequestParam(name = "cod",required = false) Long cod,@RequestParam(name = "name",required = false) String name ,@PageableDefault(sort = {"id"}) Pageable pageable){
-        Page<DataAllPart> allParts = this.service.search(cod,name,pageable);
-        return ResponseEntity.ok(allParts);
-    }
-
-     */
-
-
 }
