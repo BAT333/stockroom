@@ -11,7 +11,7 @@ public class ListPart {
     }
 
     public Part listPart(long id){
-        if(repositoryPartGateways.existsPartAndActive(id)){
+        if(!repositoryPartGateways.existsPartAndActive(id)){
             throw new RuntimeException();
         }
         return this.repositoryPartGateways.listActivePart(id);

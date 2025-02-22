@@ -14,9 +14,12 @@ public class UpdatePart {
     }
 
     public Part updatePart(long id, Part part){
-        if(repositoryPartGateways.existsPartAndActive(id)||!sectorGateways.existsSectorAndActive(part.getSector().getId())){
+        System.out.println("1");
+        //||part.getSector().getId()!=null?!sectorGateways.existsSectorAndActive(part.getSector().getId()):false
+        if(!repositoryPartGateways.existsPartAndActive(id)){
             throw new RuntimeException();
         }
+        System.out.println("2");
 
        return repositoryPartGateways.updatePart(id,part);
 

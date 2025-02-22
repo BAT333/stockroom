@@ -10,7 +10,7 @@ public class DeletePart {
     }
 
     public void deletePart (long id){
-        if(repositoryPartGateways.existsPartAndActive(id)){
+        if(!repositoryPartGateways.existsPartAndActive(id)){
             throw new RuntimeException();
         }
 

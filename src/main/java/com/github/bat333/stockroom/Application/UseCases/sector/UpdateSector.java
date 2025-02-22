@@ -11,14 +11,9 @@ public class UpdateSector {
     }
 
     public Sector updateSector(long id,Sector sector){
-        if(this.repositorySectorGateways.existsSectorAndActive(id)){
+        if(!this.repositorySectorGateways.existsSectorAndActive(id)||this.repositorySectorGateways.existsBySectorsAndShelfAndColumnAndRow(sector.getSectors(),sector.getShelf(),sector.getColumn(),sector.getRow())){
             throw new RuntimeException();
         }
-        Sector sectorUpdate = this.repositorySectorGateways.updateSector(id,sector);
-
-        if(this.repositorySectorGateways.existsBySectorsAndShelfAndColumnAndRow(sectorUpdate.getSectors(),sectorUpdate.getShelf(),sectorUpdate.getColumn(),sectorUpdate.getRow())){
-            throw new RuntimeException();
-        }
-        return sectorUpdate ;
+        return this.repositorySectorGateways.updateSector(id,sector);
     }
 }

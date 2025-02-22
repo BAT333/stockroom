@@ -10,7 +10,7 @@ public class DeleteSector {
     }
 
     public void deleteSector(long id){
-        if(this.repositorySectorGateways.existsSectorAndActive(id)){
+        if(!this.repositorySectorGateways.existsSectorAndActive(id)){
             throw new RuntimeException();
         }
         this.repositorySectorGateways.deleteSector(id);

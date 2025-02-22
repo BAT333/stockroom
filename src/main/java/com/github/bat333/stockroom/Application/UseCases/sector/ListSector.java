@@ -11,7 +11,7 @@ public class ListSector {
     }
 
     public Sector listSector(long id){
-        if(this.repositorySectorGateways.existsSectorAndActive(id)){
+        if(!this.repositorySectorGateways.existsSectorAndActive(id)){
             throw new RuntimeException();
         }
 
