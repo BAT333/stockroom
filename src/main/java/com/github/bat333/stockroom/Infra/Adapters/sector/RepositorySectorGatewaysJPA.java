@@ -37,7 +37,7 @@ public class RepositorySectorGatewaysJPA implements RepositorySectorGateways {
 
     @Override
     public Sector listSector(Long id) {
-       SectorEntity sectorEntity= sectorRepository.findById(id).get();
+        SectorEntity sectorEntity= sectorRepository.findById(id).get();
         return sectorEntityMapper.toDomain(sectorEntity);
     }
 
@@ -49,10 +49,9 @@ public class RepositorySectorGatewaysJPA implements RepositorySectorGateways {
     @Override
     public Sector updateSector(long id, Sector sector) {
         SectorEntity sectorEntity = sectorRepository.findByIdAndActiveTrue(id).get();
-        Sector sectorUpdate = sectorEntityMapper.toDomain(sectorEntity);
-        sectorUpdate.update(sector);
-        sectorRepository.save(sectorEntityMapper.toEntity(sectorUpdate));
-        return sectorUpdate;
+        sectorEntity.update(sectorEntityMapper.toEntity(sector));
+        SectorEntity  sectorUpdate=  sectorRepository.save(sectorEntity);
+        return sectorEntityMapper.toDomain(sectorUpdate);
     }
 
     @Override

@@ -24,8 +24,9 @@ public class RepositoryPartGatewaysJPA implements RepositoryPartGateways {
 
     @Override
     public Part savePart(Part part, long id) {
-        PartEntity partEntity =  partRepository.save(partEntityMapper.toEntity(part));
+        PartEntity partEntity = partEntityMapper.toEntity(part);
         partEntity.setSector(sectorRepository.findByIdAndActiveTrue(id).get());
+        partRepository.save(partEntity);
         return partEntityMapper.toDomain(partEntity);
     }
 
@@ -53,11 +54,14 @@ public class RepositoryPartGatewaysJPA implements RepositoryPartGateways {
 
     @Override
     public Part updatePart(long id, Part part) {
+        System.out.println("3");
         PartEntity partEntity = partRepository.findByIdAndActiveTrue(id).get();
-        Part  partUpdate= partEntityMapper.toDomain(partEntity);
-        partUpdate.update(part);
-        partRepository.save(partEntityMapper.toEntity(partUpdate));
-        return partUpdate;
+        System.out.println("4");
+        partEntity.update(partEntityMapper.toEntity(part));
+        System.out.println("5");
+        partRepository.save(partEntity);
+        System.out.println("6");
+        return partEntityMapper.toDomain(partEntity);
     }
 
     @Override
