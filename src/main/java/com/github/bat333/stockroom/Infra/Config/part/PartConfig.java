@@ -2,6 +2,7 @@ package com.github.bat333.stockroom.Infra.Config.part;
 
 import com.github.bat333.stockroom.Application.Gateways.Part.RepositoryPartGateways;
 import com.github.bat333.stockroom.Application.Gateways.Sector.RepositorySectorGateways;
+import com.github.bat333.stockroom.Application.Gateways.ValueObjects.ImageProcessing;
 import com.github.bat333.stockroom.Application.UseCases.Part.*;
 import com.github.bat333.stockroom.Infra.Adapters.part.PartEntityMapper;
 import com.github.bat333.stockroom.Infra.Adapters.sector.SectorEntityMapper;
@@ -12,8 +13,8 @@ import org.springframework.context.annotation.Configuration;
 public class PartConfig {
 
     @Bean
-    public SavePart createUser(RepositoryPartGateways repositoryPart, RepositorySectorGateways sectorGateways){
-        return new SavePart(repositoryPart,sectorGateways);
+    public SavePart createUser(RepositoryPartGateways repositoryPart, RepositorySectorGateways sectorGateways, ImageProcessing image){
+        return new SavePart(repositoryPart,sectorGateways,image);
     }
 
     @Bean
