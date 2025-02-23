@@ -13,15 +13,20 @@ public class UpdatePart {
         this.sectorGateways = sectorGateways;
     }
 
-    public Part updatePart(long id, Part part){
-        System.out.println("1");
-        //||part.getSector().getId()!=null?!sectorGateways.existsSectorAndActive(part.getSector().getId()):false
-        if(!repositoryPartGateways.existsPartAndActive(id)){
+    public Part updatePart(long id, Part part,Long sector){
+
+        if (part.getCod() != null && part.getName() != null && !part.getName().isEmpty()) {
+            if (repositoryPartGateways.existsByCodAndName(part.getCod(), part.getName())) {
+                throw new RuntimeException();
+            }
+        }
+        if (sector != null && !sectorGateways.existsSectorAndActive(sector)) {
             throw new RuntimeException();
         }
-        System.out.println("2");
-
-       return repositoryPartGateways.updatePart(id,part);
+        if (!repositoryPartGateways.existsPartAndActive(id)) {
+            throw new RuntimeException();
+        }
+        return repositoryPartGateways.updatePart(id,part,sector);
 
     }
 }

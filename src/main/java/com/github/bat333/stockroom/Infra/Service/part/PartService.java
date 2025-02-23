@@ -2,6 +2,7 @@ package com.github.bat333.stockroom.Infra.Service.part;
 
 import com.github.bat333.stockroom.Application.UseCases.Part.*;
 import com.github.bat333.stockroom.Domain.Entities.part.Part;
+import com.github.bat333.stockroom.Domain.Entities.part.PartFactory;
 import com.github.bat333.stockroom.Infra.Adapters.part.PartEntityMapper;
 import com.github.bat333.stockroom.Infra.Dto.part.DataAllPart;
 import com.github.bat333.stockroom.Infra.Dto.part.DataPart;
@@ -55,9 +56,8 @@ public class PartService {
     }
 
     @CacheEvict(value = "part", allEntries = true)
-    //arrumar sector
     public DataAllPart update(@NotNull Long id, DataUpdatePart dataUpdatePart) {
-        var part = updatePart.updatePart(id,new Part(dataUpdatePart.cod(),dataUpdatePart.name(),dataUpdatePart.image(), dataUpdatePart.amount()));
+        var part = updatePart.updatePart(id, PartFactory.createPartUpdate(dataUpdatePart.cod(),dataUpdatePart.name(),dataUpdatePart.image(), dataUpdatePart.amount()),dataUpdatePart.sector());
         return new DataAllPart(partEntityMapper.toEntity(part));
     }
 

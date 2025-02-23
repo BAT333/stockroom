@@ -11,7 +11,7 @@ public interface RepositoryPartGateways {
     public List<Part> listAllActiveParts();
     public Part listPart(Long id);
     public List<Part> listAllParts();
-    public Part updatePart(long id, Part part);
+    public Part updatePart(long id, Part part, Long sector);
     public void deletePart(Long id);
     public boolean existsPartAndActive(Long id);
     public List<Part> searchPart(String name, Long cod);

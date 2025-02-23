@@ -4,6 +4,7 @@ import com.github.bat333.stockroom.Application.Gateways.Part.RepositoryPartGatew
 import com.github.bat333.stockroom.Domain.Entities.part.Part;
 import com.github.bat333.stockroom.Infra.Persistence.part.PartEntity;
 import com.github.bat333.stockroom.Infra.Persistence.part.PartRepository;
+import com.github.bat333.stockroom.Infra.Persistence.sector.SectorEntity;
 import com.github.bat333.stockroom.Infra.Persistence.sector.SectorRepository;
 import org.springframework.stereotype.Component;
 
@@ -53,14 +54,13 @@ public class RepositoryPartGatewaysJPA implements RepositoryPartGateways {
     }
 
     @Override
-    public Part updatePart(long id, Part part) {
-        System.out.println("3");
+    public Part updatePart(long id, Part part, Long sector) {
+        SectorEntity sectorEntity = sectorRepository.findByIdAndActiveTrue(sector).orElse(null);
         PartEntity partEntity = partRepository.findByIdAndActiveTrue(id).get();
-        System.out.println("4");
-        partEntity.update(partEntityMapper.toEntity(part));
-        System.out.println("5");
+        PartEntity partEntityUpdate = partEntityMapper.toEntity(part);
+        partEntityUpdate.setSector(sectorEntity);
+        partEntity.update(partEntityUpdate);
         partRepository.save(partEntity);
-        System.out.println("6");
         return partEntityMapper.toDomain(partEntity);
     }
 
