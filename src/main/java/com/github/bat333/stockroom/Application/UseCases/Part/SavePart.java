@@ -1,5 +1,7 @@
 package com.github.bat333.stockroom.Application.UseCases.Part;
 
+import com.github.bat333.stockroom.Application.Exception.PartExists;
+import com.github.bat333.stockroom.Application.Exception.SectorExists;
 import com.github.bat333.stockroom.Application.Gateways.Part.RepositoryPartGateways;
 import com.github.bat333.stockroom.Application.Gateways.Sector.RepositorySectorGateways;
 import com.github.bat333.stockroom.Application.Gateways.ValueObjects.ImageProcessing;
@@ -19,8 +21,13 @@ public class SavePart {
     }
 
     public Part savePart(Part part, long id)  {
-        if(repositoryPartGateways.existsByCodAndName(part.getCod(), part.getName())|| !sectorGateways.existsSectorAndActive(id)){
-            throw new RuntimeException();
+        if(repositoryPartGateways.existsByCodAndName(part.getCod(), part.getName())){
+            throw new PartExists(String.format("Part with code '%s' and name '%s' already exists.",
+                    part.getCod(), part.getName()));
+        }
+        if(!sectorGateways.existsSectorAndActive(id)){
+            throw new SectorExists("This sector does not exist");
+
         }
         try {
             part.setImage(image.resizeAndCompressImage(part.getImage(),800, 800, 0.7f ));

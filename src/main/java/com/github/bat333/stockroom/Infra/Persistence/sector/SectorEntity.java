@@ -1,8 +1,6 @@
 package com.github.bat333.stockroom.Infra.Persistence.sector;
 
 
-
-import com.github.bat333.stockroom.Domain.Entities.sector.Sector;
 import com.github.bat333.stockroom.Infra.Dto.sector.DataSector;
 import com.github.bat333.stockroom.Infra.Persistence.part.PartEntity;
 import jakarta.persistence.*;

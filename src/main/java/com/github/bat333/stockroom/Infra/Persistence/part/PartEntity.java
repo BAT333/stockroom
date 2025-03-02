@@ -45,7 +45,6 @@ public class PartEntity {
             this.name = part.name;
         }
         if(part.image != null){
-            //colocar service img
             this.image = part.image;
         }
         if(part.amount > 0){

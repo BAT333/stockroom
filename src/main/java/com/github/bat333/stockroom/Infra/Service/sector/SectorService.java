@@ -7,7 +7,6 @@ import com.github.bat333.stockroom.Infra.Dto.sector.DataAllSector;
 import com.github.bat333.stockroom.Infra.Dto.sector.DataSector;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import lombok.NoArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;

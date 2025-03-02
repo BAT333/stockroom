@@ -1,5 +1,6 @@
 package com.github.bat333.stockroom.Application.UseCases.sector;
 
+import com.github.bat333.stockroom.Application.Exception.SectorExists;
 import com.github.bat333.stockroom.Application.Gateways.Sector.RepositorySectorGateways;
 
 public class DeleteSector {
@@ -11,7 +12,8 @@ public class DeleteSector {
 
     public void deleteSector(long id){
         if(!this.repositorySectorGateways.existsSectorAndActive(id)){
-            throw new RuntimeException();
+            throw new SectorExists("This sector does not exist");
+
         }
         this.repositorySectorGateways.deleteSector(id);
     }

@@ -7,7 +7,6 @@ import com.github.bat333.stockroom.Infra.Adapters.part.PartEntityMapper;
 import com.github.bat333.stockroom.Infra.Dto.part.DataAllPart;
 import com.github.bat333.stockroom.Infra.Dto.part.DataPart;
 import com.github.bat333.stockroom.Infra.Dto.part.DataUpdatePart;
-import com.github.bat333.stockroom.Infra.Dto.sector.DataSector;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.cache.annotation.CacheEvict;

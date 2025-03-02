@@ -3,7 +3,6 @@ package com.github.bat333.stockroom.Infra.Config.sector;
 
 import com.github.bat333.stockroom.Application.Gateways.Sector.RepositorySectorGateways;
 import com.github.bat333.stockroom.Application.UseCases.sector.*;
-import com.github.bat333.stockroom.Infra.Adapters.EntityMapper;
 import com.github.bat333.stockroom.Infra.Adapters.sector.SectorEntityMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
