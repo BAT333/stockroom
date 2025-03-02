@@ -1,0 +1,16 @@
+package com.github.bat333.stockroom.start.Domain.Exception;
+
+public class SectorValidation extends IllegalArgumentException{
+
+    public SectorValidation(String message) {
+        super(message);
+    }
+
+    public SectorValidation(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public SectorValidation(Throwable cause) {
+        super(cause);
+    }
+}
