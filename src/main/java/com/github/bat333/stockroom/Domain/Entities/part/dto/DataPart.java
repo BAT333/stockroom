@@ -1,6 +1,6 @@
-package com.github.bat333.stockroom.start.Infra.Dto.part;
+package com.github.bat333.stockroom.Domain.Entities.part.dto;
 
-import com.github.bat333.stockroom.start.Domain.Entities.part.Part;
+import com.github.bat333.stockroom.Domain.Entities.part.Part;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 

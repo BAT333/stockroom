@@ -1,4 +1,4 @@
-package com.github.bat333.stockroom.start.Infra.Dto.sector;
+package com.github.bat333.stockroom.Domain.Entities.sector.dto;
 
 
 import com.github.bat333.stockroom.start.Infra.Persistence.sector.SectorEntity;
