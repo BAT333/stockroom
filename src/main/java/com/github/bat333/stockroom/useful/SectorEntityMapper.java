@@ -1,7 +1,7 @@
-package com.github.bat333.stockroom.start.Infra.Adapters.sector;
+package com.github.bat333.stockroom.useful;
 
 
-import com.github.bat333.stockroom.start.Domain.Entities.sector.Sector;
+import com.github.bat333.stockroom.Domain.Entities.sector.Sector;
 import com.github.bat333.stockroom.start.Infra.Adapters.EntityMapper;
 import com.github.bat333.stockroom.start.Infra.Persistence.sector.SectorEntity;
 

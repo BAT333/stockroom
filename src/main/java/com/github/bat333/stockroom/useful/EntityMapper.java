@@ -1,4 +1,4 @@
-package com.github.bat333.stockroom.start.Infra.Adapters;
+package com.github.bat333.stockroom.useful;
 
 import java.util.List;
 
