@@ -1,8 +1,7 @@
-package com.github.bat333.stockroom.start.Infra.Config.sector;
+package com.github.bat333.stockroom.Infrastructure.Config.sector;
 
 
 import com.github.bat333.stockroom.start.Application.Gateways.Sector.RepositorySectorGateways;
-import com.github.bat333.stockroom.Application.UseCases.sector.*;
 import com.github.bat333.stockroom.start.Application.UseCases.sector.*;
 import com.github.bat333.stockroom.start.Infra.Adapters.sector.SectorEntityMapper;
 import org.springframework.context.annotation.Bean;

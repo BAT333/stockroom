@@ -1,9 +1,8 @@
-package com.github.bat333.stockroom.start.Infra.Config.part;
+package com.github.bat333.stockroom.Infrastructure.Config.part;
 
 import com.github.bat333.stockroom.start.Application.Gateways.Part.RepositoryPartGateways;
 import com.github.bat333.stockroom.start.Application.Gateways.Sector.RepositorySectorGateways;
 import com.github.bat333.stockroom.start.Application.Gateways.ValueObjects.ImageProcessing;
-import com.github.bat333.stockroom.Application.UseCases.Part.*;
 import com.github.bat333.stockroom.start.Application.UseCases.Part.*;
 import com.github.bat333.stockroom.start.Infra.Adapters.part.PartEntityMapper;
 import com.github.bat333.stockroom.start.Infra.Adapters.sector.SectorEntityMapper;

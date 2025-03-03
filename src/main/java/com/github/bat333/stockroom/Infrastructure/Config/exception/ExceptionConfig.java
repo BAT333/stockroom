@@ -1,9 +1,9 @@
-package com.github.bat333.stockroom.start.Infra.Config.exception;
+package com.github.bat333.stockroom.Infrastructure.Config.exception;
 
 import com.github.bat333.stockroom.start.Application.Exception.PartExists;
 import com.github.bat333.stockroom.start.Application.Exception.SectorExists;
-import com.github.bat333.stockroom.start.Domain.Exception.PartValidation;
-import com.github.bat333.stockroom.start.Domain.Exception.SectorValidation;
+import com.github.bat333.stockroom.Domain.Exception.PartValidation;
+import com.github.bat333.stockroom.Domain.Exception.SectorValidation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
