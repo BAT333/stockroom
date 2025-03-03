@@ -1,4 +1,4 @@
-package com.github.bat333.stockroom.start.Application.Gateways.ValueObjects;
+package com.github.bat333.stockroom.Adapters.outbound.storage;
 
 import java.io.IOException;
 

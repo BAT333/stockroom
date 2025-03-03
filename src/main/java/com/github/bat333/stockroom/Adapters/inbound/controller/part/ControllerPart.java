@@ -1,9 +1,9 @@
-package com.github.bat333.stockroom.start.Infra.Controller.part;
+package com.github.bat333.stockroom.Adapters.inbound.controller.part;
 
 
-import com.github.bat333.stockroom.start.Infra.Dto.part.DataAllPart;
-import com.github.bat333.stockroom.start.Infra.Dto.part.DataPart;
-import com.github.bat333.stockroom.start.Infra.Dto.part.DataUpdatePart;
+import com.github.bat333.stockroom.Domain.Entities.part.dto.DataAllPart;
+import com.github.bat333.stockroom.Domain.Entities.part.dto.DataPart;
+import com.github.bat333.stockroom.Domain.Entities.part.dto.DataUpdatePart;
 import com.github.bat333.stockroom.start.Infra.Service.part.PartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

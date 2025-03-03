@@ -1,7 +1,7 @@
-package com.github.bat333.stockroom.start.Infra.Persistence.part;
+package com.github.bat333.stockroom.Adapters.outbound.entities.part;
 
 
-import com.github.bat333.stockroom.start.Infra.Persistence.sector.SectorEntity;
+import com.github.bat333.stockroom.Adapters.outbound.entities.sector.SectorEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,4 +1,4 @@
-package com.github.bat333.stockroom.start.Infra.Persistence.sector;
+package com.github.bat333.stockroom.Adapters.outbound.entities.sector;
 
 
 import com.github.bat333.stockroom.start.Infra.Dto.sector.DataSector;

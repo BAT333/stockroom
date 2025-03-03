@@ -1,4 +1,4 @@
-package com.github.bat333.stockroom.start.Infra.Controller.sector;
+package com.github.bat333.stockroom.Adapters.inbound.controller.sector;
 
 
 import com.github.bat333.stockroom.start.Infra.Dto.sector.DataAllSector;

@@ -1,11 +1,10 @@
-package com.github.bat333.stockroom.start.Infra.Adapters.part;
+package com.github.bat333.stockroom.Adapters.outbound.repository.part;
 
-import com.github.bat333.stockroom.start.Application.Gateways.Part.RepositoryPartGateways;
-import com.github.bat333.stockroom.start.Domain.Entities.part.Part;
-import com.github.bat333.stockroom.start.Infra.Persistence.part.PartEntity;
-import com.github.bat333.stockroom.start.Infra.Persistence.part.PartRepository;
-import com.github.bat333.stockroom.start.Infra.Persistence.sector.SectorEntity;
-import com.github.bat333.stockroom.start.Infra.Persistence.sector.SectorRepository;
+import com.github.bat333.stockroom.Adapters.outbound.entities.part.PartEntity;
+import com.github.bat333.stockroom.Adapters.outbound.entities.sector.SectorEntity;
+import com.github.bat333.stockroom.Adapters.outbound.repository.sector.SectorRepository;
+import com.github.bat333.stockroom.Domain.Entities.part.Part;
+import com.github.bat333.stockroom.Domain.Entities.part.RepositoryPartGateways;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

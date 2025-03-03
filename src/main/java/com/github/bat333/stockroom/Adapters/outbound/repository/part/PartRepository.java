@@ -1,6 +1,7 @@
-package com.github.bat333.stockroom.start.Infra.Persistence.part;
+package com.github.bat333.stockroom.Adapters.outbound.repository.part;
 
 
+import com.github.bat333.stockroom.Adapters.outbound.entities.part.PartEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

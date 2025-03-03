@@ -1,4 +1,4 @@
-package com.github.bat333.stockroom.start.Infra.Adapters.ValueObjects;
+package com.github.bat333.stockroom.Adapters.outbound.storage;
 
 import com.github.bat333.stockroom.start.Application.Gateways.ValueObjects.ImageProcessing;
 import net.coobird.thumbnailator.Thumbnails;
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+
 @Service
 public class ImageAdapters implements ImageProcessing {
 
