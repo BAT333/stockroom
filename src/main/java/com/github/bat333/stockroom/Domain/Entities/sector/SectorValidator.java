@@ -1,6 +1,6 @@
-package com.github.bat333.stockroom.start.Domain.Entities.sector;
+package com.github.bat333.stockroom.Domain.Entities.sector;
 
-import com.github.bat333.stockroom.start.Domain.Exception.SectorValidation;
+import com.github.bat333.stockroom.Domain.Exception.SectorValidation;
 
 public class SectorValidator {
 

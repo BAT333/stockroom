@@ -1,7 +1,7 @@
-package com.github.bat333.stockroom.start.Domain.Entities.part;
+package com.github.bat333.stockroom.Domain.Entities.part;
 
-import com.github.bat333.stockroom.start.Domain.Entities.sector.Sector;
-import com.github.bat333.stockroom.start.Domain.Exception.PartValidation;
+import com.github.bat333.stockroom.Domain.Entities.sector.Sector;
+import com.github.bat333.stockroom.Domain.Exception.PartValidation;
 
 public class PartValidator {
     public static void validate(Long id, Long cod, String name, byte[] image, double amount, Sector sector) {

@@ -1,6 +1,6 @@
-package com.github.bat333.stockroom.start.Domain.Entities.sector;
+package com.github.bat333.stockroom.Domain.Entities.sector;
 
-import com.github.bat333.stockroom.start.Domain.Entities.part.Part;
+import com.github.bat333.stockroom.Domain.Entities.part.Part;
 
 import java.util.List;
 

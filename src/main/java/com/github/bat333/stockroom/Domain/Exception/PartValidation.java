@@ -1,4 +1,4 @@
-package com.github.bat333.stockroom.start.Domain.Exception;
+package com.github.bat333.stockroom.Domain.Exception;
 
 public class PartValidation extends IllegalArgumentException{
 

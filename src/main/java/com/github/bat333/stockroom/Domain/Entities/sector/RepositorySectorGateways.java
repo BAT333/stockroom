@@ -1,6 +1,4 @@
-package com.github.bat333.stockroom.start.Application.Gateways.Sector;
-
-import com.github.bat333.stockroom.start.Domain.Entities.sector.Sector;
+package com.github.bat333.stockroom.Domain.Entities.sector;
 
 import java.util.List;
 
