@@ -31,8 +31,8 @@ public class PartConfig {
     }
 
     @Bean
-    public UpdatePart updatePart(RepositoryPartGateways repositoryPart, RepositorySectorGateways sectorGateways){
-        return new UpdatePart(repositoryPart,sectorGateways);
+    public UpdatePart updatePart(RepositoryPartGateways repositoryPart, RepositorySectorGateways sectorGateways,ImageProcessing image){
+        return new UpdatePart(repositoryPart,sectorGateways,image);
     }
     @Bean
     public SearchByPart searchByPart(RepositoryPartGateways repositoryPart){
