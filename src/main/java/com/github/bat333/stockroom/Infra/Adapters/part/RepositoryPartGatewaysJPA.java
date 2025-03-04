@@ -6,11 +6,13 @@ import com.github.bat333.stockroom.Infra.Persistence.part.PartEntity;
 import com.github.bat333.stockroom.Infra.Persistence.part.PartRepository;
 import com.github.bat333.stockroom.Infra.Persistence.sector.SectorEntity;
 import com.github.bat333.stockroom.Infra.Persistence.sector.SectorRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@Slf4j
 public class RepositoryPartGatewaysJPA implements RepositoryPartGateways {
 
     private final PartRepository partRepository;
@@ -25,59 +27,73 @@ public class RepositoryPartGatewaysJPA implements RepositoryPartGateways {
 
     @Override
     public Part savePart(Part part, long id) {
+        log.info("starting the registration part {}", part);
         PartEntity partEntity = partEntityMapper.toEntity(part);
         partEntity.setSector(sectorRepository.findByIdAndActiveTrue(id).get());
         partRepository.save(partEntity);
+        log.info("successful registration part {}", part);
         return partEntityMapper.toDomain(partEntity);
     }
 
     @Override
     public Part listActivePart(Long id) {
+        log.info("starting the list part with ID: {}", id);
         PartEntity partEntity = partRepository.findByIdAndActiveTrue(id).get();
+        log.info("successful list part with ID: {}", id);
         return partEntityMapper.toDomain(partEntity);
     }
 
     @Override
     public List<Part> listAllActiveParts() {
+        log.info("starting the list part");
         return partEntityMapper.toListDomain(partRepository.findByActiveTrue());
     }
 
     @Override
     public Part listPart(Long id) {
+        log.info("starting the list part with ID: {}", id);
         PartEntity partEntity = partRepository.findById(id).get();
+        log.info("successful list part with ID: {}", id);
         return partEntityMapper.toDomain(partEntity);
     }
 
     @Override
     public List<Part> listAllParts() {
+        log.info("starting the list");
         return partEntityMapper.toListDomain(partRepository.findAll());
     }
 
     @Override
     public Part updatePart(long id, Part part, Long sector) {
+        log.info("starting the update part with ID: {}", id);
         SectorEntity sectorEntity = sectorRepository.findByIdAndActiveTrue(sector).orElse(null);
         PartEntity partEntity = partRepository.findByIdAndActiveTrue(id).get();
         PartEntity partEntityUpdate = partEntityMapper.toEntity(part);
         partEntityUpdate.setSector(sectorEntity);
         partEntity.update(partEntityUpdate);
         partRepository.save(partEntity);
+        log.info("successful the update part with ID: {}", id);
         return partEntityMapper.toDomain(partEntity);
     }
 
     @Override
     public void deletePart(Long id) {
+        log.info("starting the delete part with ID: {}", id);
         PartEntity partEntity = partRepository.findByIdAndActiveTrue(id).get();
         partEntity.delete();
+        log.info("successful the delete part with ID: {}", id);
         partRepository.save(partEntity);
     }
 
     @Override
     public boolean existsPartAndActive(Long id) {
+        log.info("starting the exist part ID: {}", id);
         return partRepository.existsByIdAndActiveTrue(id);
     }
 
     @Override
     public List<Part> searchPart(String name, Long cod) {
+        log.info("starting the search part");
         if(name == null && cod == null){
             return this.partEntityMapper.toListDomain(partRepository.findByActiveTrue());
         }
@@ -101,6 +117,7 @@ public class RepositoryPartGatewaysJPA implements RepositoryPartGateways {
 
     @Override
     public boolean existsByCodAndName(long cod, String name) {
+        log.info("starting the exist part cod and name: {},{}", cod,name);
         return partRepository.existsByCodAndName(cod,name);
     }
 }
