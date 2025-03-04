@@ -4,7 +4,7 @@ import com.github.bat333.stockroom.Domain.Entities.sector.Sector;
 import com.github.bat333.stockroom.Domain.Exception.PartValidation;
 
 public class PartValidator {
-    public static void validate(Long id, Long cod, String name, byte[] image, double amount, Sector sector) {
+    public static void validate(Long id, Long cod, String name, byte[] image, double amount, Sector sector) throws PartValidation {
         if (id == null) {
             throw new PartValidation("ID cannot be null");
         }
@@ -24,7 +24,7 @@ public class PartValidator {
             throw new PartValidation("Sector cannot be null");
         }
     }
-    public static void validate( Long cod, String name, byte[] image, double amount) {
+    public static void validate( Long cod, String name, byte[] image, double amount) throws PartValidation {
 
         if (cod == null) {
             throw new PartValidation("Cod cannot be null");
