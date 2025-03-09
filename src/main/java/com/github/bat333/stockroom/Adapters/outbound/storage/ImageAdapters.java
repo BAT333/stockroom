@@ -1,6 +1,5 @@
 package com.github.bat333.stockroom.Adapters.outbound.storage;
 
-import com.github.bat333.stockroom.start.Application.Gateways.ValueObjects.ImageProcessing;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.stereotype.Service;
 

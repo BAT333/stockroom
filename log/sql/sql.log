@@ -3147,3 +3147,71 @@
 2025-03-02 14:00:34 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select pe1_0.id,pe1_0.actives,pe1_0.quantities,pe1_0.cods,pe1_0.images,pe1_0.names,pe1_0.sector,pe1_0.version from parts pe1_0 where pe1_0.cods=? or upper(pe1_0.names) like upper(?) escape '\\' and pe1_0.actives
 2025-03-02 14:00:34 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0 where se1_0.id=?
 2025-03-02 14:00:44 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select pe1_0.id from parts pe1_0 where pe1_0.id=? and pe1_0.actives limit ?
+2025-03-08 23:18:13 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.sector=? and se1_0.shelves=? and se1_0.columns=? and se1_0.row_data=? limit ?
+2025-03-08 23:18:28 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.sector=? and se1_0.shelves=? and se1_0.columns=? and se1_0.row_data=? limit ?
+2025-03-08 23:18:30 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.sector=? and se1_0.shelves=? and se1_0.columns=? and se1_0.row_data=? limit ?
+2025-03-08 23:18:31 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.sector=? and se1_0.shelves=? and se1_0.columns=? and se1_0.row_data=? limit ?
+2025-03-08 23:23:05 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.sector=? and se1_0.shelves=? and se1_0.columns=? and se1_0.row_data=? limit ?
+2025-03-08 23:23:06 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - insert into sectors (actives,columns,row_data,sector,shelves,version) values (?,?,?,?,?,?)
+2025-03-08 23:23:08 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.sector=? and se1_0.shelves=? and se1_0.columns=? and se1_0.row_data=? limit ?
+2025-03-08 23:23:38 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.id=? and se1_0.actives limit ?
+2025-03-08 23:23:38 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0 where se1_0.id=? and se1_0.actives
+2025-03-08 23:42:27 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0
+2025-03-08 23:42:57 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.sector=? and se1_0.shelves=? and se1_0.columns=? and se1_0.row_data=? limit ?
+2025-03-08 23:42:58 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - insert into sectors (actives,columns,row_data,sector,shelves,version) values (?,?,?,?,?,?)
+2025-03-08 23:43:02 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0
+2025-03-08 23:46:51 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0
+2025-03-08 23:46:59 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0
+2025-03-08 23:47:25 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0
+2025-03-08 23:48:11 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0
+2025-03-08 23:50:29 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0
+2025-03-08 23:51:25 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0
+2025-03-08 23:52:55 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0
+2025-03-08 23:55:58 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0
+2025-03-09 00:00:51 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.id=? and se1_0.actives limit ?
+2025-03-09 00:00:51 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0 where se1_0.id=? and se1_0.actives
+2025-03-09 00:00:52 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - update sectors set actives=?,columns=?,row_data=?,sector=?,shelves=?,version=? where id=? and version=?
+2025-03-09 00:00:54 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.id=? and se1_0.actives limit ?
+2025-03-09 00:00:54 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0 where se1_0.id=? and se1_0.actives
+2025-03-09 00:00:56 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.id=? and se1_0.actives limit ?
+2025-03-09 00:00:56 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0 where se1_0.id=? and se1_0.actives
+2025-03-09 00:00:57 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.id=? and se1_0.actives limit ?
+2025-03-09 00:00:57 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0 where se1_0.id=? and se1_0.actives
+2025-03-09 00:00:58 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.id=? and se1_0.actives limit ?
+2025-03-09 00:00:58 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0 where se1_0.id=? and se1_0.actives
+2025-03-09 00:01:05 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.id=? and se1_0.actives limit ?
+2025-03-09 00:01:05 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0 where se1_0.id=? and se1_0.actives
+2025-03-09 00:01:05 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - update sectors set actives=?,columns=?,row_data=?,sector=?,shelves=?,version=? where id=? and version=?
+2025-03-09 00:04:51 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.id=? and se1_0.actives limit ?
+2025-03-09 00:04:51 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.sector=? and se1_0.shelves=? and se1_0.columns=? and se1_0.row_data=? limit ?
+2025-03-09 00:04:53 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.id=? and se1_0.actives limit ?
+2025-03-09 00:04:53 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.sector=? and se1_0.shelves=? and se1_0.columns=? and se1_0.row_data=? limit ?
+2025-03-09 00:04:59 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.id=? and se1_0.actives limit ?
+2025-03-09 00:05:03 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.id=? and se1_0.actives limit ?
+2025-03-09 00:05:03 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0 where se1_0.id=? and se1_0.actives
+2025-03-09 00:05:03 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - update sectors set actives=?,columns=?,row_data=?,sector=?,shelves=?,version=? where id=? and version=?
+2025-03-09 00:05:09 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select pe1_0.id from parts pe1_0 where pe1_0.cods=? and pe1_0.names=? limit ?
+2025-03-09 00:05:09 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.id=? and se1_0.actives limit ?
+2025-03-09 00:05:16 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select pe1_0.id from parts pe1_0 where pe1_0.cods=? and pe1_0.names=? limit ?
+2025-03-09 00:05:16 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select se1_0.id from sectors se1_0 where se1_0.id=? and se1_0.actives limit ?
+2025-03-09 00:05:27 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select pe1_0.id from parts pe1_0 where pe1_0.id=? and pe1_0.actives limit ?
+2025-03-09 00:05:27 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select pe1_0.id,pe1_0.actives,pe1_0.quantities,pe1_0.cods,pe1_0.images,pe1_0.names,pe1_0.sector,pe1_0.version from parts pe1_0 where pe1_0.id=? and pe1_0.actives
+2025-03-09 00:05:27 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0 where se1_0.id=?
+2025-03-09 00:05:44 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select pe1_0.id from parts pe1_0 where pe1_0.cods=? and pe1_0.names=? limit ?
+2025-03-09 00:05:45 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select pe1_0.id from parts pe1_0 where pe1_0.cods=? and pe1_0.names=? limit ?
+2025-03-09 00:05:52 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select pe1_0.id from parts pe1_0 where pe1_0.cods=? and pe1_0.names=? limit ?
+2025-03-09 00:05:52 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select pe1_0.id from parts pe1_0 where pe1_0.id=? and pe1_0.actives limit ?
+2025-03-09 00:05:52 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0 where se1_0.id=? and se1_0.actives
+2025-03-09 00:05:52 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select pe1_0.id,pe1_0.actives,pe1_0.quantities,pe1_0.cods,pe1_0.images,pe1_0.names,pe1_0.sector,pe1_0.version from parts pe1_0 where pe1_0.id=? and pe1_0.actives
+2025-03-09 00:05:52 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - update parts set actives=?,quantities=?,cods=?,images=?,names=?,sector=?,version=? where id=? and version=?
+2025-03-09 00:06:00 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select pe1_0.id from parts pe1_0 where pe1_0.id=? and pe1_0.actives limit ?
+2025-03-09 00:06:04 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select pe1_0.id,pe1_0.actives,pe1_0.quantities,pe1_0.cods,pe1_0.images,pe1_0.names,pe1_0.sector,pe1_0.version from parts pe1_0 where pe1_0.cods=? or upper(pe1_0.names) like upper(?) escape '\\' and pe1_0.actives
+2025-03-09 00:06:04 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0 where se1_0.id=?
+2025-03-09 00:06:13 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select pe1_0.id,pe1_0.actives,pe1_0.quantities,pe1_0.cods,pe1_0.images,pe1_0.names,pe1_0.sector,pe1_0.version from parts pe1_0 where pe1_0.cods=? or upper(pe1_0.names) like upper(?) escape '\\' and pe1_0.actives
+2025-03-09 00:06:13 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0 where se1_0.id=?
+2025-03-09 00:06:30 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select pe1_0.id,pe1_0.actives,pe1_0.quantities,pe1_0.cods,pe1_0.images,pe1_0.names,pe1_0.sector,pe1_0.version from parts pe1_0 where pe1_0.cods=? or upper(pe1_0.names) like upper(?) escape '\\' and pe1_0.actives
+2025-03-09 00:06:30 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0 where se1_0.id=?
+2025-03-09 00:07:12 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select pe1_0.id,pe1_0.actives,pe1_0.quantities,pe1_0.cods,pe1_0.images,pe1_0.names,pe1_0.sector,pe1_0.version from parts pe1_0 where pe1_0.cods=? and pe1_0.actives
+2025-03-09 00:07:12 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0 where se1_0.id=?
+2025-03-09 00:07:19 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select pe1_0.id,pe1_0.actives,pe1_0.quantities,pe1_0.cods,pe1_0.images,pe1_0.names,pe1_0.sector,pe1_0.version from parts pe1_0 where pe1_0.cods=? or upper(pe1_0.names) like upper(?) escape '\\' and pe1_0.actives
+2025-03-09 00:07:19 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select se1_0.id,se1_0.actives,se1_0.columns,se1_0.row_data,se1_0.sector,se1_0.shelves,se1_0.version from sectors se1_0 where se1_0.id=?

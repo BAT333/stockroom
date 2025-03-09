@@ -1,11 +1,13 @@
 package com.github.bat333.stockroom.useful;
 
+import com.github.bat333.stockroom.Adapters.outbound.entities.part.PartEntity;
 import com.github.bat333.stockroom.Domain.Entities.part.Part;
-import com.github.bat333.stockroom.start.Infra.Adapters.EntityMapper;
-import com.github.bat333.stockroom.start.Infra.Adapters.sector.SectorEntityMapper;
-import com.github.bat333.stockroom.start.Infra.Persistence.part.PartEntity;
+import com.github.bat333.stockroom.Domain.Entities.part.dto.DataAllPart;
+import com.github.bat333.stockroom.Domain.Entities.sector.dto.DataSector;
+
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class PartEntityMapper implements EntityMapper<Part, PartEntity> {
@@ -41,5 +43,10 @@ public class PartEntityMapper implements EntityMapper<Part, PartEntity> {
             parts.add(toDomain(partEntity));
         }
         return  parts;
+    }
+
+    public DataAllPart toDTOPart(Part domain) {
+        return new DataAllPart(domain.getId(),domain.getCod(), domain.getName(), Base64.getEncoder().encodeToString(domain.getImage()),domain.getAmount()
+                ,new DataSector(domain.getSector().getSectors(),domain.getSector().getShelf(),domain.getSector().getColumn(),domain.getSector().getRow()));
     }
 }

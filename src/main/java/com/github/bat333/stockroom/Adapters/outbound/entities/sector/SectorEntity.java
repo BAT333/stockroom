@@ -1,8 +1,9 @@
 package com.github.bat333.stockroom.Adapters.outbound.entities.sector;
 
 
-import com.github.bat333.stockroom.start.Infra.Dto.sector.DataSector;
-import com.github.bat333.stockroom.start.Infra.Persistence.part.PartEntity;
+
+import com.github.bat333.stockroom.Adapters.outbound.entities.part.PartEntity;
+import com.github.bat333.stockroom.Domain.Entities.sector.dto.DataSector;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,9 +1,10 @@
 package com.github.bat333.stockroom.useful;
 
 
+import com.github.bat333.stockroom.Adapters.outbound.entities.sector.SectorEntity;
 import com.github.bat333.stockroom.Domain.Entities.sector.Sector;
-import com.github.bat333.stockroom.start.Infra.Adapters.EntityMapper;
-import com.github.bat333.stockroom.start.Infra.Persistence.sector.SectorEntity;
+import com.github.bat333.stockroom.Domain.Entities.sector.SectorFactory;
+import com.github.bat333.stockroom.Domain.Entities.sector.dto.DataAllSector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,8 @@ public class SectorEntityMapper implements EntityMapper<Sector, SectorEntity> {
 
     @Override
     public Sector toDomain(SectorEntity entity) {
-        return new Sector(entity.getId(), entity.getSectors(), entity.getShelf(), entity.getColumn(), entity.getRow(), entity.getActive(),null);
+
+        return  SectorFactory.createSector(entity.getId(), entity.getSectors(), entity.getShelf(), entity.getColumn(), entity.getRow(), entity.getActive(),null);
     }
 
     @Override
@@ -27,5 +29,9 @@ public class SectorEntityMapper implements EntityMapper<Sector, SectorEntity> {
             sectors.add(toDomain(sectorEntity));
         }
         return  sectors;
+    }
+
+    public DataAllSector toDTOSector(Sector domain) {
+        return new DataAllSector(domain.getId(), domain.getSectors(), domain.getShelf(), domain.getColumn(), domain.getRow());
     }
 }

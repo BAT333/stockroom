@@ -7,6 +7,10 @@ public class PartFactory {
         PartValidator.validate(id, cod, name, image, amount, sector);
         return new Part(id, cod, name, image, amount, active, sector);
     }
+    public static Part createPart( Long cod, String name, byte[] image, double amount) {
+        PartValidator.validate( cod, name, image, amount);
+        return new Part( cod, name, image, amount );
+    }
 
     public static Part createPartUpdate( Long cod, String name, byte[] image, double amount) {
         Part part = new Part();

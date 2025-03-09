@@ -1,94 +1,113 @@
 package com.github.bat333.stockroom.Application.Service.part;
 
-import com.github.bat333.stockroom.Adapters.outbound.repository.part.RepositoryPartGatewaysJPA;
+import com.github.bat333.stockroom.Adapters.outbound.storage.ImageProcessing;
 import com.github.bat333.stockroom.Application.UseCases.Part.PartUseCase;
 import com.github.bat333.stockroom.Domain.Entities.part.Part;
-import com.github.bat333.stockroom.useful.PartEntityMapper;
+import com.github.bat333.stockroom.Domain.Entities.part.PartFactory;
+import com.github.bat333.stockroom.Domain.Entities.part.RepositoryPartGateways;
 import com.github.bat333.stockroom.Domain.Entities.part.dto.DataAllPart;
+import com.github.bat333.stockroom.Domain.Entities.part.dto.DataPart;
+import com.github.bat333.stockroom.Domain.Entities.part.dto.DataUpdatePart;
+import com.github.bat333.stockroom.Domain.Entities.sector.RepositorySectorGateways;
+import com.github.bat333.stockroom.useful.PartEntityMapper;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.io.IOException;
 
 @Service
 public class PartService implements PartUseCase {
-    //se usar sector usar o usecase sempre for usar algo usar usecase
-    private final RepositoryPartGatewaysJPA partGateways;
+    //if you use sector, use usecase, always use something, use usecase
+    private final RepositoryPartGateways partGateways;
+    private final RepositorySectorGateways sectorGateways;
     private final PartEntityMapper partEntityMapper;
+    private final ImageProcessing imageProcessing;
 
-    public PartService(RepositoryPartGatewaysJPA partGateways, PartEntityMapper partEntityMapper) {
+    public PartService(RepositoryPartGateways partGateways, RepositorySectorGateways sectorGateways, PartEntityMapper partEntityMapper, ImageProcessing imageProcessing) {
         this.partGateways = partGateways;
+        this.sectorGateways = sectorGateways;
         this.partEntityMapper = partEntityMapper;
+        this.imageProcessing = imageProcessing;
     }
 
     @Override
     @CacheEvict(value = "part", allEntries = true)
-    public Part savePart(Part part, long id) {
-        //new Part(dataPart.cod(),dataPart.name(),dataPart.image(), dataPart.amount())
-        return partGateways.savePart(part,id);
-    }
-
-    @Override
-    @Cacheable(value = "part")
-    public Part listActivePart(Long id) {
-        var parts=allParts.listAllParts().stream().map(part->new DataAllPart(partEntityMapper.toEntity(part))).toList();
-        long totalElements = parts.size();
-        return new PageImpl<>(parts, pageable, totalElements);
+    public DataAllPart savePart(DataPart part, long id) {
+        if(partGateways.existsByCodAndName(part.cod(),part.name())||sectorGateways.existsSectorAndActive(id)){
+            throw new RuntimeException();
+        }
+        byte[] img = this.imageCompress(part.image());
+        Part partSave = partGateways.savePart(PartFactory.createPart(part.cod(),part.name(),img,part.amount()),id);
+        return partEntityMapper.toDTOPart(partSave);
     }
 
     @Override
     @Cacheable(value = "part", key = "#id")
-    public Part listPart(Long id) {
-        return null;
+    public DataAllPart listActivePart(Long id) {
+        if(!partGateways.existsPartAndActive(id)){
+            throw new RuntimeException();
+        }
+        var part = partGateways.listActivePart(id);
+        return partEntityMapper.toDTOPart(part);
+    }
+
+
+    @Override
+    @Cacheable(value = "part",key = "'part:' + #page + ':' + #size")
+    public Page<DataAllPart> listAllPart(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        var parts = partGateways.listAllParts().stream().map(partEntityMapper::toDTOPart).toList();
+        var totalElements = parts.size();
+        return new PageImpl<>(parts,pageable,totalElements);
     }
 
     @Override
     @CacheEvict(value = "part", allEntries = true)
-    public Part updatePart(long id, Part part, Long sector) {
-        return null;
+    public DataAllPart updatePart(long id, DataUpdatePart part) {
+        if(partGateways.existsByCodAndName(part.cod(),part.name())||!partGateways.existsPartAndActive(id)){
+            throw new RuntimeException();
+        }
+        Part parts = null;
+        if(part.image() !=null){
+            byte[] img = this.imageCompress(part.image());
+            parts = partGateways.updatePart(id,PartFactory.createPartUpdate(part.cod(),part.name(),img,part.amount()),part.sector());
+
+        }else{
+            parts = partGateways.updatePart(id,PartFactory.createPartUpdate(part.cod(),part.name(), null,part.amount()),part.sector());
+        }
+        return  partEntityMapper.toDTOPart(parts);
     }
+
+
 
     @Override
     @CacheEvict(value = "part", allEntries = true)
     public void deletePart(Long id) {
-
+        if(!partGateways.existsPartAndActive(id)){
+            throw new RuntimeException();
+        }
+        partGateways.deletePart(id);
     }
 
     @Override
-    @Cacheable(value = "part", key = "'search:' + #cod + ':' + #name + ':' + #pageable.pageNumber + ':' + #pageable.pageSize")
-    public List<Part> searchPart(String name, Long cod) {
-        return List.of();
+    @Cacheable(value = "part", key = "'search:' + #cod + ':' + #name + ':' + #page + ':' + #size")
+    public Page<DataAllPart> searchPart(String name, Long cod, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        var parts =  partGateways.searchPart(name,cod).stream().map(partEntityMapper::toDTOPart).toList();
+        var totalElements = parts.size();
+        return new PageImpl<>(parts,pageable,totalElements);
     }
 
-//
-//    @Cacheable(value = "part")
-//    public Page<DataAllPart> listAllPart(@NotNull Pageable pageable) {
-//        var parts=allParts.listAllParts().stream().map(part->new DataAllPart(partEntityMapper.toEntity(part))).toList();
-//        long totalElements = parts.size();
-//        return new PageImpl<>(parts, pageable, totalElements);
-//    }
-//    @Cacheable(value = "part", key = "#id")
-//    public DataAllPart get(@NotNull Long id) {
-//        var part = listPart.listPart(id);
-//        return new DataAllPart(partEntityMapper.toEntity(part));
-//    }
-//
-//    @CacheEvict(value = "part", allEntries = true)
-//    public DataAllPart update(@NotNull Long id, DataUpdatePart dataUpdatePart) {
-//        var part = updatePart.updatePart(id, PartFactory.createPartUpdate(dataUpdatePart.cod(),dataUpdatePart.name(),dataUpdatePart.image(), dataUpdatePart.amount()),dataUpdatePart.sector());
-//        return new DataAllPart(partEntityMapper.toEntity(part));
-//    }
-//
-//    @CacheEvict(value = "part", allEntries = true)
-//    public void delete(@NotNull Long id) {
-//        deletePart.deletePart(id);
-//    }
-//
-//    @Cacheable(value = "part", key = "'search:' + #cod + ':' + #name + ':' + #pageable.pageNumber + ':' + #pageable.pageSize")
-//    public Page<DataAllPart> search(Long cod, String name, Pageable pageable) {
-//        var parts=searchByPart.searchByPart(name,cod).stream().map(part->new DataAllPart(partEntityMapper.toEntity(part))).toList();
-//        long totalElements = parts.size();
-//        return new PageImpl<>(parts, pageable, totalElements);
-//    }
+    private byte[] imageCompress(byte[] image) {
+        try {
+            return imageProcessing.resizeAndCompressImage(image,800,800,0.1f);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

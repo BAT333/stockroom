@@ -1,90 +1,79 @@
 package com.github.bat333.stockroom.Application.Service.sector;
 
-import com.github.bat333.stockroom.Application.UseCases.SectorUseCase;
-import com.github.bat333.stockroom.start.Application.UseCases.sector.*;
+import com.github.bat333.stockroom.Application.UseCases.Sector.SectorUseCase;
+import com.github.bat333.stockroom.Domain.Entities.sector.RepositorySectorGateways;
 import com.github.bat333.stockroom.Domain.Entities.sector.Sector;
-import com.github.bat333.stockroom.start.Infra.Adapters.sector.SectorEntityMapper;
-import com.github.bat333.stockroom.start.Infra.Dto.sector.DataAllSector;
-import com.github.bat333.stockroom.start.Infra.Dto.sector.DataSector;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
+import com.github.bat333.stockroom.Domain.Entities.sector.SectorFactory;
+import com.github.bat333.stockroom.Domain.Entities.sector.dto.DataAllSector;
+import com.github.bat333.stockroom.Domain.Entities.sector.dto.DataSector;
+import com.github.bat333.stockroom.useful.SectorEntityMapper;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class SectorService implements SectorUseCase {
-    @Override
-    public Sector saveSector(Sector sector) {
-        return null;
+    private final RepositorySectorGateways sectorGateways;
+    private final SectorEntityMapper sectorEntityMapper;
+
+    public SectorService(RepositorySectorGateways sectorGateways, SectorEntityMapper sectorEntityMapper) {
+        this.sectorGateways = sectorGateways;
+        this.sectorEntityMapper = sectorEntityMapper;
     }
 
     @Override
-    public Sector listActiveSector(Long id) {
-        return null;
+    @CacheEvict(value = "sector", allEntries = true)
+    public DataAllSector saveSector(DataSector sector) {
+        if(sectorGateways.existsBySectorsAndShelfAndColumnAndRow(sector.sector(), sector.shelf(), sector.column(), sector.row())){
+            throw new RuntimeException();
+        }
+
+        Sector sectorCreate = SectorFactory.createSector(sector.sector(),sector.column(),sector.shelf(),sector.row());
+        Sector sectorSave = sectorGateways.saveSector(sectorCreate);
+        return sectorEntityMapper.toDTOSector(sectorSave);
     }
 
     @Override
-    public List<Sector> listAllActiveSectors() {
-        return List.of();
+    @Cacheable(value = "sector", key = "#id")
+    public DataAllSector listActiveSector(Long id) {
+        if(!sectorGateways.existsSectorAndActive(id)){
+            throw new RuntimeException();
+        }
+        Sector sector = sectorGateways.listActiveSector(id);
+        return sectorEntityMapper.toDTOSector(sector);
     }
 
     @Override
-    public Sector updateSector(long id, Sector sector) {
-        return null;
+    @Cacheable(value = "sector", key = "'sector:' + #page + ':' + #size")
+    public Page<DataAllSector> listAllActiveSectors(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        //arrumar
+        var sectors = sectorGateways.listAllSectors().stream().map(sectorEntityMapper::toDTOSector).toList();
+        long totalElements = sectors.size();
+        return new PageImpl<>(sectors,pageable,totalElements);
     }
 
     @Override
+    @CachePut(value = "sector", key = "#id")
+    public DataAllSector updateSector(long id, DataSector sector) {
+        if(!sectorGateways.existsSectorAndActive(id)||sectorGateways.existsBySectorsAndShelfAndColumnAndRow(sector.sector(),sector.shelf(),sector.column(),sector.row())){
+            throw new RuntimeException();
+        }
+        Sector sectorUpdate = sectorGateways.updateSector(id, SectorFactory.createSector(sector.sector(),sector.column(),sector.shelf(),sector.row()));
+        return sectorEntityMapper.toDTOSector(sectorUpdate);
+    }
+
+    @Override
+    @CacheEvict(value = "sector", key = "#id")
     public void deleteSector(Long id) {
-
+        if(!sectorGateways.existsSectorAndActive(id)){
+            throw new RuntimeException();
+        }
+        sectorGateways.deleteSector(id);
     }
-//    private final SaveSector saveSector;
-//    private final ListAllSectors allSectors;
-//    private final SectorEntityMapper sectorEntityMapper;
-//    private final ListSector listSector;
-//    private final UpdateSector updateSector;
-//    private final DeleteSector deleteSector;
-//
-//    public SectorService(SaveSector saveSector, ListAllSectors allSectors, SectorEntityMapper sectorEntityMapper, ListSector listSector, UpdateSector updateSector, DeleteSector deleteSector) {
-//        this.saveSector = saveSector;
-//        this.allSectors = allSectors;
-//        this.sectorEntityMapper = sectorEntityMapper;
-//        this.listSector = listSector;
-//        this.updateSector = updateSector;
-//        this.deleteSector = deleteSector;
-//    }
-//
-//    @CacheEvict(value = "sector", allEntries = true)
-//    public DataAllSector register(@Valid DataSector dataSector) {
-//        var sector = saveSector.saveSector(new Sector(dataSector.sector(), dataSector.column(), dataSector.shelf(), dataSector.row()));
-//        return new DataAllSector(sectorEntityMapper.toEntity(sector));
-//    }
-//
-//    @Cacheable(value = "sector")
-//    public Page<DataAllSector> listAllSectors(Pageable pageable) {
-//        var sectors = allSectors.listAllSectors().stream().map(sector -> new DataAllSector(sectorEntityMapper.toEntity(sector))).toList();
-//        long totalElements = sectors.size();
-//        return new PageImpl<>(sectors,pageable,totalElements);
-//    }
-//    @Cacheable(value = "sector", key = "#id")
-//    public DataAllSector getSector(@NotNull Long id) {
-//        var sector = listSector.listSector(id);
-//        return new DataAllSector(sectorEntityMapper.toEntity(sector));
-//    }
-//
-//    @CachePut(value = "sector", key = "#id")
-//    public DataAllSector update(@NotNull Long id,@NotNull  DataSector dataSector) {
-//        var sector = updateSector.updateSector(id,new Sector(dataSector.sector(), dataSector.column(), dataSector.shelf(), dataSector.row()));
-//        return new DataAllSector(sectorEntityMapper.toEntity(sector));
-//    }
-//    @CacheEvict(value = "sector", key = "#id")
-//    public void delete(@NotNull Long id) {
-//        deleteSector.deleteSector(id);
-//    }
 }

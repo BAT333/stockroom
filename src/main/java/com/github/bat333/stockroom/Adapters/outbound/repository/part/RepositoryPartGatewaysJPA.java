@@ -5,6 +5,7 @@ import com.github.bat333.stockroom.Adapters.outbound.entities.sector.SectorEntit
 import com.github.bat333.stockroom.Adapters.outbound.repository.sector.SectorRepository;
 import com.github.bat333.stockroom.Domain.Entities.part.Part;
 import com.github.bat333.stockroom.Domain.Entities.part.RepositoryPartGateways;
+import com.github.bat333.stockroom.useful.PartEntityMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

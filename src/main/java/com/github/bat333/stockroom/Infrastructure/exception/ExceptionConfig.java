@@ -1,7 +1,6 @@
-package com.github.bat333.stockroom.Infrastructure.Config.exception;
+package com.github.bat333.stockroom.Infrastructure.exception;
 
-import com.github.bat333.stockroom.start.Application.Exception.PartExists;
-import com.github.bat333.stockroom.start.Application.Exception.SectorExists;
+
 import com.github.bat333.stockroom.Domain.Exception.PartValidation;
 import com.github.bat333.stockroom.Domain.Exception.SectorValidation;
 import org.springframework.http.HttpStatus;
@@ -29,7 +28,7 @@ public class ExceptionConfig {
                 .body(response);
     }
 
-    @ExceptionHandler({PartExists.class, SectorExists.class})
+    //@ExceptionHandler({PartExists.class, SectorExists.class})
     public ResponseEntity<Object> existsException(Exception ex) {
         Map<String, Object> response = new HashMap<>();
         response.put("error", ex.getClass().getSimpleName());

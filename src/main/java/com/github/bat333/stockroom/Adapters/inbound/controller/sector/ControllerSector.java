@@ -1,9 +1,10 @@
 package com.github.bat333.stockroom.Adapters.inbound.controller.sector;
 
 
-import com.github.bat333.stockroom.start.Infra.Dto.sector.DataAllSector;
-import com.github.bat333.stockroom.start.Infra.Dto.sector.DataSector;
-import com.github.bat333.stockroom.start.Infra.Service.sector.SectorService;
+
+import com.github.bat333.stockroom.Application.Service.sector.SectorService;
+import com.github.bat333.stockroom.Domain.Entities.sector.dto.DataAllSector;
+import com.github.bat333.stockroom.Domain.Entities.sector.dto.DataSector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +25,7 @@ public class ControllerSector {
     @PostMapping
     @Transactional
     public ResponseEntity<DataAllSector> registerSector(@RequestBody DataSector dataSector){
-        DataAllSector sector = sectorService.register(dataSector);
+        DataAllSector sector = sectorService.saveSector(dataSector);
         return ResponseEntity.created(URI.create("/"+sector.id())).body(sector);
     }
 
@@ -32,28 +33,26 @@ public class ControllerSector {
     public ResponseEntity<Page<DataAllSector>> getSectors(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
-
-        Pageable pageable = PageRequest.of(page, size);
-        return ResponseEntity.ok(sectorService.listAllSectors(pageable));
+        return ResponseEntity.ok(sectorService.listAllActiveSectors(page,size));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<DataAllSector> getSector(@PathVariable Long id){
-        DataAllSector sector = sectorService.getSector(id);
+        DataAllSector sector = sectorService.listActiveSector(id);
         return ResponseEntity.ok(sector);
     }
 
     @PatchMapping("/{id}")
     @Transactional
     public ResponseEntity<DataAllSector> updateSector(@RequestBody DataSector dataSector ,@PathVariable(name = "id") Long id){
-        DataAllSector update = sectorService.update(id,dataSector);
+        DataAllSector update = sectorService.updateSector(id,dataSector);
         return ResponseEntity.ok(update);
     }
 
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<Void> deleteSector(@PathVariable(name = "id") Long id){
-        sectorService.delete(id);
+        sectorService.deleteSector(id);
         return ResponseEntity.noContent().build();
     }
 
