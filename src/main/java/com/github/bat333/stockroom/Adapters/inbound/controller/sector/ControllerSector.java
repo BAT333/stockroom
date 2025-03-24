@@ -1,13 +1,11 @@
 package com.github.bat333.stockroom.Adapters.inbound.controller.sector;
 
 
-
 import com.github.bat333.stockroom.Application.Service.sector.SectorService;
 import com.github.bat333.stockroom.Domain.Entities.sector.dto.DataAllSector;
 import com.github.bat333.stockroom.Domain.Entities.sector.dto.DataSector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;

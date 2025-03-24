@@ -6,7 +6,6 @@ import com.github.bat333.stockroom.Domain.Entities.sector.Sector;
 import com.github.bat333.stockroom.Domain.Entities.sector.SectorFactory;
 import com.github.bat333.stockroom.Domain.Entities.sector.dto.DataAllSector;
 import com.github.bat333.stockroom.Domain.Entities.sector.dto.DataSector;
-import com.github.bat333.stockroom.Infrastructure.exception.PartExists;
 import com.github.bat333.stockroom.Infrastructure.exception.SectorExists;
 import com.github.bat333.stockroom.useful.SectorEntityMapper;
 import org.springframework.cache.annotation.CacheEvict;
@@ -14,7 +13,6 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
