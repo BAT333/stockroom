@@ -6,6 +6,7 @@ import com.github.bat333.stockroom.Domain.Entities.sector.Sector;
 import com.github.bat333.stockroom.Domain.Entities.sector.SectorFactory;
 import com.github.bat333.stockroom.Domain.Entities.sector.dto.DataAllSector;
 import com.github.bat333.stockroom.Domain.Entities.sector.dto.DataSector;
+import com.github.bat333.stockroom.Infrastructure.exception.SectorExists;
 import com.github.bat333.stockroom.useful.SectorEntityMapper;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -30,7 +31,8 @@ public class SectorService implements SectorUseCase {
     @CacheEvict(value = "sector", allEntries = true)
     public DataAllSector saveSector(DataSector sector) {
         if(sectorGateways.existsBySectorsAndShelfAndColumnAndRow(sector.sector(), sector.shelf(), sector.column(), sector.row())){
-            throw new RuntimeException();
+            throw new SectorExists(String.format("Sector with sector '%s' and Shelf '%s' and Column '%s' and Row '%s' already exists.",
+                    sector.sector(),sector.shelf(),sector.column(),sector.row()));
         }
 
         Sector sectorCreate = SectorFactory.createSector(sector.sector(),sector.column(),sector.shelf(),sector.row());
@@ -42,7 +44,7 @@ public class SectorService implements SectorUseCase {
     @Cacheable(value = "sector", key = "#id")
     public DataAllSector listActiveSector(Long id) {
         if(!sectorGateways.existsSectorAndActive(id)){
-            throw new RuntimeException();
+            throw new SectorExists("This sector does not exist");
         }
         Sector sector = sectorGateways.listActiveSector(id);
         return sectorEntityMapper.toDTOSector(sector);
@@ -61,9 +63,14 @@ public class SectorService implements SectorUseCase {
     @Override
     @CachePut(value = "sector", key = "#id")
     public DataAllSector updateSector(long id, DataSector sector) {
-        if(!sectorGateways.existsSectorAndActive(id)||sectorGateways.existsBySectorsAndShelfAndColumnAndRow(sector.sector(),sector.shelf(),sector.column(),sector.row())){
-            throw new RuntimeException();
+        if(!this.sectorGateways.existsSectorAndActive(id)){
+            throw new SectorExists("This sector does not exist");
         }
+        if(sectorGateways.existsBySectorsAndShelfAndColumnAndRow(sector.sector(), sector.shelf(), sector.column(), sector.row())){
+            throw new SectorExists(String.format("Sector with sector '%s' and Shelf '%s' and Column '%s' and Row '%s' already exists.",
+                    sector.sector(),sector.shelf(),sector.column(),sector.row()));
+        }
+
         Sector sectorUpdate = sectorGateways.updateSector(id, SectorFactory.createSector(sector.sector(),sector.column(),sector.shelf(),sector.row()));
         return sectorEntityMapper.toDTOSector(sectorUpdate);
     }
@@ -72,7 +79,7 @@ public class SectorService implements SectorUseCase {
     @CacheEvict(value = "sector", key = "#id")
     public void deleteSector(Long id) {
         if(!sectorGateways.existsSectorAndActive(id)){
-            throw new RuntimeException();
+            throw new SectorExists("This sector does not exist");
         }
         sectorGateways.deleteSector(id);
     }

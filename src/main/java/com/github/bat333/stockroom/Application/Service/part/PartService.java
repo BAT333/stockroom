@@ -9,6 +9,9 @@ import com.github.bat333.stockroom.Domain.Entities.part.dto.DataAllPart;
 import com.github.bat333.stockroom.Domain.Entities.part.dto.DataPart;
 import com.github.bat333.stockroom.Domain.Entities.part.dto.DataUpdatePart;
 import com.github.bat333.stockroom.Domain.Entities.sector.RepositorySectorGateways;
+import com.github.bat333.stockroom.Infrastructure.exception.ImageException;
+import com.github.bat333.stockroom.Infrastructure.exception.PartExists;
+import com.github.bat333.stockroom.Infrastructure.exception.SectorExists;
 import com.github.bat333.stockroom.useful.PartEntityMapper;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -38,8 +41,13 @@ public class PartService implements PartUseCase {
     @Override
     @CacheEvict(value = "part", allEntries = true)
     public DataAllPart savePart(DataPart part, long id) {
-        if(partGateways.existsByCodAndName(part.cod(),part.name())||sectorGateways.existsSectorAndActive(id)){
-            throw new RuntimeException();
+        if(partGateways.existsByCodAndName(part.cod(), part.name())){
+            throw new PartExists(String.format("Part with code '%s' and name '%s' already exists.",
+                    part.cod(), part.name()));
+        }
+        if(!sectorGateways.existsSectorAndActive(id)){
+            throw new SectorExists("This sector does not exist");
+
         }
         byte[] img = this.imageCompress(part.image());
         Part partSave = partGateways.savePart(PartFactory.createPart(part.cod(),part.name(),img,part.amount()),id);
@@ -50,7 +58,7 @@ public class PartService implements PartUseCase {
     @Cacheable(value = "part", key = "#id")
     public DataAllPart listActivePart(Long id) {
         if(!partGateways.existsPartAndActive(id)){
-            throw new RuntimeException();
+            throw new PartExists("This part does not exist");
         }
         var part = partGateways.listActivePart(id);
         return partEntityMapper.toDTOPart(part);
@@ -89,7 +97,7 @@ public class PartService implements PartUseCase {
     @CacheEvict(value = "part", allEntries = true)
     public void deletePart(Long id) {
         if(!partGateways.existsPartAndActive(id)){
-            throw new RuntimeException();
+            throw new PartExists("This part does not exist");
         }
         partGateways.deletePart(id);
     }
@@ -103,11 +111,11 @@ public class PartService implements PartUseCase {
         return new PageImpl<>(parts,pageable,totalElements);
     }
 
-    private byte[] imageCompress(byte[] image) {
+    private byte[] imageCompress(byte[] image)  {
         try {
             return imageProcessing.resizeAndCompressImage(image,800,800,0.1f);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new ImageException("Error rendering image");
         }
     }
 }

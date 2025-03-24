@@ -1,8 +1,6 @@
 package com.github.bat333.stockroom.Infrastructure.exception;
 
 
-import com.github.bat333.stockroom.Domain.Exception.PartValidation;
-import com.github.bat333.stockroom.Domain.Exception.SectorValidation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -28,7 +26,7 @@ public class ExceptionConfig {
                 .body(response);
     }
 
-    //@ExceptionHandler({PartExists.class, SectorExists.class})
+    @ExceptionHandler({PartExists.class, SectorExists.class, ImageException.class})
     public ResponseEntity<Object> existsException(Exception ex) {
         Map<String, Object> response = new HashMap<>();
         response.put("error", ex.getClass().getSimpleName());

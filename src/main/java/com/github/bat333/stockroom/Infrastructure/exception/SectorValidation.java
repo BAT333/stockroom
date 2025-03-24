@@ -1,4 +1,4 @@
-package com.github.bat333.stockroom.Domain.Exception;
+package com.github.bat333.stockroom.Infrastructure.exception;
 
 public class SectorValidation extends IllegalArgumentException{
 
