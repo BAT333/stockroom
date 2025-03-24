@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -31,10 +32,8 @@ public class ControllerPart {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DataAllPart>> getSectors(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        return ResponseEntity.ok( partService.listAllPart(page,size));
+    public ResponseEntity<Page<DataAllPart>> getSectors(@PageableDefault(sort = {"id"}) Pageable pageable) {
+        return ResponseEntity.ok( partService.listAllPart(pageable));
     }
 
     @GetMapping("/{id}")
@@ -58,10 +57,9 @@ public class ControllerPart {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<Page<DataAllPart>> searchPart( @RequestParam(defaultValue = "0") int page,
-                                                         @RequestParam(defaultValue = "10") int size,@RequestParam(name = "cod",required = false) Long cod,@RequestParam(name = "name",required = false) String name){
+    public ResponseEntity<Page<DataAllPart>> searchPart(@PageableDefault(sort = {"id"}) Pageable pageable, @RequestParam(name = "cod",required = false) Long cod, @RequestParam(name = "name",required = false) String name){
 
-        Page<DataAllPart> search = this.partService.searchPart(name,cod,page,size);
+        Page<DataAllPart> search = this.partService.searchPart(name,cod,pageable);
         return ResponseEntity.ok(search);
     }
 }

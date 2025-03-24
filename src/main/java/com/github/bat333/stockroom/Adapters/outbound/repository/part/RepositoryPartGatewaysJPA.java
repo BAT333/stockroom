@@ -6,6 +6,8 @@ import com.github.bat333.stockroom.Adapters.outbound.repository.sector.SectorRep
 import com.github.bat333.stockroom.Domain.Entities.part.Part;
 import com.github.bat333.stockroom.Domain.Entities.part.RepositoryPartGateways;
 import com.github.bat333.stockroom.useful.PartEntityMapper;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -38,8 +40,9 @@ public class RepositoryPartGatewaysJPA implements RepositoryPartGateways {
     }
 
     @Override
-    public List<Part> listAllActiveParts() {
-        return partEntityMapper.toListDomain(partRepository.findByActiveTrue());
+    public List<Part> listAllActiveParts(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        return partEntityMapper.toListDomain(partRepository.findByActiveTrue(pageable).toList());
     }
 
     @Override
@@ -49,8 +52,10 @@ public class RepositoryPartGatewaysJPA implements RepositoryPartGateways {
     }
 
     @Override
-    public List<Part> listAllParts() {
-        return partEntityMapper.toListDomain(partRepository.findAll());
+    public List<Part> listAllParts(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+
+        return partEntityMapper.toListDomain(partRepository.findAll(pageable).toList());
     }
 
     @Override
@@ -77,26 +82,27 @@ public class RepositoryPartGatewaysJPA implements RepositoryPartGateways {
     }
 
     @Override
-    public List<Part> searchPart(String name, Long cod) {
+    public List<Part> searchPart(String name, Long cod, int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
         if(name == null && cod == null){
-            return this.partEntityMapper.toListDomain(partRepository.findByActiveTrue());
+            return this.partEntityMapper.toListDomain(partRepository.findByActiveTrue(pageable).toList());
         }
-        return (name != null && cod != null) ?this.getByCodAndName(cod, name):
-                (cod != null)? this.getByCod(cod) : this.getByName(name);
+        return (name != null && cod != null) ?this.getByCodAndName(cod, name,pageable):
+                (cod != null)? this.getByCod(cod,pageable) : this.getByName(name,pageable);
     }
 
-    private List<Part> getByName(String name) {
-        List<PartEntity> partEntity = this.partRepository.findByNameContainingIgnoreCaseAndActiveTrue(name);
+    private List<Part> getByName(String name, Pageable pageable) {
+        List<PartEntity> partEntity = this.partRepository.findByNameContainingIgnoreCaseAndActiveTrue(name,pageable).toList();
         return partEntityMapper.toListDomain(partEntity);
     }
 
-    private List<Part> getByCod(Long cod) {
-        PartEntity partEntity = this.partRepository.findByCodAndActiveTrue(cod).orElseThrow();
-        return List.of(partEntityMapper.toDomain(partEntity));
+    private List<Part> getByCod(Long cod, Pageable pageable) {
+        return partEntityMapper.toListDomain(this.partRepository.findByCodAndActiveTrue(cod,pageable).toList());
+
     }
 
-    private List<Part> getByCodAndName(Long cod, String name) {
-        return  this.partEntityMapper.toListDomain( this.partRepository.findByCodOrNameContainingIgnoreCaseAndActiveTrue(cod,name));
+    private List<Part> getByCodAndName(Long cod, String name, Pageable pageable) {
+        return  this.partEntityMapper.toListDomain( this.partRepository.findByCodOrNameContainingIgnoreCaseAndActiveTrue(cod,name,pageable).toList());
     }
 
     @Override

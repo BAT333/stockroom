@@ -4,6 +4,8 @@ import com.github.bat333.stockroom.Adapters.outbound.entities.sector.SectorEntit
 import com.github.bat333.stockroom.Domain.Entities.sector.RepositorySectorGateways;
 import com.github.bat333.stockroom.Domain.Entities.sector.Sector;
 import com.github.bat333.stockroom.useful.SectorEntityMapper;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -42,8 +44,9 @@ public class RepositorySectorGatewaysJPA implements RepositorySectorGateways {
     }
 
     @Override
-    public List<Sector> listAllSectors() {
-        return sectorEntityMapper.toListDomain(sectorRepository.findAll());
+    public List<Sector> listAllSectors(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        return sectorEntityMapper.toListDomain(sectorRepository.findAll(pageable).toList());
     }
 
     @Override

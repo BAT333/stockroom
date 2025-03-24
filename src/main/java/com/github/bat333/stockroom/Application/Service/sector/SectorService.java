@@ -6,6 +6,7 @@ import com.github.bat333.stockroom.Domain.Entities.sector.Sector;
 import com.github.bat333.stockroom.Domain.Entities.sector.SectorFactory;
 import com.github.bat333.stockroom.Domain.Entities.sector.dto.DataAllSector;
 import com.github.bat333.stockroom.Domain.Entities.sector.dto.DataSector;
+import com.github.bat333.stockroom.Infrastructure.exception.PartExists;
 import com.github.bat333.stockroom.Infrastructure.exception.SectorExists;
 import com.github.bat333.stockroom.useful.SectorEntityMapper;
 import org.springframework.cache.annotation.CacheEvict;
@@ -51,11 +52,9 @@ public class SectorService implements SectorUseCase {
     }
 
     @Override
-    @Cacheable(value = "sector", key = "'sector:' + #page + ':' + #size")
-    public Page<DataAllSector> listAllActiveSectors(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        //arrumar
-        var sectors = sectorGateways.listAllSectors().stream().map(sectorEntityMapper::toDTOSector).toList();
+    @Cacheable(value = "sector", key = "'sector:' + #pageable.getPageNumber() + ':' + #pageable.getPageSize()")
+    public Page<DataAllSector> listAllActiveSectors(Pageable pageable) {
+        var sectors = sectorGateways.listAllSectors(pageable.getPageNumber(),pageable.getPageSize()).stream().map(sectorEntityMapper::toDTOSector).toList();
         long totalElements = sectors.size();
         return new PageImpl<>(sectors,pageable,totalElements);
     }

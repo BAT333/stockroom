@@ -8,7 +8,7 @@ public interface RepositorySectorGateways {
     public Sector listActiveSector(Long id);
     public List<Sector> listAllActiveSectors();
     public Sector listSector(Long id);
-    public List<Sector> listAllSectors();
+    public List<Sector> listAllSectors(int pageNumber, int pageSize);
     public Sector updateSector(long id, Sector sector);
     public void deleteSector(Long id);
     public boolean existsSectorAndActive(Long id);

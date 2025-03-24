@@ -66,10 +66,9 @@ public class PartService implements PartUseCase {
 
 
     @Override
-    @Cacheable(value = "part",key = "'part:' + #page + ':' + #size")
-    public Page<DataAllPart> listAllPart(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        var parts = partGateways.listAllParts().stream().map(partEntityMapper::toDTOPart).toList();
+    @Cacheable(value = "part",key = "'part:' + #pageable.getPageNumber() + ':' + #pageable.getPageSize()")
+    public Page<DataAllPart> listAllPart(Pageable pageable) {
+        var parts = partGateways.listAllParts(pageable.getPageNumber(),pageable.getPageSize()).stream().map(partEntityMapper::toDTOPart).toList();
         var totalElements = parts.size();
         return new PageImpl<>(parts,pageable,totalElements);
     }
@@ -103,10 +102,9 @@ public class PartService implements PartUseCase {
     }
 
     @Override
-    @Cacheable(value = "part", key = "'search:' + #cod + ':' + #name + ':' + #page + ':' + #size")
-    public Page<DataAllPart> searchPart(String name, Long cod, int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        var parts =  partGateways.searchPart(name,cod).stream().map(partEntityMapper::toDTOPart).toList();
+    @Cacheable(value = "part", key = "'search:' + #cod + ':' + #name + ':' + #pageable.getPageNumber() + ':' + #pageable.getPageSize()")
+    public Page<DataAllPart> searchPart(String name, Long cod,Pageable pageable) {
+        var parts =  partGateways.searchPart(name,cod,pageable.getPageNumber(),pageable.getPageSize()).stream().map(partEntityMapper::toDTOPart).toList();
         var totalElements = parts.size();
         return new PageImpl<>(parts,pageable,totalElements);
     }
